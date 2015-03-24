@@ -17,6 +17,8 @@ public class BombMain extends ApplicationAdapter {
 	 * 
 	 */
 	
+	public static final int WIDTH = 480, HEIGHT = 320;
+	
 	private SpriteBatch batch;
 	private AssetManager assets;
 	private StateManager states;
