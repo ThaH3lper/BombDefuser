@@ -5,5 +5,5 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public interface IStateManager {
 	
 	void update(float delta);
-	void render(SpriteBatch batch);
+	void render();
 }

@@ -2,7 +2,6 @@ package com.BombDefuser.StateSystem.States;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameState extends State implements IState {
 	
@@ -16,11 +15,14 @@ public class GameState extends State implements IState {
 
 	@Override
 	public void update(float delta) {
-		
+		camera.update();
 	}
 
 	@Override
-	public void render(SpriteBatch batch) {
+	public void render() {
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
 		batch.draw(img, 0, 0);
+		batch.end();
 	}
 }

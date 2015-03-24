@@ -68,7 +68,7 @@ public class BombMain extends ApplicationAdapter {
 		if(!assets.update())
 			font.draw(batch, "Progress: " + (int)(progress * 100), 200, 200);
 		if(assets.update())
-			states.render(batch);
+			states.render();
 		batch.end();
 	}
 }

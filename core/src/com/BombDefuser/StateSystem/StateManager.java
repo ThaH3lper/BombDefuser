@@ -37,12 +37,12 @@ public class StateManager implements IStateManager{
 	}
 
 	@Override
-	public void render(SpriteBatch batch) {
+	public void render() {
 		switch (currentState) {
 		case meny:
 			break;
 		case game:
-			game.render(batch);
+			game.render();
 			break;
 		case winning:
 			break;
