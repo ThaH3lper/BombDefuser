@@ -1,52 +1,45 @@
 package com.BombDefuser.StateSystem;
 
-import com.BombDefuser.StateSystem.States.GameState;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.BombDefuser.StateSystem.Screens.GameScreen;
+import com.BombDefuser.StateSystem.Screens.LoadingScreen;
 
-public class StateManager implements IStateManager{
-	
-	// StateManager stuff
-	private AssetManager assets;
-	private EStates currentState;
-	
-	// All states here
-	private GameState game;
-	
-	public StateManager(AssetManager assets){
-		this.assets = assets;
+public class StateManager{
 		
-		game = new GameState(assets);
+	//This is all states in one
+	private IState currentState;
 		
-		currentState = EStates.game;
-	}
-	
-	@Override
 	public void update(float delta) {
-		switch (currentState) {
-		case meny:
-			break;
-		case game:
-			game.update(delta);
-			break;
-		case winning:
-			break;
-		case losing:
-			break;
-		}
+		if(currentState != null)
+			currentState.update(delta);
 	}
 
-	@Override
 	public void render() {
-		switch (currentState) {
+		if(currentState != null)
+			currentState.render();
+	}
+	
+	public void setState(EStates state)
+	{
+		if(currentState != null)
+			currentState.dispose();
+		switch (state) {
 		case meny:
+			
 			break;
 		case game:
-			game.render();
+			currentState = new GameScreen();
 			break;
-		case winning:
+		case levelselect:
+			
 			break;
 		case losing:
+			
+			break;
+		case winning:
+			
+			break;
+		case loading:
+			currentState = new LoadingScreen();
 			break;
 		}
 	}
