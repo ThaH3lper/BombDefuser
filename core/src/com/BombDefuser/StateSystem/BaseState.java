@@ -10,7 +10,7 @@ public class BaseState{
 	protected SpriteBatch batch;
 	
 	public BaseState(){
-		camera = new OrthographicCamera(Globals.VIRTUAL_WIDTH, Globals.VIRTUAL_HEIGHT);
+		camera = new OrthographicCamera(Globals.VIRTUAL_WIDTH, Globals.NEW_VIRTUAL_HEIGHT);
 		batch = new SpriteBatch();
 	}
 }

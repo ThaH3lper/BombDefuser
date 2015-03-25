@@ -1,24 +1,24 @@
 package com.BombDefuser.StateSystem.Screens;
 
-import sun.java2d.pipe.SpanClipRenderer;
-
-import com.BombDefuser.BombMain;
+import com.BombDefuser.Globals;
 import com.BombDefuser.StateSystem.BaseState;
 import com.BombDefuser.StateSystem.IState;
-import com.badlogic.gdx.graphics.Texture;
+import com.BombDefuser.World.World;
 
 public class GameScreen extends BaseState implements IState {
 	
-	private Texture img;
+	private World world;
 	
 	public GameScreen() {
-		
-		img = BombMain.assets.get("badlogic.jpg", Texture.class);
+		world = new World(-10);
+		camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
+		camera.update();
 	}
 
 	@Override
 	public void update(float delta) {
 		camera.update();
+		world.update(delta);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class GameScreen extends BaseState implements IState {
 		batch.setProjectionMatrix(camera.combined);
 		
 		batch.begin();
-		batch.draw(img, 0, 0);
+		world.render(batch);
 		batch.end();
 	}
 

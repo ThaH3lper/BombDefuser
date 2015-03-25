@@ -15,25 +15,26 @@ public class BombMain extends ApplicationAdapter {
 	public static AssetManager assets;
 	
 	public static StateManager stateManager;
-	private BitmapFont font;
 	
 	@Override
 	public void create () {
+		Globals.load();
 		assets = new AssetManager();
 		loadContent();
 		
 		stateManager = new StateManager();
-		
-		//Startup state
 		stateManager.setState(EStates.loading);
-		
-		font = new BitmapFont(Gdx.files.internal("arial64white.fnt"));	
 	}
 	
 	public void loadContent()
 	{
+		//Load these first
 		BombMain.assets.load("logo.png", Texture.class);
+		BombMain.assets.load("arial64white.fnt", BitmapFont.class);
+		
+		//Then the rest
 		BombMain.assets.load("badlogic.jpg", Texture.class);
+		BombMain.assets.load("dot.png", Texture.class);
 	}
 	
 	private void update()

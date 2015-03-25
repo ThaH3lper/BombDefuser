@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import static com.BombDefuser.Globals.PIXEL_TO_METER;
+
 public class GameObject {
 	
 	private Texture tex;
@@ -35,7 +37,7 @@ public class GameObject {
 		batch.setColor(color);
 		//debug code
 		//batch.draw(tex, hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-		batch.draw(tex, pos.x, pos.y, origin.x, origin.y, width, height, scaleX, scaleY, rotation, (int)source.x, (int)source.y, (int)source.width, (int)source.height, false, false);
+		batch.draw(tex, pos.x * PIXEL_TO_METER, pos.y * PIXEL_TO_METER, origin.x * PIXEL_TO_METER, origin.y * PIXEL_TO_METER, width * PIXEL_TO_METER, height * PIXEL_TO_METER, scaleX, scaleY, rotation, (int)source.x, (int)source.y, (int)source.width, (int)source.height, false, false);
 		batch.setColor(Color.WHITE);
 	}
 	
