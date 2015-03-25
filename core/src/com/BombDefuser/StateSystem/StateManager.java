@@ -2,6 +2,7 @@ package com.BombDefuser.StateSystem;
 
 import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
+import com.BombDefuser.StateSystem.Screens.MenuState;
 
 public class StateManager{
 		
@@ -24,7 +25,7 @@ public class StateManager{
 			currentState.dispose();
 		switch (state) {
 		case meny:
-			
+			currentState = new MenuState();
 			break;
 		case game:
 			currentState = new GameScreen();

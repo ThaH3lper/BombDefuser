@@ -35,6 +35,8 @@ public class BombMain extends ApplicationAdapter {
 		//Then the rest
 		BombMain.assets.load("badlogic.jpg", Texture.class);
 		BombMain.assets.load("dot.png", Texture.class);
+		BombMain.assets.load("btnplay.png", Texture.class);
+		BombMain.assets.load("bg.png", Texture.class);
 	}
 	
 	private void update()
