@@ -1,8 +1,6 @@
 package com.BombDefuser.World.Entity;
 
-import com.BombDefuser.World.Force;
 import com.BombDefuser.World.World;
-import com.badlogic.gdx.math.Vector2;
 /**
  * @author Patrik
  * MoveableEntity is a object that you can move left, right and jump.
@@ -32,17 +30,17 @@ public class MoveableEntity extends Entity{
 	
 	public void MoveLeft()
 	{
-		forces.put("move", new Force(new Vector2(-speed, 0), 0.01f));
+		addVelocityNonConstant(-speed, 0);
 	}
 	
 	public void MoveRight()
 	{
-		forces.put("move", new Force(new Vector2(speed, 0), 0.01f));
+		addVelocityNonConstant(speed, 0);
 	}
 	
 	public void Jump()
 	{
-		forces.put("jump", new Force(new Vector2(0, jumpPower), 0f));
+		addVelocity(0, jumpPower);
 	}
 
 }

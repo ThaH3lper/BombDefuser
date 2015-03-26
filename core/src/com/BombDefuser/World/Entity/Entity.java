@@ -1,9 +1,6 @@
 package com.BombDefuser.World.Entity;
 
-import java.util.HashMap;
-
 import com.BombDefuser.BombMain;
-import com.BombDefuser.World.Force;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Tiles.ITile;
 import com.badlogic.gdx.graphics.Color;
@@ -19,11 +16,10 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Entity implements IEntity{
 
-	protected Vector2 velocity, position;
+	protected Vector2 velocity, velocityNonConstant, position;
 	protected World world;
 	protected Boolean isOnGround;
 	protected Rectangle hitBox;
-	protected HashMap<String, Force> forces;
 	
 	//debug
 	protected Texture texture;
@@ -31,11 +27,9 @@ public abstract class Entity implements IEntity{
 	public Entity(float x, float y, float width, float height, World world) {
 		this.world = world;
 		this.velocity = new Vector2(0, 0);
+		this.velocityNonConstant = new Vector2(0, 0);
 		this.position = new Vector2(x, y);
 		this.hitBox = new Rectangle(x, y, width, height);
-		this.forces = new HashMap<String, Force>();
-		
-		forces.put("gravity", new Force(new Vector2(0, world.getGravity()), 0));
 		
 		//debug
 		this.texture = BombMain.assets.get("dot.png", Texture.class);
@@ -43,63 +37,54 @@ public abstract class Entity implements IEntity{
 
 	@Override
 	public void update(float delta) {
-		Vector2 sumForces = sumForces();
-		moveVertical(delta, sumForces);
-		moveHorizontal(delta, sumForces);
-		velocity = new Vector2(0, 0);
+		moveHorizontal(delta);
+		moveVertical(delta);
+		velocityNonConstant = new Vector2(0, 0);
 	}
 	
-	protected void moveVertical(float delta, Vector2 sumForces){
-		velocity.y += sumForces.y;
+	protected void moveVertical(float delta){
+		velocity.y += world.getGravity();
 		position.y += (velocity.y) * delta;
+		position.y += (velocityNonConstant.y) * delta;
 		hitBox.y = position.y;
 		ITile tile = world.CollisionEntityTile(this);
 		if(tile != null)
 		{
 			Rectangle tileHitBox = tile.getHitBox();
-			if(velocity.y < 0){
+			if(velocity.y + velocityNonConstant.y < 0){
 				position.y = tileHitBox.y + tileHitBox.height;
 				isOnGround = true;
 			}
 			else
 				isOnGround = false;
-			if(velocity.y > 0)
+			if(velocity.y + velocityNonConstant.y > 0)
 				position.y = tileHitBox.y - hitBox.height;
 			velocity.y = 0;
+			velocityNonConstant.y = 0;
 		}
 		else
 			isOnGround = false;
+		hitBox.y = position.y;
 	}
 	
-	protected void moveHorizontal(float delta, Vector2 sumForces){
-		velocity.x += sumForces.x;
+	protected void moveHorizontal(float delta){
 		position.x += (velocity.x) * delta;
+		position.x += (velocityNonConstant.x) * delta;
 		hitBox.x = position.x;
-		hitBox.y = position.y;
 		ITile tile = world.CollisionEntityTile(this);
 		if(tile != null)
 		{
 			Rectangle tileHitBox = tile.getHitBox();
-			if(velocity.x < 0)
+			if(velocity.x + velocityNonConstant.x < 0)
 				position.x = tileHitBox.x + tileHitBox.width;
-			if(velocity.x > 0)
+			if(velocity.x + velocityNonConstant.x > 0)
 				position.x = tileHitBox.x - hitBox.width;
 			velocity.x = 0;
+			velocityNonConstant.x = 0;
 		}
+		hitBox.x = position.x;
 	}
 	
-	private Vector2 sumForces()
-	{
-		Vector2 sumForces = new Vector2(0, 0);
-		for(String key : forces.keySet())
-		{
-			//System.out.println(f.getForceAmount().x + " " + f.getForceAmount().y);
-			sumForces.x += forces.get(key).getForceAmount().x;
-			sumForces.y += forces.get(key).getForceAmount().y;
-			forces.get(key).update();
-		}
-		return sumForces;
-	}
 	
 	//debug
 	@Override
@@ -111,6 +96,14 @@ public abstract class Entity implements IEntity{
 	
 	public void setVelocity(float x, float y){
 		velocity = new Vector2(x, y);
+	}	
+	public void addVelocityNonConstant(float x, float y){
+		velocityNonConstant.x += x;
+		velocityNonConstant.y += y;
+	}
+	public void addVelocity(float x, float y){
+		velocity.x += x;
+		velocity.y += y;
 	}
 	
 	public Rectangle getHitBox() {
