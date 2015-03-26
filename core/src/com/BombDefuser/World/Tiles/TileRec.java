@@ -41,6 +41,6 @@ public class TileRec extends GameObject implements ITile{
 
 	@Override
 	public Rectangle getHitBox() {
-		return super.getHitbox();
+		return super.getRecDraw();
 	}
 }
