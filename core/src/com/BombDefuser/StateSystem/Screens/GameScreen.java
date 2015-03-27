@@ -34,8 +34,6 @@ public class GameScreen extends BaseScreen implements IScreen {
 
 	@Override
 	public void update(float delta) {
-		camera.position.x = world.getHero().getPosition().x;
-		camera.position.y = world.getHero().getPosition().y;
 		camera.update();
 		
 		hudCamera.update();

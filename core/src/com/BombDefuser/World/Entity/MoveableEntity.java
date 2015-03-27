@@ -1,16 +1,18 @@
 package com.BombDefuser.World.Entity;
 
 import com.BombDefuser.World.World;
+import com.badlogic.gdx.math.Rectangle;
 /**
  * @author Patrik
  * MoveableEntity is a object that you can move left, right and jump.
  * MovableEntity is a base for all "Human like" objects
  */
-public class MoveableEntity extends Entity{
+public abstract class MoveableEntity extends Entity{
 	
-	private static final  float defaultSpeed = 100, defaultJumpPower = 100;
+	private static final  float defaultSpeed = 100, defaultJumpPower = 100, footHeight = 10;
 	
 	protected float speed, jumpPower;
+	protected Rectangle recFoot;
 	
 	public MoveableEntity(float x, float y, float width, float height, World world){
 		this(x, y, width, height, world, defaultSpeed, defaultJumpPower);
@@ -19,13 +21,15 @@ public class MoveableEntity extends Entity{
 		super(x, y, width, height, world);
 		this.speed = speed;
 		this.jumpPower = jumpPower;
-		
+		this.recFoot = new Rectangle(x, y - footHeight/2, width, footHeight);	
 	}
 	
 	@Override
 	public void update(float delta)
 	{
 		super.update(delta);
+		recFoot.x = position.x;
+		recFoot.y = position.y - recFoot.height/2;
 	}
 	
 	public void MoveLeft()
@@ -40,7 +44,7 @@ public class MoveableEntity extends Entity{
 	
 	public void Jump()
 	{
-		addVelocity(0, jumpPower);
+		if(world.CollisionWithAnyTile(recFoot))
+			addVelocity(0, jumpPower);
 	}
-
 }

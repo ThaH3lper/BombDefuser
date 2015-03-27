@@ -33,7 +33,6 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("arial64white.fnt", BitmapFont.class);
 		
 		//Then the rest
-		BombMain.assets.load("badlogic.jpg", Texture.class);
 		BombMain.assets.load("dot.png", Texture.class);
 		BombMain.assets.load("btnplay.png", Texture.class);
 		BombMain.assets.load("bg.png", Texture.class);
@@ -46,6 +45,7 @@ public class BombMain extends ApplicationAdapter {
 		// load sound
 		BombMain.assets.load("sfx/select.wav", Sound.class);
 		BombMain.assets.load("sfx/BombDefuser.mp3", Sound.class);
+		BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
 	}
 	
 	public void initialize(){
