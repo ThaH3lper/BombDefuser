@@ -34,6 +34,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		if(btnLevel1.isPressed()){
 			BombMain.stateManager.setState(EScreen.game);
 			BombMain.soundBank.playSound(ESounds.select);
+			BombMain.soundBank.stopMusic();
 		}
 	}
 

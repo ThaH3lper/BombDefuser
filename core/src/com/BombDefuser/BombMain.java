@@ -39,7 +39,13 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("bg.png", Texture.class);
 		BombMain.assets.load("europe.png", Texture.class);
 		BombMain.assets.load("dotselect.png", Texture.class);
-		BombMain.assets.load("select.wav", Sound.class);
+		BombMain.assets.load("background/skyline1_layer1_houses.png", Texture.class);
+		BombMain.assets.load("background/skyline1_layer2_houses.png", Texture.class);
+		BombMain.assets.load("background/skyline1_layer3_sky.png", Texture.class);
+		
+		// load sound
+		BombMain.assets.load("sfx/select.wav", Sound.class);
+		BombMain.assets.load("sfx/BombDefuser.mp3", Sound.class);
 	}
 	
 	public void initialize(){

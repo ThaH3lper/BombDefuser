@@ -117,4 +117,8 @@ public abstract class Entity implements IEntity{
 	public boolean isDead() {
 		return false;
 	}
+	
+	public Vector2 getPosition(){
+		return position;
+	}
 }

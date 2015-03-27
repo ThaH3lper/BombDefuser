@@ -1,9 +1,11 @@
 # BombDefuser
-Android game with LIBgdx produced in a school project
+Android game made with libGDX produced by students for a school project.
 
 **Credits**
 
-Programmers: Robin Andersson & Patrik Nilsson
+Programmers for game: Robin Andersson & Patrik Nilsson'
+
+Programmers for level-editor: Peter Nilsson, Mika Lehtinen & Anton Björkman
 
 Graphics: Peter Nilsson & Mika Lehtinen
 

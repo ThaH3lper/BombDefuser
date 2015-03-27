@@ -40,7 +40,7 @@ public class World {
 	
 	public void update(float delta)
 	{	
-		if(Gdx.input.isKeyPressed(Keys.UP))
+		if(Gdx.input.isKeyJustPressed(Keys.UP))
 			entity.Jump();
 		if(Gdx.input.isKeyPressed(Keys.LEFT))
 			entity.MoveLeft();
@@ -79,6 +79,10 @@ public class World {
 				return true;
 		}
 		return false;
+	}
+	
+	public MoveableEntity getHero(){
+		return entity;
 	}
 	
 	public float getGravity(){

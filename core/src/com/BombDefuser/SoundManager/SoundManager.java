@@ -6,10 +6,11 @@ import com.badlogic.gdx.audio.Sound;
 public class SoundManager {
 	
 	// Global volume value;
-	private float volume;
-	
+	private float soundVolume;
+	private float musicVolume;
+
 	// All sounds in projekt
-	private Sound select;
+	private Sound select, music;
 	
 	public SoundManager(){
 		initialize();
@@ -17,24 +18,41 @@ public class SoundManager {
 	
 	private void initialize(){
 		// Set default values
-		volume = 1f;
+		soundVolume = 1f;
+		musicVolume = 1f;
 		// Load Sound
-		select = BombMain.assets.get("select.wav", Sound.class);
+		select = BombMain.assets.get("sfx/select.wav", Sound.class);
+		music = BombMain.assets.get("sfx/BombDefuser.mp3", Sound.class);
+	}
+	
+	public void stopMusic(){
+		music.stop();
 	}
 	
 	public void playSound(ESounds sound){
 		switch (sound) {
 		case select: 
-			select.play(volume);
+			select.play(soundVolume);
 			break; 
+		case music:
+			music.play(musicVolume);
+			break;
 		}
 	}
 	
-	public float getVolume(){
-		return this.volume;
+	public float getMusicVolume() {
+		return musicVolume;
+	}
+
+	public void setMusicVolume(float music_volume) {
+		this.musicVolume = music_volume;
 	}
 	
-	public void setVolume(float volume){
-		this.volume = volume;
+	public float getSoundVolume(){
+		return this.soundVolume;
+	}
+	
+	public void setSoundVolume(float volume){
+		this.soundVolume = volume;
 	}
 }
