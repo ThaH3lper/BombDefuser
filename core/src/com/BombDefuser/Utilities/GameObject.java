@@ -20,7 +20,7 @@ public class GameObject {
 		this(tex, 0, 0, tex.getWidth(), tex.getHeight(), 0, 0, tex.getWidth(), tex.getHeight(), Color.WHITE);
 	}
 	public GameObject(float x, float y, float width, float height){
-		this(BombMain.assets.get("dot.png", Texture.class), 0, 0, 1, 1, x, y, width, height, Color.RED);
+		this(BombMain.assets.get("dot.png", Texture.class), 0, 0, 1, 1, x, y, width, height, Color.WHITE);
 	}
 	public GameObject(Texture tex, float sourceX, float sourceY, float sourceWidth, float sourceHeight, float x, float y, float width, float height, Color color){
 		this.tex = tex;
@@ -108,6 +108,10 @@ public class GameObject {
 
 	public void setRecSource(Rectangle source) {
 		this.recSource = source;
+	}
+	
+	public void setTexture(Texture tex) {
+		this.tex = tex;
 	}
 
 	public float getScaleX() {
