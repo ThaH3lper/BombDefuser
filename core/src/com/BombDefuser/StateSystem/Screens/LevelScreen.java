@@ -8,7 +8,6 @@ import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.Utilities.Button;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector3;
 
 public class LevelScreen extends BaseScreen implements IScreen {
 	

@@ -39,6 +39,7 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("bg.png", Texture.class);
 		BombMain.assets.load("europe.png", Texture.class);
 		BombMain.assets.load("dotselect.png", Texture.class);
+		BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
 		BombMain.assets.load("select.wav", Sound.class);
 	}
 	

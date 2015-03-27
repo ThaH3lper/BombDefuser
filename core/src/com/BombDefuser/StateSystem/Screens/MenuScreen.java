@@ -1,13 +1,11 @@
 package com.BombDefuser.StateSystem.Screens;
 
 import com.BombDefuser.BombMain;
-import com.BombDefuser.Globals;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.Utilities.Button;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 

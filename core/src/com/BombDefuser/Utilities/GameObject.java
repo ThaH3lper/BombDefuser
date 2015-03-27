@@ -1,5 +1,6 @@
 package com.BombDefuser.Utilities;
 
+import com.BombDefuser.BombMain;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,8 +15,12 @@ public class GameObject {
 	protected Rectangle recSource, recDraw;
 	protected Color color;
 	
+	
 	public GameObject(Texture tex){
 		this(tex, 0, 0, tex.getWidth(), tex.getHeight(), 0, 0, tex.getWidth(), tex.getHeight(), Color.WHITE);
+	}
+	public GameObject(float x, float y, float width, float height){
+		this(BombMain.assets.get("dot.png", Texture.class), 0, 0, 1, 1, x, y, width, height, Color.RED);
 	}
 	public GameObject(Texture tex, float sourceX, float sourceY, float sourceWidth, float sourceHeight, float x, float y, float width, float height, Color color){
 		this.tex = tex;
