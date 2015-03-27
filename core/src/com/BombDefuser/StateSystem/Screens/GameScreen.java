@@ -1,11 +1,11 @@
 package com.BombDefuser.StateSystem.Screens;
 
 import com.BombDefuser.Globals;
-import com.BombDefuser.StateSystem.BaseState;
-import com.BombDefuser.StateSystem.IState;
+import com.BombDefuser.StateSystem.BaseScreen;
+import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.World.World;
 
-public class GameScreen extends BaseState implements IState {
+public class GameScreen extends BaseScreen implements IScreen {
 	
 	private World world;
 	

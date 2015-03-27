@@ -1,16 +1,17 @@
 package com.BombDefuser.StateSystem.Screens;
 
 import com.BombDefuser.BombMain;
-import com.BombDefuser.StateSystem.BaseState;
-import com.BombDefuser.StateSystem.EStates;
-import com.BombDefuser.StateSystem.IState;
+import com.BombDefuser.SoundManager.SoundManager;
+import com.BombDefuser.StateSystem.BaseScreen;
+import com.BombDefuser.StateSystem.EScreen;
+import com.BombDefuser.StateSystem.IScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-public class LoadingScreen extends BaseState implements IState {
+public class LoadingScreen extends BaseScreen implements IScreen {
 	
 	private Texture img, dot;
 	private Rectangle logoFrame;
@@ -28,8 +29,10 @@ public class LoadingScreen extends BaseState implements IState {
 		camera.update();
 		currentTime += delta;
 		
-		if(BombMain.assets.update() && currentTime >= minLoadTime)
-			BombMain.stateManager.setState(EStates.meny);
+		if(BombMain.assets.update() && currentTime >= minLoadTime){
+			BombMain.soundBank = new SoundManager();
+			BombMain.stateManager.setState(EScreen.meny);
+		}
 		
 		if(BombMain.assets.isLoaded("logo.png") && img == null)
 			img = BombMain.assets.get("logo.png", Texture.class);

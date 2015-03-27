@@ -1,7 +1,7 @@
 package com.BombDefuser.StateSystem;
 
 
-public interface IState {
+public interface IScreen {
 	
 	void update(float delta);
 	

@@ -2,19 +2,21 @@ package com.BombDefuser.StateSystem.Screens;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
-import com.BombDefuser.StateSystem.BaseState;
-import com.BombDefuser.StateSystem.EStates;
-import com.BombDefuser.StateSystem.IState;
+import com.BombDefuser.SoundManager.ESounds;
+import com.BombDefuser.StateSystem.BaseScreen;
+import com.BombDefuser.StateSystem.EScreen;
+import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.Utilities.Button;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
-public class MenuState extends BaseState implements IState {
+public class MenuScreen extends BaseScreen implements IScreen {
 	
 	private Texture logo, bg;
 	private Button btnPlay;
 	
-	public MenuState(){
+	public MenuScreen(){
 		camera = new OrthographicCamera(1280, 720);
 		camera.position.x += 1280/2;
 		camera.position.y += 720/2;
@@ -30,8 +32,10 @@ public class MenuState extends BaseState implements IState {
 	public void update(float delta) {
 		camera.update();
 		
-		if(btnPlay.isPressed())
-			BombMain.stateManager.setState(EStates.game);
+		if(btnPlay.isPressed()){
+			BombMain.stateManager.setState(EScreen.levelselect);
+			BombMain.soundBank.playSound(ESounds.select);
+		}
 	}
 
 	@Override
