@@ -34,6 +34,7 @@ public class World {
 		
 		Texture dot = BombMain.assets.get("dot.png", Texture.class);		
 		collisionLayer.add(new TileRec(dot, -100, 0, 400, 10, Color.DARK_GRAY));
+		collisionLayer.add(new TileRec(dot, -150, 0, 50, 400, Color.DARK_GRAY));
 		
 		hero = new Hero(0, 100, 32, 32, this);
 	}
@@ -43,9 +44,15 @@ public class World {
 		if(Gdx.input.isKeyPressed(Keys.UP))
 			hero.Jump();
 		if(Gdx.input.isKeyPressed(Keys.LEFT))
+		{
 			hero.MoveLeft();
+			hero.setXFliper(true);
+		}
 		if(Gdx.input.isKeyPressed(Keys.RIGHT))
+		{
 			hero.MoveRight();
+			hero.setXFliper(false);
+		}
 		hero.update(delta);
 		for(ITile tile : collisionLayer)
 			tile.update(delta);
