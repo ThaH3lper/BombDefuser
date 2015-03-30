@@ -32,11 +32,11 @@ public class World {
 		collisionLayer = new ArrayList<ITile>();
 		topLayer = new ArrayList<ITile>();
 		
-		Texture dot = BombMain.assets.get("dot.png", Texture.class);		
-		collisionLayer.add(new TileRec(dot, -100, 0, 400, 10, Color.DARK_GRAY));
-		collisionLayer.add(new TileRec(dot, -150, 0, 50, 400, Color.DARK_GRAY));
+		Texture dot = BombMain.assets.get("tiles/tile_gray.png", Texture.class);		
+		collisionLayer.add(new TileRec(dot, 10, -100, 100, 100));
+		//collisionLayer.add(new TileRec(dot, -150, 0, 50, 400));
 		
-		hero = new Hero(0, 100, 32, 32, this);
+		hero = new Hero(0, 100, this);
 	}
 	
 	public void update(float delta)

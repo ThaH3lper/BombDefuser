@@ -17,21 +17,23 @@ public abstract class Entity extends GameObject implements IEntity{
 	protected World world;
 	protected Boolean isOnGround;
 	protected Rectangle hitBox;
+	private Vector2 drawOffset;
 	
-	public Entity(float x, float y, float width, float height, World world) {
-		super(x, y, width, height);
+	public Entity(float drawWidth, float drawHeight, float x, float y, float width, float height, World world) {
+		super(x, y, drawWidth, drawHeight);
 		this.world = world;
 		this.velocity = new Vector2(0, 0);
 		this.velocityNonConstant = new Vector2(0, 0);
 		this.position = new Vector2(x, y);
 		this.hitBox = new Rectangle(x, y, width, height);
+		this.drawOffset = new Vector2(width/2 - getOrigin().x, height/2 - getOrigin().y);
 	}
 
 	public void update(float delta) {
 		moveHorizontal(delta);
 		moveVertical(delta);
 		velocityNonConstant = new Vector2(0, 0);
-		super.pos = position;
+		super.pos = new Vector2(position.x + drawOffset.x, position.y + drawOffset.y);
 	}
 	
 	protected void moveVertical(float delta){

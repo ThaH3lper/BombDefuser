@@ -41,6 +41,7 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("background/skyline1_layer1_houses.png", Texture.class);
 		BombMain.assets.load("background/skyline1_layer2_houses.png", Texture.class);
 		BombMain.assets.load("background/skyline1_layer3_sky.png", Texture.class);
+		BombMain.assets.load("tiles/tile_gray.png", Texture.class);
 		
 		// load sound
 		BombMain.assets.load("sfx/select.wav", Sound.class);
