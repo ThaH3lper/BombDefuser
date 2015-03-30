@@ -1,28 +1,25 @@
 package com.BombDefuser.World.Tiles;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 public class TextureTile {
 	
-	//Work in progress
-	private Texture texture;
-	Rectangle recHit;
-	public TextureTile(Texture texture, float x, float y, float width, float height, float tileX, float tileY, float tileWidth, float tileHeight)
+	private Rectangle recDraw;
+	private TextureRegion region;
+	public TextureTile(Texture texture, Rectangle innerTile, Rectangle tile)
 	{
-		float xSource = x % width;
-		float ySource = y % height;
-		this.texture = texture;
-		recHit = new Rectangle(x, y, width, height);
+		recDraw = new Rectangle();
+		Intersector.intersectRectangles(innerTile, tile, recDraw);
+		region = new TextureRegion(texture, (int)((recDraw.x - innerTile.x)*2), 64 - (int)((recDraw.y - innerTile.y)*2) - (int)(recDraw.height*2), (int)(recDraw.width*2), (int)(recDraw.height*2));
 	}
 	
 	public void render(SpriteBatch batch)
 	{
-		batch.setColor(Color.RED);
-		batch.draw(texture, recHit.x, recHit.y, recHit.width, recHit.height);
-		batch.setColor(Color.WHITE);
+		batch.draw(region, recDraw.x, recDraw.y, recDraw.width, recDraw.height);
 	}
 
 }

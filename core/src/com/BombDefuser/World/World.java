@@ -9,7 +9,6 @@ import com.BombDefuser.World.Tiles.ITile;
 import com.BombDefuser.World.Tiles.TileRec;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
@@ -33,8 +32,11 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		
 		Texture dot = BombMain.assets.get("tiles/tile_gray.png", Texture.class);		
-		collisionLayer.add(new TileRec(dot, 10, -100, 100, 100));
-		//collisionLayer.add(new TileRec(dot, -150, 0, 50, 400));
+		collisionLayer.add(new TileRec(dot, -200, -155, 500, 20));
+		collisionLayer.add(new TileRec(dot, -48, -140, 20, 50));
+		collisionLayer.add(new TileRec(dot, -48, -90, 10, 50));
+		collisionLayer.add(new TileRec(dot, -38, -100, 120, 10));
+		collisionLayer.add(new TileRec(dot, -150, -100, 50, 10));
 		
 		hero = new Hero(0, 100, this);
 	}

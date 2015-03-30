@@ -9,10 +9,11 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public abstract class MoveableEntity extends Entity{
 	
-	private static final  float defaultSpeed = 100, defaultJumpPower = 100, footHeight = 10;
+	private static final  float defaultSpeed = 100, defaultJumpPower = 270, footHeight = 2;
 	
 	protected float speed, jumpPower;
 	protected Rectangle recFoot;
+	protected boolean isOnGround = false;
 	
 	public MoveableEntity(float drawWidth, float drawHeight, float x, float y, float width, float height, World world){
 		this(drawWidth, drawHeight, x, y, width, height, world, defaultSpeed, defaultJumpPower);
@@ -30,6 +31,10 @@ public abstract class MoveableEntity extends Entity{
 		super.update(delta);
 		recFoot.x = position.x;
 		recFoot.y = position.y - recFoot.height/2;
+		if(world.CollisionWithAnyTile(recFoot) && velocity.y == 0)
+			isOnGround = true;
+		else
+			isOnGround = false;
 	}
 	
 	public void MoveLeft()
@@ -44,7 +49,7 @@ public abstract class MoveableEntity extends Entity{
 	
 	public void Jump()
 	{
-		if(world.CollisionWithAnyTile(recFoot))
+		if(isOnGround)
 			addVelocity(0, jumpPower);
 	}
 }
