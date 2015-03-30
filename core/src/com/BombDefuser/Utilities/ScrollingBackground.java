@@ -33,11 +33,14 @@ public class ScrollingBackground {
 	public void update(float delta){
 		for(int i = 0; i < layer.size(); i++){
 			
-			// Reset to original position needs to be fixed
-			if(pos.get(i).x + speed.get(i) * delta < camera.viewportWidth - layer.get(i).getWidth())
-				pos.get(i).x = speed.get(i);
-			if(pos.get(i).x + speed.get(i) * delta >= camera.viewportWidth)
-				pos.get(i).x = speed.get(i);
+			if(speed.get(i) > 0){
+				if(pos.get(i).x + speed.get(i) * delta > camera.viewportWidth)
+					pos.get(i).x = -layer.get(i).getWidth();
+			} else if(speed.get(i) < 0){
+				if(pos.get(i).x + speed.get(i) * delta < -layer.get(i).getWidth())
+					pos.get(i).x = layer.get(i).getWidth();
+			}
+			
 			
 			pos.get(i).x += speed.get(i) * delta;
 		}
@@ -47,6 +50,7 @@ public class ScrollingBackground {
 		for(int i = 0; i < layer.size(); i++){
 			batch.draw(layer.get(i), pos.get(i).x - layer.get(i).getWidth(), pos.get(i).y);
 			batch.draw(layer.get(i), pos.get(i).x, pos.get(i).y);
+			batch.draw(layer.get(i), pos.get(i).x + layer.get(i).getWidth(), pos.get(i).y);
 		}
 	}
 }

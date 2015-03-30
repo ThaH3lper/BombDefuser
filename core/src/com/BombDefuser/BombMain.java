@@ -31,9 +31,11 @@ public class BombMain extends ApplicationAdapter {
 		//Load these first
 		BombMain.assets.load("logo.png", Texture.class);
 		BombMain.assets.load("arial64white.fnt", BitmapFont.class);
+		BombMain.assets.load("font.fnt", BitmapFont.class);
 		
 		//Then the rest
 		BombMain.assets.load("dot.png", Texture.class);
+		BombMain.assets.load("case.png", Texture.class);
 		BombMain.assets.load("btnplay.png", Texture.class);
 		BombMain.assets.load("bg.png", Texture.class);
 		BombMain.assets.load("europe.png", Texture.class);
