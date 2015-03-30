@@ -14,11 +14,11 @@ public abstract class MoveableEntity extends Entity{
 	protected float speed, jumpPower;
 	protected Rectangle recFoot;
 	
-	public MoveableEntity(float x, float y, float width, float height, World world){
-		this(x, y, width, height, world, defaultSpeed, defaultJumpPower);
+	public MoveableEntity(float drawWidth, float drawHeight, float x, float y, float width, float height, World world){
+		this(drawWidth, drawHeight, x, y, width, height, world, defaultSpeed, defaultJumpPower);
 	}
-	public MoveableEntity(float x, float y, float width, float height, World world, float speed, float jumpPower){
-		super(x, y, width, height, world);
+	public MoveableEntity(float drawWidth, float drawHeight, float x, float y, float width, float height, World world, float speed, float jumpPower){
+		super(drawWidth, drawHeight, x, y, width, height, world);
 		this.speed = speed;
 		this.jumpPower = jumpPower;
 		this.recFoot = new Rectangle(x, y - footHeight/2, width, footHeight);	

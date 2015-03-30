@@ -38,10 +38,10 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		enemies = new ArrayList<Enemy>();
 		
-		Texture dot = BombMain.assets.get("dot.png", Texture.class);		
-		collisionLayer.add(new TileRec(dot, -100, 0, 400, 10, Color.DARK_GRAY));
-		collisionLayer.add(new TileRec(dot, -150, 0, 50, 400, Color.DARK_GRAY));
-		collisionLayer.add(new TileRec(dot, 350, 0, 100, 10, Color.DARK_GRAY));
+		Texture dot = BombMain.assets.get("tiles/tile_gray.png", Texture.class);		
+		collisionLayer.add(new TileRec(dot, 10, -100, 100, 100));
+		//collisionLayer.add(new TileRec(dot, -150, 0, 50, 400));
+		collisionLayer.add(new TileRec(dot, 200, -30, 100, 10));
 
 		init();
 	}
@@ -51,8 +51,8 @@ public class World {
 	}
 	
 	private void init(){
-		bomb = new Bomb(400, 10, 20);
-		hero = new Hero(0, 100, 32, 32, this);
+		bomb = new Bomb(240, 10, 20);
+		hero = new Hero(0, 100, this);
 	}
 	
 	public void update(float delta)

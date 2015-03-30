@@ -23,7 +23,7 @@ public class Enemy extends MoveableEntity {
 	protected boolean deathWish;
 	
 	public Enemy(int ID, Vector2 pos, float width, float height, Color color, World world, float speed) {
-		super(pos.x, pos.y, width, height, world, speed, 100);
+		super(width, height, pos.x, pos.y, width, height, world, speed, 100);
 		this.ID = ID;
 		this.world = world;
 		
