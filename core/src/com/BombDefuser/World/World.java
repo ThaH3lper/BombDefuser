@@ -54,7 +54,7 @@ public class World {
 	}
 	
 	private void init(){
-		bomb = new Bomb(240, 10, 20);
+		bomb = new Bomb(240, -135, 20);
 		hero = new Hero(0, 100, this);
 	}
 	
