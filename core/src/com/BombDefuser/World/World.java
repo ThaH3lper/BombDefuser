@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Bomb.Bomb;
+import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
 import com.BombDefuser.World.Tiles.ITile;
@@ -14,12 +16,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class World {
 	
+	protected List<Enemy> enemies;
 	protected List<ITile> topLayer;
 	protected List<ITile> collisionLayer;
 	protected List<ITile> lowerLayer;
+	protected Bomb bomb;
 	
 	Hero hero;
 	private float gravity;
@@ -31,16 +36,30 @@ public class World {
 		lowerLayer = new ArrayList<ITile>();
 		collisionLayer = new ArrayList<ITile>();
 		topLayer = new ArrayList<ITile>();
+		enemies = new ArrayList<Enemy>();
 		
 		Texture dot = BombMain.assets.get("dot.png", Texture.class);		
 		collisionLayer.add(new TileRec(dot, -100, 0, 400, 10, Color.DARK_GRAY));
 		collisionLayer.add(new TileRec(dot, -150, 0, 50, 400, Color.DARK_GRAY));
-		
+		collisionLayer.add(new TileRec(dot, 350, 0, 100, 10, Color.DARK_GRAY));
+
+		init();
+	}
+	
+	public void addEnemy(float x, float y, float width, float height, float speed, Color color){
+		enemies.add(new Enemy(enemies.size(), new Vector2(x, y), width, height, color, this, speed));
+	}
+	
+	private void init(){
+		bomb = new Bomb(400, 10, 20);
 		hero = new Hero(0, 100, 32, 32, this);
 	}
 	
 	public void update(float delta)
 	{	
+		for(Enemy i : enemies)
+			i.update(delta);
+		
 		if(Gdx.input.isKeyPressed(Keys.UP))
 			hero.Jump();
 		if(Gdx.input.isKeyPressed(Keys.LEFT))
@@ -54,15 +73,23 @@ public class World {
 			hero.setXFliper(false);
 		}
 		hero.update(delta);
+		bomb.update(delta);
+		
+		if(bomb.isExploded())
+			init();
+		
 		for(ITile tile : collisionLayer)
 			tile.update(delta);
 	}
 	
 	public void render(SpriteBatch batch)
 	{
-		hero.render(batch);
 		for(ITile tile : lowerLayer)
 			tile.render(batch);
+		for(Enemy i : enemies)
+			i.render(batch);
+		bomb.render(batch);
+		hero.render(batch);
 		for(ITile tile : collisionLayer)
 			tile.render(batch);
 		for(ITile tile : topLayer)
@@ -86,6 +113,10 @@ public class World {
 				return true;
 		}
 		return false;
+	}
+	
+	public Hero getHero(){
+		return hero;
 	}
 	
 	public float getGravity(){

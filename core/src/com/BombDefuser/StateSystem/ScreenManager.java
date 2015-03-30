@@ -1,5 +1,6 @@
 package com.BombDefuser.StateSystem;
 
+import com.BombDefuser.StateSystem.Screens.DefuseScreen;
 import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LevelScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
@@ -42,6 +43,9 @@ public class ScreenManager{
 			break;
 		case loading:
 			currentScreen = new LoadingScreen();
+			break;
+		case defuse:
+			currentScreen = new DefuseScreen();
 			break;
 		}
 	}
