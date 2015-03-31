@@ -1,5 +1,5 @@
 package com.BombDefuser.World.Tiles;
 
 public enum ETileTexture {
-	GRAY
+	GRAY, RED, GREEN
 }

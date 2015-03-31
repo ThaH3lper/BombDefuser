@@ -1,16 +1,30 @@
 package com.BombDefuser.World.Tiles;
 
+import com.BombDefuser.BombMain;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class TileRec implements ITile{
 
-	private static final float textureWidth = 48, textureHeight = 32;
+	private static final float textureWidth = 16, textureHeight = 16;
 	
 	private TextureTile[][] innerTiles;
 	private Rectangle recHit;
-	public TileRec(Texture texture, float x, float y, float width, float height) {
+	public TileRec(ETileTexture type, float x, float y, float width, float height) {
+		
+		Texture texture = null;
+		switch (type) {
+		case GRAY:
+			texture = BombMain.assets.get("tiles/tile_gray.png", Texture.class);
+			break;
+		case GREEN:
+			texture = BombMain.assets.get("tiles/tile_green.png", Texture.class);
+			break;
+		case RED:
+			texture = BombMain.assets.get("tiles/tile_red.png", Texture.class);
+			break;
+		}
 		
 		this.recHit = new Rectangle(x, y, width, height);
 		

@@ -7,6 +7,7 @@ import com.BombDefuser.Bomb.Bomb;
 import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
+import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.ITile;
 import com.BombDefuser.World.Tiles.TileRec;
 import com.badlogic.gdx.Gdx;
@@ -38,12 +39,11 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		enemies = new ArrayList<Enemy>();
 		
-		Texture dot = BombMain.assets.get("tiles/tile_gray.png", Texture.class);
-		collisionLayer.add(new TileRec(dot, -200, -155, 500, 20));
-		collisionLayer.add(new TileRec(dot, -48, -140, 20, 50));
-		collisionLayer.add(new TileRec(dot, -48, -90, 10, 50));
-		collisionLayer.add(new TileRec(dot, -38, -100, 120, 10));
-		collisionLayer.add(new TileRec(dot, -150, -100, 50, 10));
+		collisionLayer.add(new TileRec(ETileTexture.GREEN, -200, -555, 500, 420));
+		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -135, 20, 45));
+		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -90, 10, 50));
+		collisionLayer.add(new TileRec(ETileTexture.GRAY, -38, -100, 120, 10));
+		collisionLayer.add(new TileRec(ETileTexture.RED, -150, -100, 50, 10));
 		
 
 		init();
