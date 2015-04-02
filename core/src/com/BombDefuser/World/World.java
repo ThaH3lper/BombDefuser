@@ -8,9 +8,8 @@ import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
 import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.ITile;
+import com.BombDefuser.World.Tiles.PropTile;
 import com.BombDefuser.World.Tiles.TileRec;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
@@ -42,6 +41,9 @@ public class World {
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -90, 10, 50));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -38, -100, 120, 10));
 		collisionLayer.add(new TileRec(ETileTexture.RED, -150, -100, 50, 10));
+		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
+		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
+		collisionLayer.add(new PropTile(3, 1, -38, -90, 20, 20));
 		
 
 		init();
@@ -75,12 +77,12 @@ public class World {
 	{
 		for(ITile tile : lowerLayer)
 			tile.render(batch);
+		for(ITile tile : collisionLayer)
+			tile.render(batch);
 		for(Enemy i : enemies)
 			i.render(batch);
 		bomb.render(batch);
 		hero.render(batch);
-		for(ITile tile : collisionLayer)
-			tile.render(batch);
 		for(ITile tile : topLayer)
 			tile.render(batch);
 	}
@@ -88,6 +90,8 @@ public class World {
 	{
 		for(ITile tile : collisionLayer)
 		{
+			if(!tile.getIsCollision())
+				continue;
 			Rectangle tempRec = new Rectangle();
 			if(Intersector.intersectRectangles(entity.getHitBox(), tile.getHitBox(), tempRec))
 				return tile;
