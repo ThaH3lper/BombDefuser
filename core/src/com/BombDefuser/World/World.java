@@ -2,7 +2,6 @@ package com.BombDefuser.World;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.BombDefuser.BombMain;
 import com.BombDefuser.Bomb.Bomb;
 import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
@@ -13,7 +12,6 @@ import com.BombDefuser.World.Tiles.TileRec;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
@@ -62,19 +60,7 @@ public class World {
 	{	
 		for(Enemy i : enemies)
 			i.update(delta);
-		
-		if(Gdx.input.isKeyPressed(Keys.UP))
-			hero.Jump();
-		if(Gdx.input.isKeyPressed(Keys.LEFT))
-		{
-			hero.MoveLeft();
-			hero.setXFliper(true);
-		}
-		if(Gdx.input.isKeyPressed(Keys.RIGHT))
-		{
-			hero.MoveRight();
-			hero.setXFliper(false);
-		}
+
 		hero.update(delta);
 		bomb.update(delta);
 		

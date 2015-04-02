@@ -9,6 +9,7 @@ public class Animation {
 	float frameTime, currentTime;
 	Texture texture;
 	Rectangle recSource;
+	int timesDone = 0;
 	public Animation(Texture texture, int start, int end, int frameY, int width, int height, float frameTime)
 	{
 		this.frameY = frameY;
@@ -29,8 +30,10 @@ public class Animation {
 		{
 			currentTime = 0;
 			currentFrame++;
+			if(currentFrame + 1 > end)
+				timesDone++;
 			if(currentFrame > end)
-				currentFrame = start;
+				currentFrame = start;	
 			recSource = new Rectangle((currentFrame * (width+4)) + 2, (frameY * (height+4)) + 2, width, height);
 		}
 	}
@@ -41,6 +44,15 @@ public class Animation {
 	
 	public Texture getTexture(){
 		return texture;
+	}
+	
+	public void resetTimes(){
+		timesDone = 0;
+		currentFrame = start;
+	}
+	
+	public int getTimes(){
+		return timesDone;
 	}
 	
 	
