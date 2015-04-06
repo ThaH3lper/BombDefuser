@@ -2,7 +2,9 @@ package com.BombDefuser.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.BombDefuser.BombMain;
 import com.BombDefuser.Bomb.Bomb;
+import com.BombDefuser.Utilities.BackgroundLayer;
 import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
@@ -11,6 +13,8 @@ import com.BombDefuser.World.Tiles.ITile;
 import com.BombDefuser.World.Tiles.PropTile;
 import com.BombDefuser.World.Tiles.TileRec;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
@@ -26,6 +30,7 @@ public class World {
 	
 	Hero hero;
 	private float gravity;
+	BackgroundLayer lower, middle, top;
 	
 	public World(float gravity)
 	{
@@ -36,7 +41,7 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		enemies = new ArrayList<Enemy>();
 		
-		collisionLayer.add(new TileRec(ETileTexture.GREEN, -200, -555, 500, 420));
+		collisionLayer.add(new TileRec(ETileTexture.GREEN, -1200, -555, 5000, 420));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -135, 20, 45));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -90, 10, 50));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -38, -100, 120, 10));
@@ -44,6 +49,10 @@ public class World {
 		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
 		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
 		collisionLayer.add(new PropTile(3, 1, -38, -90, 20, 20));
+		
+		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, -200);
+		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, -200);
+		top = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), 0f, -200);
 		
 
 		init();
@@ -54,12 +63,13 @@ public class World {
 	}
 	
 	private void init(){
-		bomb = new Bomb(240, -135, 20);
+		bomb = new Bomb(240, -135, 60);
 		hero = new Hero(0, 100, this);
 	}
 	
-	public void update(float delta)
+	public void update(float delta, OrthographicCamera camera)
 	{	
+		
 		for(Enemy i : enemies)
 			i.update(delta);
 
@@ -71,10 +81,18 @@ public class World {
 		
 		for(ITile tile : collisionLayer)
 			tile.update(delta);
+		
+		lower.update(delta, camera);
+		middle.update(delta, camera);
+		top.update(delta, camera);
 	}
 	
 	public void render(SpriteBatch batch)
 	{
+		lower.render(batch);
+		middle.render(batch);
+		top.render(batch);
+		
 		for(ITile tile : lowerLayer)
 			tile.render(batch);
 		for(ITile tile : collisionLayer)

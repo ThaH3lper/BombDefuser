@@ -1,21 +1,16 @@
 package com.BombDefuser.StateSystem.Screens;
 
-import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.IScreen;
-import com.BombDefuser.Utilities.ScrollingBackground;
 import com.BombDefuser.World.World;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class GameScreen extends BaseScreen implements IScreen {
 	
 	private OrthographicCamera hudCamera;
 	private World world;
-	private ScrollingBackground bg;
 	
 	private float lerp = 0.1f;
 	
@@ -29,18 +24,12 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.position.y += hudCamera.viewportHeight/2;
 		hudCamera.update();
 		
-		bg = new ScrollingBackground(hudCamera);
-		bg.addBackground(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), new Vector2(0, 0), 30);
-		bg.addBackground(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), new Vector2(0, 0), 60);
-		bg.addBackground(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), new Vector2(0, 0), 90);
-		
 		//world.addEnemy(10, 400, 40, 40, 20, Color.WHITE);
 	}
 
 	@Override
 	public void update(float delta) {
-		world.update(delta);
-		bg.update(delta);
+		world.update(delta, camera);
 		
 		hudCamera.update();
 		Vector3 position = camera.position;
@@ -53,8 +42,6 @@ public class GameScreen extends BaseScreen implements IScreen {
 	public void render() {
 		
 		batch.begin();
-		batch.setProjectionMatrix(hudCamera.combined);
-		bg.draw(batch);
 		batch.setProjectionMatrix(camera.combined);
 		world.render(batch);
 		batch.end();

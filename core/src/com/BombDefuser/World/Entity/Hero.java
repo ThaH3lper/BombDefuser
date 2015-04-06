@@ -20,7 +20,7 @@ public class Hero extends MoveableEntity{
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		
 		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.06f);
-		idle = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 0, 0, 64, 64, 0.06f);
+		idle = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 22, 2, 64, 64, 0.08f);
 		turn = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 4, 0, 64, 64, 0.04f);
 		
 		current = turn;
@@ -62,7 +62,10 @@ public class Hero extends MoveableEntity{
 			}
 		}
 		else{
-			current = idle;
+			if(current != idle){
+				idle.resetTimes();
+				current = idle;
+			}
 			turnDone = false;
 			turn.resetTimes();
 		}
