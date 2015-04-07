@@ -33,7 +33,6 @@ public class BackgroundLayer {
         rec1.y = camera.position.y + yPadding;
         rec2.y = camera.position.y + yPadding;
         rec3.y = camera.position.y + yPadding;
-        System.out.println(pos + " " + camPos);
     }
     public void render(SpriteBatch batch)
     {

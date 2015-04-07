@@ -8,6 +8,8 @@ import com.BombDefuser.Utilities.BackgroundLayer;
 import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
+import com.BombDefuser.World.Fans.EDirection;
+import com.BombDefuser.World.Fans.FanTile;
 import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.ITile;
 import com.BombDefuser.World.Tiles.PropTile;
@@ -49,12 +51,15 @@ public class World {
 		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
 		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
 		collisionLayer.add(new PropTile(3, 1, -38, -90, 20, 20));
+		collisionLayer.add(new FanTile(EDirection.UP, 450, -135, 50, 10, 50));
+		collisionLayer.add(new FanTile(EDirection.LEFT, 400, -135, 10, 50, 70));
+		collisionLayer.add(new FanTile(EDirection.DOWN, 550, -50, 50, 10, 55));
+		collisionLayer.add(new FanTile(EDirection.RIGHT, 700, -135, 10, 50, 70));
 		
 		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, -200);
 		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, -200);
 		top = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), 0f, -200);
 		
-
 		init();
 	}
 	
@@ -79,8 +84,15 @@ public class World {
 		if(bomb.isExploded())
 			init();
 		
-		for(ITile tile : collisionLayer)
+		for(ITile tile : collisionLayer){
 			tile.update(delta);
+			if(tile instanceof FanTile)
+			{
+				FanTile fTile = (FanTile) tile;
+				Vector2 power = fTile.getPower(hero.getCenterPosition());
+				hero.addVelocity(power.x, power.y);
+			}
+		}
 		
 		lower.update(delta, camera);
 		middle.update(delta, camera);

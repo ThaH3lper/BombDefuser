@@ -10,7 +10,7 @@ public class TileRec implements ITile{
 	private static final float textureWidth = 16, textureHeight = 16;
 	
 	private TextureTile[][] innerTiles;
-	private Rectangle recHit;
+	protected Rectangle recHit;
 	public TileRec(ETileTexture type, float x, float y, float width, float height) {
 		
 		Texture texture = null;
@@ -23,6 +23,9 @@ public class TileRec implements ITile{
 			break;
 		case RED:
 			texture = BombMain.assets.get("tiles/tile_red.png", Texture.class);
+			break;
+		case FAN:
+			texture = BombMain.assets.get("tiles/tile_fan.png", Texture.class);
 			break;
 		}
 		

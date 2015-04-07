@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Entity extends GameObject implements IEntity{
 
+	private static final float FRICTION = 20;
 	protected Vector2 velocity, velocityNonConstant, position;
 	protected World world;
 	protected Boolean isOnGround;
@@ -65,18 +66,35 @@ public abstract class Entity extends GameObject implements IEntity{
 		position.x += (velocity.x) * delta;
 		position.x += (velocityNonConstant.x) * delta;
 		hitBox.x = position.x;
+		System.out.println(velocity.x + " " + velocityNonConstant.x + " " + position.x);
 		ITile tile = world.CollisionEntityTile(this);
 		if(tile != null)
 		{
 			Rectangle tileHitBox = tile.getHitBox();
-			if(velocity.x + velocityNonConstant.x < 0)
+			if(velocity.x + velocityNonConstant.x < 0){
 				position.x = tileHitBox.x + tileHitBox.width;
-			if(velocity.x + velocityNonConstant.x > 0)
+				if(velocity.x < 0)
+					velocity.x = 0;
+			}
+			if(velocity.x + velocityNonConstant.x > 0){
 				position.x = tileHitBox.x - hitBox.width;
-			velocity.x = 0;
+				if(velocity.x > 0)
+					velocity.x = 0;
+			}
 			velocityNonConstant.x = 0;
 		}
+		if(velocity.x > 0){
+			velocity.x -= FRICTION;
+			if(velocity.x < 0)
+				velocity.x = 0;
+		}
+		else if(velocity.x < 0){
+			velocity.x += FRICTION;
+			if(velocity.x > 0)
+				velocity.x = 0;
+		}
 		hitBox.x = position.x;
+		
 	}
 	
 	public void setVelocity(float x, float y){

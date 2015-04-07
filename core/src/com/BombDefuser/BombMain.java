@@ -46,6 +46,7 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("tiles/tile_gray.png", Texture.class);
 		BombMain.assets.load("tiles/tile_green.png", Texture.class);
 		BombMain.assets.load("tiles/tile_red.png", Texture.class);
+		BombMain.assets.load("tiles/tile_fan.png", Texture.class);
 		BombMain.assets.load("props/prop_sheet.png", Texture.class);
 		
 		// load sound
