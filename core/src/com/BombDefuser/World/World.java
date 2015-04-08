@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Bomb.Bomb;
+import com.BombDefuser.Particle.ParticleManager;
 import com.BombDefuser.Utilities.BackgroundLayer;
 import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
@@ -30,9 +31,9 @@ public class World {
 	protected List<ITile> lowerLayer;
 	protected Bomb bomb;
 	
-	Hero hero;
+	private Hero hero;
 	private float gravity;
-	BackgroundLayer lower, middle, top;
+	private BackgroundLayer lower, middle, top;
 	
 	public World(float gravity)
 	{
@@ -43,6 +44,7 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		enemies = new ArrayList<Enemy>();
 		
+		//READ FROM FILE LATER
 		collisionLayer.add(new TileRec(ETileTexture.GREEN, -1200, -555, 5000, 420));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -135, 20, 45));
 		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -90, 10, 50));
@@ -55,6 +57,7 @@ public class World {
 		collisionLayer.add(new FanTile(EDirection.LEFT, 400, -135, 10, 50, 70));
 		collisionLayer.add(new FanTile(EDirection.DOWN, 550, -50, 50, 10, 55));
 		collisionLayer.add(new FanTile(EDirection.RIGHT, 700, -135, 10, 50, 70));
+		//---------------
 		
 		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, -200);
 		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, -200);
@@ -74,7 +77,7 @@ public class World {
 	
 	public void update(float delta, OrthographicCamera camera)
 	{	
-		
+		ParticleManager.update(delta);
 		for(Enemy i : enemies)
 			i.update(delta);
 
@@ -107,6 +110,7 @@ public class World {
 		
 		for(ITile tile : lowerLayer)
 			tile.render(batch);
+		ParticleManager.render(batch);
 		for(ITile tile : collisionLayer)
 			tile.render(batch);
 		for(Enemy i : enemies)

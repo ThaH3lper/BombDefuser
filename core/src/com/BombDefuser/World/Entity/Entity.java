@@ -66,7 +66,6 @@ public abstract class Entity extends GameObject implements IEntity{
 		position.x += (velocity.x) * delta;
 		position.x += (velocityNonConstant.x) * delta;
 		hitBox.x = position.x;
-		System.out.println(velocity.x + " " + velocityNonConstant.x + " " + position.x);
 		ITile tile = world.CollisionEntityTile(this);
 		if(tile != null)
 		{
