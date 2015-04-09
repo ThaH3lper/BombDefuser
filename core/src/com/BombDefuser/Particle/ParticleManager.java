@@ -17,8 +17,8 @@ public class ParticleManager {
 		particles.add(particle);
 	}
 	
-	public static void addFanParticle(Vector2 position, Vector2 velocity){
-		particles.add(new FanParticle(BombMain.assets.get("dot.png", Texture.class), velocity, position, 2, Color.DARK_GRAY));
+	public static void addFanParticle(Vector2 position, Vector2 velocity, float distance){
+		particles.add(new FanParticle(BombMain.assets.get("dot.png", Texture.class), velocity, position, 2, Color.DARK_GRAY, distance));
 	}
 	
 	public static void Clear(){

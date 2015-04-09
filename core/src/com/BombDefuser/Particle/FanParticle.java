@@ -8,12 +8,12 @@ import com.badlogic.gdx.math.Vector2;
 public class FanParticle implements IParticle{
 
 	private Vector2 velocity, position;
-	private float opacity, size;
+	private float opacity, size, fadingAmount;
 	private Color color;
 	private boolean dead;
 	private Texture texture;
 	
-	public FanParticle(Texture texture, Vector2 velocity, Vector2 position, float size, Color color){
+	public FanParticle(Texture texture, Vector2 velocity, Vector2 position, float size, Color color, float distance){
 		this.velocity = velocity;
 		this.position = position;
 		this.opacity = 1f;
@@ -21,13 +21,14 @@ public class FanParticle implements IParticle{
 		this.color = color;
 		this.dead = false;
 		this.texture = texture;
+		this.fadingAmount = 1/(distance/velocity.len());
 	}
 
 	@Override
 	public void update(float delta) {
 		position.x += velocity.x * delta;
 		position.y += velocity.y * delta;
-		opacity -= 0.01f;
+		opacity -= fadingAmount * delta;
 		if(opacity <= 0)
 			dead = true;
 	}

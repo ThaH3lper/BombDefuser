@@ -2,41 +2,57 @@ package com.BombDefuser.World.Fans;
 
 import java.util.Random;
 
+import com.BombDefuser.BombMain;
 import com.BombDefuser.Particle.ParticleManager;
 import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.TileRec;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class FanTile extends TileRec{
 
-	private static final float PARTICLESPEED = 50;
+	private static final float PARTICLESPEED = 80, PARTICLEINTERVAL = 0.1f;
 	private static final float POWER = 70;
 	private Rectangle recFan;
 	private EDirection direction;
 	private boolean activated = true;
 	private Random random;
-	
+	private float particleTime, activationTime, activationInterval; 
 	public FanTile(EDirection direction, float x, float y, float width, float height, float distance) {
+		this(direction, x, y, width, height, distance, 0f);
+	}
+	public FanTile(EDirection direction, float x, float y, float width, float height, float distance, float activationInterval) {
 		super(ETileTexture.FAN, x, y, width, height);
 		this.direction = direction;
 		this.recFan = rectangleAlgoritm(distance);
 		this.random = new Random();
+		this.activationInterval = activationInterval;
 	}
 	
 	@Override
 	public void update(float delta) {
-		spawnParticles();
+		particleTime += delta;
+		activationTime += delta;
+		if(particleTime >= PARTICLEINTERVAL && activated){
+			particleTime = 0;
+			spawnParticles();
+		}
+		if(activationTime >= activationInterval){
+			activationTime = 0;
+			activated = (activated) ? false : true;
+		}
 		super.update(delta);
 	}
 	
 	@Override
 	public void render(SpriteBatch batch) {
 		/*if (activated)
-			batch.setColor(Color.GREEN);
+			batch.setColor(0f, 1f, 0f, 0.2f);
 		else
-			batch.setColor(Color.RED);
+			batch.setColor(1f, 0f, 0f, 0.2f);
 		batch.draw(BombMain.assets.get("dot.png", Texture.class), recFan.x, recFan.y, recFan.width, recFan.height);
 		batch.setColor(Color.WHITE);*/
 		super.render(batch);
@@ -50,19 +66,19 @@ public class FanTile extends TileRec{
 		switch (direction) {
 		case UP:
 			spawn = new Vector2(recHit.x + random.nextInt((int)recHit.width), recHit.y + recHit.height);
-			ParticleManager.addFanParticle(spawn, new Vector2(0, PARTICLESPEED));
+			ParticleManager.addFanParticle(spawn, new Vector2(0, PARTICLESPEED), recFan.height);
 			break;
 		case DOWN:
 			spawn = new Vector2(recHit.x + random.nextInt((int)recHit.width), recHit.y);
-			ParticleManager.addFanParticle(spawn, new Vector2(0, -PARTICLESPEED));
+			ParticleManager.addFanParticle(spawn, new Vector2(0, -PARTICLESPEED), recFan.height);
 			break;
 		case LEFT:
 			spawn = new Vector2(recHit.x, recHit.y + random.nextInt((int) recHit.height));
-			ParticleManager.addFanParticle(spawn, new Vector2( -PARTICLESPEED, 0));
+			ParticleManager.addFanParticle(spawn, new Vector2( -PARTICLESPEED, 0), recFan.width);
 			break;
 		case RIGHT:
 			spawn = new Vector2(recHit.x + recHit.width, recHit.y + random.nextInt((int) recHit.height));
-			ParticleManager.addFanParticle(spawn, new Vector2( PARTICLESPEED, 0));
+			ParticleManager.addFanParticle(spawn, new Vector2( PARTICLESPEED, 0), recFan.width);
 			break;
 		}
 	}
@@ -103,6 +119,10 @@ public class FanTile extends TileRec{
 			}
 		}
 		return new Vector2(0, 0);
+	}
+	
+	public boolean isActivated(){
+		return activated;
 	}
 
 }

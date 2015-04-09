@@ -53,7 +53,7 @@ public class World {
 		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
 		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
 		collisionLayer.add(new PropTile(3, 1, -38, -90, 20, 20));
-		collisionLayer.add(new FanTile(EDirection.UP, 450, -135, 50, 10, 50));
+		collisionLayer.add(new FanTile(EDirection.UP, 450, -135, 50, 10, 100, 2));
 		collisionLayer.add(new FanTile(EDirection.LEFT, 400, -135, 10, 50, 70));
 		collisionLayer.add(new FanTile(EDirection.DOWN, 550, -50, 50, 10, 55));
 		collisionLayer.add(new FanTile(EDirection.RIGHT, 700, -135, 10, 50, 70));
@@ -92,6 +92,8 @@ public class World {
 			if(tile instanceof FanTile)
 			{
 				FanTile fTile = (FanTile) tile;
+				if(!fTile.isActivated())
+					continue;
 				Vector2 power = fTile.getPower(hero.getCenterPosition());
 				hero.addVelocity(power.x, power.y);
 			}
