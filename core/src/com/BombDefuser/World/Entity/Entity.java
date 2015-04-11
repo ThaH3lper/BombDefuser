@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Entity extends GameObject implements IEntity{
 
-	private static final float FRICTION = 20;
+	protected static final float FRICTION = 20;
 	protected Vector2 velocity, velocityNonConstant, position;
 	protected World world;
 	protected Boolean isOnGround;

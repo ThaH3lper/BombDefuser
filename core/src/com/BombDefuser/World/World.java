@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Bomb.Bomb;
+import com.BombDefuser.Enemy.Enemy;
 import com.BombDefuser.Particle.ParticleManager;
 import com.BombDefuser.Utilities.BackgroundLayer;
-import com.BombDefuser.World.Entity.Enemy;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
 import com.BombDefuser.World.Fans.EDirection;
@@ -15,7 +15,6 @@ import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.ITile;
 import com.BombDefuser.World.Tiles.PropTile;
 import com.BombDefuser.World.Tiles.TileRec;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,13 +24,13 @@ import com.badlogic.gdx.math.Vector2;
 
 public class World {
 	
-	protected List<Enemy> enemies;
 	protected List<ITile> topLayer;
 	protected List<ITile> collisionLayer;
 	protected List<ITile> lowerLayer;
 	protected Bomb bomb;
 	
 	private Hero hero;
+	private List<Enemy> enemy;
 	private float gravity;
 	private BackgroundLayer lower, middle, top;
 	
@@ -42,7 +41,6 @@ public class World {
 		lowerLayer = new ArrayList<ITile>();
 		collisionLayer = new ArrayList<ITile>();
 		topLayer = new ArrayList<ITile>();
-		enemies = new ArrayList<Enemy>();
 		
 		//READ FROM FILE LATER
 		collisionLayer.add(new TileRec(ETileTexture.GREEN, -1200, -555, 5000, 420));
@@ -66,22 +64,23 @@ public class World {
 		init();
 	}
 	
-	public void addEnemy(float x, float y, float width, float height, float speed, Color color){
-		enemies.add(new Enemy(enemies.size(), new Vector2(x, y), width, height, color, this, speed));
+	private void spawnEnemy(float x, float y){
+		this.enemy.add(new Enemy(enemy.size(), x, y, this));
 	}
 	
 	private void init(){
 		bomb = new Bomb(240, -135, 60);
 		hero = new Hero(0, 100, this);
+		enemy = new ArrayList<Enemy>();
+		spawnEnemy(0, 100);
 	}
 	
 	public void update(float delta, OrthographicCamera camera)
 	{	
 		ParticleManager.update(delta);
-		for(Enemy i : enemies)
-			i.update(delta);
-
 		hero.update(delta);
+		for(Enemy e : enemy)
+			e.update(delta);
 		bomb.update(delta);
 		
 		if(bomb.isExploded())
@@ -115,10 +114,10 @@ public class World {
 		ParticleManager.render(batch);
 		for(ITile tile : collisionLayer)
 			tile.render(batch);
-		for(Enemy i : enemies)
-			i.render(batch);
 		bomb.render(batch);
 		hero.render(batch);
+		for(Enemy e : enemy)
+			e.render(batch);
 		for(ITile tile : topLayer)
 			tile.render(batch);
 	}
