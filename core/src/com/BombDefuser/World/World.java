@@ -147,6 +147,10 @@ public class World {
 		return hero;
 	}
 	
+	public Bomb getBomb(){
+		return bomb;
+	}
+	
 	public float getGravity(){
 		return gravity;
 	}

@@ -1,6 +1,7 @@
 package com.BombDefuser.World.Entity;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.Utilities.TaserGun;
 import com.BombDefuser.World.World;
@@ -28,7 +29,6 @@ public class Hero extends MoveableEntity{
 		turn = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 4, 0, 64, 64, 0.04f);
 		
 		current = turn;
-		
 		setTexture(current.getTexture());
 		taser = new TaserGun();
 	}
@@ -43,10 +43,19 @@ public class Hero extends MoveableEntity{
 	}
 	
 	public void updateControls(){
+		// A button
 		if(Gdx.input.isKeyPressed(Keys.UP))
 			Jump();
-		if(Gdx.input.isKeyPressed(Keys.X))
-			taser.fire();
+		// B button
+		if(Gdx.input.isKeyPressed(Keys.X)){
+			if(world.getBomb().getHitbox().overlaps(hitBox)){
+				BombMain.stateManager.setState(EScreen.defuse);
+			}else{
+				taser.fire();
+			}
+		}
+		
+		// C & D buttons
 		if(Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.RIGHT)){
 			if(turnDone){
 				if(taser.getLoaded() == 1f)

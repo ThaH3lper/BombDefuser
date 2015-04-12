@@ -50,6 +50,14 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("props/prop_sheet.png", Texture.class);
 		BombMain.assets.load("taser_lightning.png", Texture.class);
 		
+		// load bomb cutscene
+		for(int i = 0; i < 70; i++){
+			String t = "" + i;
+			if(i < 10)
+				t = "0" + i;
+			BombMain.assets.load("bombcutscene/Final_Animation00" + t + ".jpg", Texture.class);
+		}
+		
 		// load sound
 		BombMain.assets.load("sfx/select.wav", Sound.class);
 		BombMain.assets.load("sfx/BombDefuser.mp3", Sound.class);

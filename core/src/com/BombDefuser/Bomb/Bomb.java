@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Bomb extends GameObject {
 	
@@ -22,6 +23,10 @@ public class Bomb extends GameObject {
 		this.font = BombMain.assets.get("font.fnt", BitmapFont.class);
 		font.setScale(0.5f);
 		color = Color.WHITE;
+	}
+	
+	public Rectangle getHitbox(){
+		return new Rectangle(pos.x, pos.y, width, height);
 	}
 	
 	public void reset(){

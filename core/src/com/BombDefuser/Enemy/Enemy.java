@@ -14,7 +14,7 @@ public class Enemy extends MoveableEntity {
 	
 	private final static float drawWidth = 32, drawHeight = 32;
 	private final static float hitWidth = 22, hitHeight = 32;
-	private final static float defaultSpeed = 80, defaultHealth = 100;
+	private final static float defaultSpeed = 40, defaultHealth = 100;
 	
 	private int ID;
 	private Animation run;
@@ -26,7 +26,7 @@ public class Enemy extends MoveableEntity {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		this.ID = ID;
 		
-		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.06f);
+		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.12f);
 		this.color = Color.RED;
 		this.setTexture(run.getTexture());
 		
