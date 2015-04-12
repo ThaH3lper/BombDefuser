@@ -2,6 +2,7 @@ package com.BombDefuser.World.Entity;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Utilities.Animation;
+import com.BombDefuser.Utilities.TaserGun;
 import com.BombDefuser.World.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -13,8 +14,10 @@ public class Hero extends MoveableEntity{
 	private final static float drawWidth = 32, drawHeight = 32;
 	private final static float hitWidth = 22, hitHeight = 32;
 	
+	TaserGun taser;
+	
 	Animation run, runTaser, idle, turn, current;
-	boolean turnDone, hasTaser;
+	boolean turnDone;
 	
 	public Hero(float x, float y, World world) {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
@@ -27,7 +30,7 @@ public class Hero extends MoveableEntity{
 		current = turn;
 		
 		setTexture(current.getTexture());
-		this.hasTaser = true;
+		taser = new TaserGun();
 	}
 	
 	@Override
@@ -35,15 +38,18 @@ public class Hero extends MoveableEntity{
 		updateControls();
 		current.update(delta);
 		setRecSource(current.getRecSource());
+		taser.update(delta);
 		super.update(delta);
 	}
 	
 	public void updateControls(){
 		if(Gdx.input.isKeyPressed(Keys.UP))
 			Jump();
+		if(Gdx.input.isKeyPressed(Keys.X))
+			taser.fire();
 		if(Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.RIGHT)){
 			if(turnDone){
-				if(hasTaser)
+				if(taser.getLoaded() == 1f)
 					current = runTaser;
 				else
 					current = run;
@@ -79,5 +85,9 @@ public class Hero extends MoveableEntity{
 	public void render(SpriteBatch batch)
 	{
 		super.render(batch);
+	}
+	
+	public TaserGun getGun(){
+		return taser;
 	}
 }

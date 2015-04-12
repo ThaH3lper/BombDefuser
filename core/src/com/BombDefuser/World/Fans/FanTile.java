@@ -2,12 +2,9 @@ package com.BombDefuser.World.Fans;
 
 import java.util.Random;
 
-import com.BombDefuser.BombMain;
 import com.BombDefuser.Particle.ParticleManager;
 import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.TileRec;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;

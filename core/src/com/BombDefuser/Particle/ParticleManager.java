@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.World.Fans.EDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +20,10 @@ public class ParticleManager {
 	
 	public static void addFanParticle(Vector2 position, Vector2 velocity, float distance){
 		particles.add(new FanParticle(BombMain.assets.get("dot.png", Texture.class), velocity, position, 2, Color.DARK_GRAY, distance));
+	}
+	
+	public static void addTaserParticle(Vector2 position, EDirection direction){
+		particles.add(new TaserParticle(BombMain.assets.get("taser_lightning.png", Texture.class), position, direction));
 	}
 	
 	public static void Clear(){
