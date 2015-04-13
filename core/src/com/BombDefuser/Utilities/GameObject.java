@@ -130,6 +130,9 @@ public class GameObject {
 	public void setXFliper(boolean xfliped){
 		this.xFliped = xfliped;
 	}
+	public boolean getXFliper(){
+		return xFliped;
+	}
 
 	public void setScaleY(float scaleY) {
 		this.scaleY = scaleY;

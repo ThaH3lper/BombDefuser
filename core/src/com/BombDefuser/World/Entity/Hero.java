@@ -17,7 +17,7 @@ public class Hero extends MoveableEntity{
 	
 	TaserGun taser;
 	
-	Animation run, runTaser, idle, turn, current;
+	Animation run, runTaser, idle, turn, current, idleFire;
 	boolean turnDone;
 	
 	public Hero(float x, float y, World world) {
@@ -27,10 +27,11 @@ public class Hero extends MoveableEntity{
 		runTaser = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 1, 64, 64, 0.06f);
 		idle = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 22, 2, 64, 64, 0.08f);
 		turn = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 4, 0, 64, 64, 0.04f);
+		idleFire = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 0, 3, 64, 64, 1f);
 		
 		current = turn;
 		setTexture(current.getTexture());
-		taser = new TaserGun();
+		taser = new TaserGun(this);
 	}
 	
 	@Override
@@ -38,8 +39,8 @@ public class Hero extends MoveableEntity{
 		updateControls();
 		current.update(delta);
 		setRecSource(current.getRecSource());
-		taser.update(delta);
 		super.update(delta);
+		taser.update(delta);
 	}
 	
 	public void updateControls(){
@@ -57,18 +58,22 @@ public class Hero extends MoveableEntity{
 		
 		// C & D buttons
 		if(Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.RIGHT)){
-			if(turnDone){
-				if(taser.getLoaded() == 1f)
-					current = runTaser;
+			if(taser.getBullet() != null)
+				current = runTaser;
+			else{
+				if(turnDone){
+					if(taser.getLoaded() == 1f)
+						current = runTaser;
+					else
+						current = run;
+				}
 				else
-					current = run;
-			}
-			else
-			{
-				current = turn;
-				if(turn.getTimes() >= 1)
 				{
-					turnDone = true;
+					current = turn;
+					if(turn.getTimes() >= 1)
+					{
+						turnDone = true;
+					}
 				}
 			}
 			if(Gdx.input.isKeyPressed(Keys.LEFT)){
@@ -81,18 +86,23 @@ public class Hero extends MoveableEntity{
 			}
 		}
 		else{
-			if(current != idle){
-				idle.resetTimes();
-				current = idle;
+			if(taser.getBullet() != null)
+				current = idleFire;
+			else{
+				if(current != idle){
+					idle.resetTimes();
+					current = idle;
+				}
+				turnDone = false;
+				turn.resetTimes();
 			}
-			turnDone = false;
-			turn.resetTimes();
 		}
 	}
 	
 	@Override
 	public void render(SpriteBatch batch)
 	{
+		taser.render(batch);
 		super.render(batch);
 	}
 	
