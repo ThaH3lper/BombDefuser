@@ -27,6 +27,12 @@ public class TileRec implements ITile{
 		case FAN:
 			texture = BombMain.assets.get("tiles/tile_fan.png", Texture.class);
 			break;
+		case HOUSE:
+			texture = BombMain.assets.get("tiles/tile_house.png", Texture.class);
+			break;
+		case HOUSE_BROKEN:
+			texture = BombMain.assets.get("tiles/tile_house_broken.png", Texture.class);
+			break;
 		}
 		
 		this.recHit = new Rectangle(x, y, width, height);

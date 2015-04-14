@@ -14,7 +14,7 @@ public class GameObject {
 	protected float width, height, scale, scaleX, scaleY, rotation;
 	protected Rectangle recSource, recDraw;
 	protected Color color;
-	protected boolean xFliped;
+	protected boolean xFliped, yFliped;
 	
 	
 	public GameObject(Texture tex){
@@ -40,7 +40,7 @@ public class GameObject {
 	public void render(SpriteBatch batch){
 		batch.setColor(color);
 		batch.draw(tex, pos.x, pos.y, origin.x, origin.y, width, 
-				height, scaleX, scaleY, rotation, (int)recSource.x, (int)recSource.y, (int)recSource.width, (int)recSource.height, xFliped, false);
+				height, scaleX, scaleY, rotation, (int)recSource.x, (int)recSource.y, (int)recSource.width, (int)recSource.height, xFliped, yFliped);
 		batch.setColor(Color.WHITE);
 	}
 	

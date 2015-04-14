@@ -47,6 +47,10 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("tiles/tile_green.png", Texture.class);
 		BombMain.assets.load("tiles/tile_red.png", Texture.class);
 		BombMain.assets.load("tiles/tile_fan.png", Texture.class);
+		BombMain.assets.load("tiles/tile_house.png", Texture.class);
+		BombMain.assets.load("tiles/tile_house_broken.png", Texture.class);
+		BombMain.assets.load("fans/fan_horisontal.png", Texture.class);
+		BombMain.assets.load("fans/fan_vertical.png", Texture.class);
 		BombMain.assets.load("props/prop_sheet.png", Texture.class);
 		BombMain.assets.load("taser_lightning.png", Texture.class);
 		

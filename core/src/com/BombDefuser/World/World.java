@@ -43,10 +43,10 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		
 		//READ FROM FILE LATER
-		collisionLayer.add(new TileRec(ETileTexture.GREEN, -1200, -555, 5000, 420));
-		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -135, 20, 45));
-		collisionLayer.add(new TileRec(ETileTexture.GRAY, -48, -90, 10, 50));
-		collisionLayer.add(new TileRec(ETileTexture.GRAY, -38, -100, 120, 10));
+		collisionLayer.add(new TileRec(ETileTexture.HOUSE_BROKEN, -1200, -555, 5000, 420));
+		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -48, -135, 20, 45));
+		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -48, -90, 10, 50));
+		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -38, -100, 120, 10));
 		collisionLayer.add(new TileRec(ETileTexture.RED, -150, -100, 50, 10));
 		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
 		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
