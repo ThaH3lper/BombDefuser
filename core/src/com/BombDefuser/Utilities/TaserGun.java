@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaserGun {
 
-	private final static float reloadTime = 3f;
-	private float time;
-	private float loaded;
+	public final static float maxTazerTime = 6;
+
+	private boolean isActive;
+	private float fireTime;
+	
 	private Hero hero;
 	private TaserBullet bullet;
 	private Texture bulletTexture;
@@ -17,38 +19,48 @@ public class TaserGun {
 	public TaserGun(Hero hero){
 		this.hero = hero;
 		this.bulletTexture = BombMain.assets.get("taser_lightning.png", Texture.class);
+		
+		bullet = new TaserBullet(bulletTexture, hero);
 	}
+	
 	public void update(float delta){
-		if(loaded != 1)
-			time += delta;
-		if(time >= reloadTime && loaded != 1f)
-		{
-			time = 0;
-			loaded = 1;
-		}
-		else if (loaded != 1){
-			loaded = time/reloadTime;
-		}
-		if(bullet != null){
+		if(isActive){
 			bullet.update(delta);
-			if(bullet.isDead())
-				bullet = null;
+			
+			if(fireTime > 0)
+				fireTime -= delta;
+			if(fireTime <= 0)
+				isActive = false;
+			
+		}else{
+			fireTime += delta;
+			if(fireTime > maxTazerTime)
+				fireTime = maxTazerTime;
 		}
+		
 	}
 	public void render(SpriteBatch batch)
 	{
-		if(bullet != null)
+		if(isActive == true)
 			bullet.render(batch);
 	}
 	
-	public float getLoaded(){
-		return loaded;
+	public float getFireTime(){
+		return fireTime;
 	}
-	public void fire(){
-		if(loaded == 1){
-			loaded = 0;
-			bullet = new TaserBullet(bulletTexture, hero);
-		}
+	
+	public void deactivate(){
+		isActive = false;
+	}
+	
+	public boolean isActive(){
+		return isActive;
+	}
+	
+	public void fire(float delta){
+		isActive = true;
+		if(fireTime <= 0)
+			isActive = false;
 	}
 	
 	public TaserBullet getBullet(){

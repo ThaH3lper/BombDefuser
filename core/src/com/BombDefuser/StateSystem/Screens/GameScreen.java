@@ -39,7 +39,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.update();
 		Vector3 position = camera.position;
 		position.x += (world.getHero().getPos().x - position.x) * lerp;
-		position.y += (world.getHero().getPos().y - position.y) * lerp;
+		//position.y += (world.getHero().getPos().y - position.y) * lerp;
 		camera.update();
 	}
 
@@ -57,4 +57,8 @@ public class GameScreen extends BaseScreen implements IScreen {
 	public void dispose() {
 		batch.dispose();
 	}
+
+    public OrthographicCamera getHudCamera(){
+        return hudCamera;
+    }
 }

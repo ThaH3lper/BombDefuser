@@ -15,6 +15,7 @@ public class Enemy extends MoveableEntity {
 	private final static float drawWidth = 32, drawHeight = 32;
 	private final static float hitWidth = 22, hitHeight = 32;
 	private final static float defaultSpeed = 40, defaultHealth = 100;
+	private final static float defualtDeathTimer = 2;
 	
 	private int ID;
 	private Animation run;
@@ -22,9 +23,15 @@ public class Enemy extends MoveableEntity {
 	private EDirection currentDir;
 	private float health;
 	
+	private boolean deathWish;
+	private float deathTimer;
+	private boolean isHit;
+	
 	public Enemy(int ID, float x, float y, World world) {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		this.ID = ID;
+		
+		deathTimer = defualtDeathTimer;
 		
 		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.12f);
 		this.color = Color.RED;
@@ -93,40 +100,75 @@ public class Enemy extends MoveableEntity {
 		
 	}
 	
+	private float shakeRot = 5;
+	private float timeUntilNextShake = 0;
+	
 	@Override
 	public void update(float delta){
-		run.update(delta);
-		this.setRecSource(run.getRecSource());
-		super.update(delta);
-		
-		// Update location
-		if(this.isOnGround){
-			if(currentDir == EDirection.LEFT)
-				MoveLeft();
-			if(currentDir == EDirection.RIGHT)
-				MoveRight();
-		}
-		
-		// Update pit death fall detectors
-		leftRec.x = pos.x - hitWidth;
-		leftRec.y = pos.y - 2;
-		rightRec.x = pos.x + hitWidth;
-		rightRec.y = pos.y - 2;
-		
-		// Check if we are close to pitfall
-		if(!world.CollisionWithAnyTile(leftRec) && currentDir == EDirection.LEFT && isOnGround){
-			String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
-			System.out.println(msg);
+		if(isHit){
+			this.color = Color.BLUE;
+			deathTimer -= delta;
+			if(deathTimer <= 0)
+				deathWish = true;
 			
-			currentDir = EDirection.RIGHT;
-			this.setXFliper(false);
-		}
-		if(!world.CollisionWithAnyTile(rightRec) && currentDir == EDirection.RIGHT && isOnGround){
-			String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
-			System.out.println(msg);
+			timeUntilNextShake -= delta;
+			if(timeUntilNextShake <= 0){
+				timeUntilNextShake = 0.05f;
+				shakeRot = -shakeRot;
+				this.rotation = shakeRot;
+			}
+		}else{
+			this.color = Color.RED;
+			this.rotation = 0;
+			run.update(delta);
+			this.setRecSource(run.getRecSource());
+			super.update(delta);
 			
-			currentDir = EDirection.LEFT;
-			this.setXFliper(true);
+			// Update location
+			if(this.isOnGround){
+				if(currentDir == EDirection.LEFT)
+					MoveLeft();
+				if(currentDir == EDirection.RIGHT)
+					MoveRight();
+			}
+			
+			// Update pit death fall detectors
+			leftRec.x = pos.x - hitWidth;
+			leftRec.y = pos.y - 2;
+			rightRec.x = pos.x + hitWidth;
+			rightRec.y = pos.y - 2;
+			
+			// Check if we are close to pitfall
+			if(!world.CollisionWithAnyTile(leftRec) && currentDir == EDirection.LEFT && isOnGround){
+				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
+				System.out.println(msg);
+				
+				currentDir = EDirection.RIGHT;
+				this.setXFliper(false);
+			}
+			if(!world.CollisionWithAnyTile(rightRec) && currentDir == EDirection.RIGHT && isOnGround){
+				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
+				System.out.println(msg);
+				
+				currentDir = EDirection.LEFT;
+				this.setXFliper(true);
+			}
 		}
+	}
+	
+	public boolean deathWish(){
+		return deathWish;
+	}
+	
+	public int getID(){
+		return ID;
+	}
+	
+	public void setHit(boolean value){
+		isHit = value;
+	}
+	
+	public boolean isHit(){
+		return isHit;
 	}
 }

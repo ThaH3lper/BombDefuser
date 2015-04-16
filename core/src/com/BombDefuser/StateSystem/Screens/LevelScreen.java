@@ -25,7 +25,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		europe = BombMain.assets.get("europe.png", Texture.class);
 		red_dot = BombMain.assets.get("dotselect.png", Texture.class);
 		
-		btnLevel1 = new Button(camera, red_dot, 722, 515);
+		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	public void render() {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(europe, 0, 0);
+		batch.draw(europe, 0, 0, camera.viewportWidth, camera.viewportHeight);
 		btnLevel1.render(batch);
 		batch.end();
 	}

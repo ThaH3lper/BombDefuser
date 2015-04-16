@@ -3,10 +3,13 @@ package com.BombDefuser.World.Entity;
 import com.BombDefuser.BombMain;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.Utilities.Animation;
+import com.BombDefuser.Utilities.Button;
 import com.BombDefuser.Utilities.TaserGun;
 import com.BombDefuser.World.World;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -19,7 +22,9 @@ public class Hero extends MoveableEntity{
 	
 	Animation run, runTaser, idle, turn, current, idleFire;
 	boolean turnDone;
-	
+
+    private Button btnLeft, btnRight, btnA, btnB;
+
 	public Hero(float x, float y, World world) {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		
@@ -32,37 +37,133 @@ public class Hero extends MoveableEntity{
 		current = turn;
 		setTexture(current.getTexture());
 		taser = new TaserGun(this);
+
+        if(Gdx.app.getType() == Application.ApplicationType.Android){
+            btnLeft = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("arrow.png", Texture.class), 0, 100);
+            btnRight = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("arrow.png", Texture.class), 100, 0);
+            btnA = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("A.png", Texture.class), 1280-200, 0);
+            btnB = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("B.png", Texture.class), 1280-100, 100);
+        }
 	}
 	
 	@Override
 	public void update(float delta){
-		updateControls();
+		switch (Gdx.app.getType()){
+            case Android:
+                updateAndoridControls(delta);
+                break;
+            case Desktop:
+                updateDesktopControls(delta);
+                break;
+            case HeadlessDesktop:
+                break;
+            case Applet:
+                break;
+            case WebGL:
+                break;
+            case iOS:
+                break;
+        }
 		current.update(delta);
 		setRecSource(current.getRecSource());
 		super.update(delta);
 		taser.update(delta);
+		
+		// Taser hit enemy logic
+		if(taser.isActive()){
+			for(int i = 0; i < world.getEnemies().size(); i++){
+				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
+					world.getEnemies().get(i).setHit(true);
+				}
+			}
+		}else{
+			for(int i = 0; i < world.getEnemies().size(); i++){
+				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
+					world.getEnemies().get(i).setHit(false);
+				}
+			}
+		}
 	}
-	
-	public void updateControls(){
+
+    public void updateAndoridControls(float delta){
+        // A button
+        if(btnA.isPressed())
+            Jump();
+        // B button
+        if(btnB.isPressed()){
+            if(world.getBomb().getHitbox().overlaps(hitBox)){
+                BombMain.stateManager.setState(EScreen.defuse);
+            }else{
+                taser.fire(delta);
+            }
+        }
+
+        // C & D buttons
+        if(btnLeft.isPressed() || btnRight.isPressed()){
+            if(taser.getBullet() != null)
+                current = runTaser;
+            else{
+                if(turnDone){
+                    if(taser.isActive())
+                        current = runTaser;
+                    else
+                        current = run;
+                }
+                else
+                {
+                    current = turn;
+                    if(turn.getTimes() >= 1)
+                    {
+                        turnDone = true;
+                    }
+                }
+            }
+            if(btnLeft.isPressed()){
+                MoveLeft();
+                setXFliper(true);
+            }
+            else if(btnRight.isPressed()){
+                MoveRight();
+                setXFliper(false);
+            }
+        }
+        else{
+            if(taser.getBullet() != null)
+                current = idleFire;
+            else{
+                if(current != idle){
+                    idle.resetTimes();
+                    current = idle;
+                }
+                turnDone = false;
+                turn.resetTimes();
+            }
+        }
+    }
+
+	public void updateDesktopControls(float delta){
 		// A button
-		if(Gdx.input.isKeyPressed(Keys.UP))
+		if(Gdx.input.isKeyPressed(Keys.W))
 			Jump();
 		// B button
-		if(Gdx.input.isKeyPressed(Keys.X)){
+		if(Gdx.input.isKeyPressed(Keys.SPACE)){
 			if(world.getBomb().getHitbox().overlaps(hitBox)){
 				BombMain.stateManager.setState(EScreen.defuse);
 			}else{
-				taser.fire();
+				taser.fire(delta);
 			}
+		}else{
+			if(taser.isActive())
+				taser.deactivate();
 		}
 		
 		// C & D buttons
-		if(Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.RIGHT)){
+		if(Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.D)){
 			if(taser.getBullet() != null)
 				current = runTaser;
 			else{
 				if(turnDone){
-					if(taser.getLoaded() == 1f)
+					if(taser.isActive())
 						current = runTaser;
 					else
 						current = run;
@@ -76,11 +177,11 @@ public class Hero extends MoveableEntity{
 					}
 				}
 			}
-			if(Gdx.input.isKeyPressed(Keys.LEFT)){
+			if(Gdx.input.isKeyPressed(Keys.A)){
 				MoveLeft();
 				setXFliper(true);
 			}
-			else if(Gdx.input.isKeyPressed(Keys.RIGHT)){
+			else if(Gdx.input.isKeyPressed(Keys.D)){
 				MoveRight();
 				setXFliper(false);
 			}
@@ -98,7 +199,16 @@ public class Hero extends MoveableEntity{
 			}
 		}
 	}
-	
+
+    public void renderAndroidButtons(SpriteBatch batch){
+        batch.setColor(new Color(1, 1, 1, 100));
+        btnLeft.render(batch);
+        btnRight.render(batch);
+        btnA.render(batch);
+        btnB.render(batch);
+        batch.setColor(Color.WHITE);
+    }
+
 	@Override
 	public void render(SpriteBatch batch)
 	{

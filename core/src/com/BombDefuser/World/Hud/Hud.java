@@ -1,7 +1,10 @@
 package com.BombDefuser.World.Hud;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Utilities.TaserGun;
 import com.BombDefuser.World.World;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,7 +23,7 @@ public class Hud {
 	}
 	
 	public void update(float delta){
-		recGun.width = world.getHero().getGun().getLoaded() * recBGGun.width;
+		recGun.width = (world.getHero().getGun().getFireTime()/TaserGun.maxTazerTime) * recBGGun.width;
 	}
 	
 	public void render(SpriteBatch batch)
@@ -30,5 +33,8 @@ public class Hud {
 		batch.setColor(Color.BLUE);
 		batch.draw(textureDot, recGun.x, recGun.y, recGun.width, recGun.height);
 		batch.setColor(Color.WHITE);
+
+        if(Gdx.app.getType() == Application.ApplicationType.Android)
+            world.getHero().renderAndroidButtons(batch);
 	}
 }

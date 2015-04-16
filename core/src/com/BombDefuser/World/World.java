@@ -29,8 +29,10 @@ public class World {
 	protected List<ITile> lowerLayer;
 	protected Bomb bomb;
 	
-	private Hero hero;
+	private int enemySpawned;
 	private List<Enemy> enemy;
+	
+	private Hero hero;
 	private float gravity;
 	private BackgroundLayer lower, middle, top;
 	
@@ -65,12 +67,15 @@ public class World {
 	}
 	
 	private void spawnEnemy(float x, float y){
-		this.enemy.add(new Enemy(enemy.size(), x, y, this));
+		this.enemy.add(new Enemy(enemySpawned, x, y, this));
+		enemySpawned++;
 	}
 	
 	private void init(){
+		enemySpawned = 0;
+		
 		bomb = new Bomb(240, -135, 60);
-		hero = new Hero(0, 100, this);
+		hero = new Hero(-150, 100, this);
 		enemy = new ArrayList<Enemy>();
 		spawnEnemy(0, 100);
 	}
@@ -79,8 +84,13 @@ public class World {
 	{	
 		ParticleManager.update(delta);
 		hero.update(delta);
-		for(Enemy e : enemy)
-			e.update(delta);
+		for(int i = 0; i < enemy.size(); i++){
+			if(enemy.get(i).deathWish()){
+				enemy.remove(i);
+				continue;
+			}
+			enemy.get(i).update(delta);
+		}
 		bomb.update(delta);
 		
 		if(bomb.isExploded())
@@ -115,9 +125,9 @@ public class World {
 		for(ITile tile : collisionLayer)
 			tile.render(batch);
 		bomb.render(batch);
-		hero.render(batch);
 		for(Enemy e : enemy)
 			e.render(batch);
+		hero.render(batch);
 		for(ITile tile : topLayer)
 			tile.render(batch);
 	}
@@ -157,6 +167,10 @@ public class World {
 	
 	public void setGravity(float newGravity){
 		this.gravity = newGravity;
+	}
+	
+	public List<Enemy> getEnemies(){
+		return enemy;
 	}
 	
 	public List<ITile> getCollisionLayer(){

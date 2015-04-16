@@ -17,8 +17,6 @@ public class LoadingScreen extends BaseScreen implements IScreen {
 	private Rectangle logoFrame;
 	
 	//Variables for delay, loading screen need to ba atleas X sec long
-	private final float minLoadTime = 2;
-	private float currentTime;
 	
 	public LoadingScreen() {
 		logoFrame = new Rectangle(-150, -100, 300, 200);
@@ -27,9 +25,8 @@ public class LoadingScreen extends BaseScreen implements IScreen {
 	@Override
 	public void update(float delta) {
 		camera.update();
-		currentTime += delta;
 		
-		if(BombMain.assets.update() && currentTime >= minLoadTime){
+		if(BombMain.assets.update()){
 			BombMain.soundBank = new SoundManager();
 			BombMain.stateManager.setState(EScreen.meny);
 		}
@@ -45,7 +42,6 @@ public class LoadingScreen extends BaseScreen implements IScreen {
 	public void render() {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		batch.setProjectionMatrix(camera.combined);
 		
 		batch.begin();
@@ -60,6 +56,5 @@ public class LoadingScreen extends BaseScreen implements IScreen {
 	@Override
 	public void dispose() {
 		batch.dispose();
-		//img.dispose(); Får ej disposa saker tagna ifrån assetsmanager
 	}
 }

@@ -40,4 +40,19 @@ public class BackgroundLayer {
         batch.draw(texture, rec2.x, rec2.y, rec2.width, rec2.height);
         batch.draw(texture, rec3.x, rec3.y, rec3.width, rec3.height);
     }
+    
+    public void setYPadding(float value){
+    	yPadding = value;
+    	rec1.y = value;
+    	rec2.y = value;
+    	rec3.y = value;
+    }
+    
+    public int getWidth(){
+    	return texture.getWidth();
+    }
+    
+    public int getHeight(){
+    	return texture.getHeight();
+    }
 }
