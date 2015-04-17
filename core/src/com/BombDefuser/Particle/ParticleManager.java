@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.BombDefuser.BombMain;
-import com.BombDefuser.World.Entity.Hero;
-import com.BombDefuser.World.Fans.EDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

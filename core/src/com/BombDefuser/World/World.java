@@ -6,6 +6,7 @@ import com.BombDefuser.BombMain;
 import com.BombDefuser.Bomb.Bomb;
 import com.BombDefuser.Enemy.Enemy;
 import com.BombDefuser.Particle.ParticleManager;
+import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.Utilities.BackgroundLayer;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
@@ -84,18 +85,24 @@ public class World {
 	{	
 		ParticleManager.update(delta);
 		hero.update(delta);
+		
+		// Enemy logic
 		for(int i = 0; i < enemy.size(); i++){
 			if(enemy.get(i).deathWish()){
 				enemy.remove(i);
+				BombMain.soundBank.playSound(ESounds.enemypuff);
 				continue;
 			}
 			enemy.get(i).update(delta);
 		}
-		bomb.update(delta);
 		
+		// Bomb logic
+		bomb.update(delta);
 		if(bomb.isExploded())
 			init();
 		
+		// Fan logic
+		boolean inReachOfFan = false;
 		for(ITile tile : collisionLayer){
 			tile.update(delta);
 			if(tile instanceof FanTile)
@@ -105,9 +112,18 @@ public class World {
 					continue;
 				Vector2 power = fTile.getPower(hero.getCenterPosition());
 				hero.addVelocity(power.x, power.y);
+				
+				// Sound
+				if(Vector2.dst(hero.getCenterPosition().x, hero.getCenterPosition().y, ((FanTile) tile).getCenterPos().x, ((FanTile) tile).getCenterPos().y) < 100){
+					BombMain.soundBank.playSound(ESounds.fan);
+					inReachOfFan = true;
+				}
 			}
 		}
+		if(!inReachOfFan)
+			BombMain.soundBank.stopFan();
 		
+		// Scrolling background
 		lower.update(delta, camera);
 		middle.update(delta, camera);
 		top.update(delta, camera);

@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.BombDefuser.BombMain;
 import com.BombDefuser.Particle.ParticleManager;
-import com.BombDefuser.World.Tiles.ETileTexture;
 import com.BombDefuser.World.Tiles.ITile;
-import com.BombDefuser.World.Tiles.TileRec;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -25,9 +20,11 @@ public class FanTile implements ITile{
 	private Random random;
 	private float particleTime, activationTime, activationInterval; 
 	private List<FanRec> fans = new ArrayList<FanRec>();
+	
 	public FanTile(EDirection direction, float x, float y, float width, float height, float distance) {
 		this(direction, x, y, width, height, distance, 0f);
 	}
+	
 	public FanTile(EDirection direction, float x, float y, float width, float height, float distance, float activationInterval) {
 		this.direction = direction;
 		this.recHit = new Rectangle(x, y, width, height);
@@ -167,6 +164,10 @@ public class FanTile implements ITile{
 	@Override
 	public Rectangle getHitBox() {
 		return recHit;
+	}
+	
+	public Vector2 getCenterPos(){
+		return new Vector2(this.recHit.x + this.recHit.width/2, this.recHit.y + this.recHit.height/2);
 	}
 
 }

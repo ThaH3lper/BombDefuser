@@ -3,7 +3,6 @@ package com.BombDefuser.Enemy;
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.World.World;
-import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.MoveableEntity;
 import com.BombDefuser.World.Tiles.ITile;
 import com.badlogic.gdx.graphics.Color;

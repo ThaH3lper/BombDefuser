@@ -3,7 +3,6 @@ package com.BombDefuser.StateSystem.Screens;
 import com.BombDefuser.BombMain;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.IScreen;
-import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.Utilities.TexturesAnimation;
 import com.badlogic.gdx.graphics.Texture;
 

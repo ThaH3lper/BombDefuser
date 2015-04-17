@@ -6,7 +6,6 @@ import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.Utilities.Button;
-import com.BombDefuser.Utilities.ScrollingBackground;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 

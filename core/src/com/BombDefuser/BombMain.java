@@ -57,6 +57,7 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("A.png", Texture.class);
         BombMain.assets.load("B.png", Texture.class);
         BombMain.assets.load("gameart.png", Texture.class);
+        BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
         
 		// load bomb cutscene
 		for(int i = 0; i < 70; i++){
@@ -69,7 +70,9 @@ public class BombMain extends ApplicationAdapter {
 		// load sound
 		BombMain.assets.load("sfx/select.wav", Sound.class);
 		BombMain.assets.load("sfx/BombDefuser.mp3", Sound.class);
-		BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
+		BombMain.assets.load("sfx/jump.wav", Sound.class);
+		BombMain.assets.load("sfx/enemypuff.wav", Sound.class);
+		BombMain.assets.load("sfx/fan.wav", Sound.class);
 	}
 	
 	public void initialize(){

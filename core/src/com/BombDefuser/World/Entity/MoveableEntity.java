@@ -1,5 +1,7 @@
 package com.BombDefuser.World.Entity;
 
+import com.BombDefuser.BombMain;
+import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.World.World;
 import com.badlogic.gdx.math.Rectangle;
 /**
@@ -49,7 +51,9 @@ public abstract class MoveableEntity extends Entity{
 	
 	public void Jump()
 	{
-		if(isOnGround)
+		if(isOnGround){
 			addVelocity(0, jumpPower);
+			BombMain.soundBank.playSound(ESounds.jump);
+		}
 	}
 }
