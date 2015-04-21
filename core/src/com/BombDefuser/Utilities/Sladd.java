@@ -17,6 +17,15 @@ public class Sladd extends GameObject {
 		this.recDraw.y = pos.y;
 		this.activeColor = activeColor;
 		this.color = Color.LIGHT_GRAY;
+		
+		if(BombMain.rnd.nextInt(1) == 0)
+			this.rotation = BombMain.rnd.nextFloat() * 5;
+		else
+			this.rotation = -BombMain.rnd.nextFloat() * 5;
+	}
+	
+	public void setActive(){
+		this.color = activeColor;
 	}
 	
 	public void klippt(){

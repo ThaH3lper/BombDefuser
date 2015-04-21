@@ -6,6 +6,7 @@ import java.util.List;
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
 import com.BombDefuser.StateSystem.BaseScreen;
+import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.Utilities.GameObject;
 import com.BombDefuser.Utilities.Sladd;
@@ -28,6 +29,7 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 	private Sladd[] sladd = new Sladd[5];
 	private Texture klippTex;
 	private List<GameObject> klippt;
+	private List<Integer> beenActive = new ArrayList<Integer>();
 	
 	public DefuseScreen(){
 		bg = new GameObject(BombMain.assets.get("dot.png", Texture.class));
@@ -75,7 +77,8 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 			}
 			sladd[i] = new Sladd(Globals.VIRTUAL_WIDTH/10 + Globals.VIRTUAL_WIDTH/5 * i, 0, c);
 		}
-		active = BombMain.rnd.nextInt(4);
+		active = BombMain.rnd.nextInt(5);
+		sladd[active].setActive();
 	}
 	
 	@Override
@@ -87,12 +90,26 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 				camera.unproject(mouse);
 				
 				for(int i = 0; i < sladd.length; i++){
-					if(!sladd[i].getKlippt() && sladd[i].getRecDraw().contains(mouse.x, mouse.y)){
-						GameObject temp = new GameObject(klippTex);
-						temp.setPos(new Vector2(mouse.x - klippTex.getWidth()/2, mouse.y - klippTex.getHeight()/2));
-						
-						klippt.add(temp);
-						sladd[i].klippt();
+					if(!sladd[i].getKlippt()){
+						if(sladd[i].getRecDraw().contains(mouse.x, mouse.y)){
+							GameObject temp = new GameObject(klippTex);
+							temp.setPos(new Vector2(mouse.x - klippTex.getWidth()/2, mouse.y - klippTex.getHeight()/2));
+							
+							klippt.add(temp);
+							sladd[i].klippt();
+							beenActive.add(active);
+							
+							if(beenActive.size() == 5)
+								BombMain.stateManager.setState(EScreen.game);
+							else{
+								// Next sladd
+								active = BombMain.rnd.nextInt(5);
+								checkSameInstanse();
+								System.out.println("" + active);
+								sladd[active].setActive();
+							}
+							
+						}
 					}
 				}
 			}
@@ -100,7 +117,17 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 		}	else
 		animation.update(delta);
 	}
-
+	
+	private void checkSameInstanse(){
+		for(int t = 0; t < beenActive.size(); t++){
+			if(beenActive.get(t) == active){
+				t = 0;
+				active = BombMain.rnd.nextInt(5);
+				checkSameInstanse();
+			}
+		}
+	}
+	
 	@Override
 	public void render() {
 		batch.setProjectionMatrix(camera.combined);
