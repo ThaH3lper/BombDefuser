@@ -30,6 +30,8 @@ public class SoundManager {
 		puff = BombMain.assets.get("sfx/enemypuff.wav", Sound.class);
 		fan = BombMain.assets.get("sfx/fan.wav", Sound.class);
 		
+		isMuted = true;
+		
 		isFanPlaying = false;
 	}
 	

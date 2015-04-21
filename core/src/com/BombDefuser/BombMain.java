@@ -58,6 +58,8 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("B.png", Texture.class);
         BombMain.assets.load("gameart.png", Texture.class);
         BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
+        BombMain.assets.load("slad.png", Texture.class);
+        BombMain.assets.load("klipp.png", Texture.class);
         
 		// load bomb cutscene
 		for(int i = 0; i < 70; i++){
