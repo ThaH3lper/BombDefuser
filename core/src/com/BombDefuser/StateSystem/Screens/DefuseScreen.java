@@ -24,6 +24,7 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 	private Texture[] cutscene;
 	private TexturesAnimation animation;
 	
+	private int active;
 	private Sladd[] sladd = new Sladd[5];
 	private Texture klippTex;
 	private List<GameObject> klippt;
@@ -54,25 +55,27 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 		
 		// Sladdar
 		for(int i = 0; i < sladd.length; i++){
-			sladd[i] = new Sladd(Globals.VIRTUAL_WIDTH/10 + Globals.VIRTUAL_WIDTH/5 * i, 0);
+			Color c = Color.BLACK;
 			switch(i){
 			case 0:
-				sladd[i].setColor(Color.RED);
+				c = Color.RED;
 				break;
 			case 1:
-				sladd[i].setColor(Color.GREEN);
+				c = Color.GREEN;
 				break;
 			case 2:
-				sladd[i].setColor(Color.YELLOW);
+				c = Color.YELLOW;
 				break;
 			case 3:
-				sladd[i].setColor(Color.PINK);
+				c = Color.PINK;
 				break;
 			case 4:
-				sladd[i].setColor(Color.BLUE);
+				c = Color.BLUE;
 				break;
 			}
+			sladd[i] = new Sladd(Globals.VIRTUAL_WIDTH/10 + Globals.VIRTUAL_WIDTH/5 * i, 0, c);
 		}
+		active = BombMain.rnd.nextInt(4);
 	}
 	
 	@Override

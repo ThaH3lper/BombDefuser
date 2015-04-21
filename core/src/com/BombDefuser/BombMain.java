@@ -1,5 +1,7 @@
 package com.BombDefuser;
 
+import java.util.Random;
+
 import com.BombDefuser.SoundManager.SoundManager;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.ScreenManager;
@@ -17,10 +19,12 @@ public class BombMain extends ApplicationAdapter {
 	public static AssetManager assets;
 	public static ScreenManager stateManager;
 	public static SoundManager soundBank;
+	public static Random rnd;
 	
 	@Override
 	public void create () {
 		Globals.load();
+		rnd = new Random();
 		assets = new AssetManager();
 		loadContent();
 		initialize();
