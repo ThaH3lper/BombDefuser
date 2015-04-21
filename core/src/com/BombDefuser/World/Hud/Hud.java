@@ -1,8 +1,8 @@
 package com.BombDefuser.World.Hud;
 
 import com.BombDefuser.BombMain;
-import com.BombDefuser.Utilities.TaserGun;
 import com.BombDefuser.World.World;
+import com.BombDefuser.World.Entity.Weapon.TaserGun;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

@@ -1,4 +1,4 @@
-package com.BombDefuser.Bomb;
+package com.BombDefuser.World.Bomb;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Utilities.GameObject;

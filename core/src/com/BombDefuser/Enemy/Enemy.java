@@ -105,11 +105,14 @@ public class Enemy extends MoveableEntity {
 	@Override
 	public void update(float delta){
 		if(isHit){
+			// Hit zone
+			
 			this.color = Color.BLUE;
 			deathTimer -= delta;
 			if(deathTimer <= 0)
 				deathWish = true;
 			
+			// Shaky state
 			timeUntilNextShake -= delta;
 			if(timeUntilNextShake <= 0){
 				timeUntilNextShake = 0.05f;
@@ -117,6 +120,8 @@ public class Enemy extends MoveableEntity {
 				this.rotation = shakeRot;
 			}
 		}else{
+			// Regular zone
+			
 			this.color = Color.RED;
 			this.rotation = 0;
 			run.update(delta);
