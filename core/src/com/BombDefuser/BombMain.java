@@ -1,6 +1,5 @@
 package com.BombDefuser;
 
-import java.io.File;
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;

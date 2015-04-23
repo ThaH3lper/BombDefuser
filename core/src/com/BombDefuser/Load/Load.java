@@ -4,7 +4,10 @@ import java.io.File;
 
 import com.BombDefuser.Globals;
 import com.BombDefuser.World.World;
+import com.BombDefuser.World.Fans.EDirection;
+import com.BombDefuser.World.Fans.FanTile;
 import com.BombDefuser.World.Tiles.ETileTexture;
+import com.BombDefuser.World.Tiles.PropTile;
 import com.BombDefuser.World.Tiles.TileRec;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -75,11 +78,37 @@ public class Load {
 	}
 	
 	private static void loadProps(String line, World world){
+		String[] data = line.split(":");
 		
+		int xSource = Integer.parseInt(data[0]);
+		int ySource = Integer.parseInt(data[1]);
+		float x = Float.parseFloat(data[2]);
+		float y = Float.parseFloat(data[3]);
+		float size = Float.parseFloat(data[4]);
+		
+		PropTile tile = new PropTile(xSource, ySource, x, y, size, size);
+		world.getCollisionLayer().add(tile);
 	}
 	
 	private static void loadFans(String line, World world){
+		String[] data = line.split(":");
 		
+		float x = Float.parseFloat(data[0]);
+		float y = Float.parseFloat(data[1]);
+		float width = Float.parseFloat(data[2]);
+		float height = Float.parseFloat(data[3]);
+		float distance = Float.parseFloat(data[4]);
+		EDirection direction = EDirection.valueOf(data[5]);
+		
+		FanTile fan;
+		if(data.length == 7){
+			float interval = Float.parseFloat(data[6]);
+			fan = new FanTile(direction, x, y, width, height, distance, interval);
+		}
+		else
+			fan = new FanTile(direction, x, y, width, height, distance);
+		
+		world.getCollisionLayer().add(fan);
 	}
 	private static void loadHero(String line, World world){
 		String[] data = line.split(":");
@@ -88,7 +117,11 @@ public class Load {
 		world.setHeroSpawn(new Vector2(x, y));
 	}
 	private static void loadEnemys(String line, World world){
+		String[] data = line.split(":");
 		
+		float x = Float.parseFloat(data[0]);
+		float y = Float.parseFloat(data[1]);
+		world.addEnemy(new Vector2(x, y));
 	}
 	private static void loadBomb(String line, World world){
 		String[] data = line.split(":");
