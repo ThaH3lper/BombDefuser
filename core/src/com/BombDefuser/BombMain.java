@@ -1,5 +1,7 @@
 package com.BombDefuser;
 
+import java.io.File;
+
 import com.BombDefuser.SoundManager.SoundManager;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.ScreenManager;

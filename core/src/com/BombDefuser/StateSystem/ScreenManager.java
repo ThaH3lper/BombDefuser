@@ -1,5 +1,7 @@
 package com.BombDefuser.StateSystem;
 
+import java.io.File;
+
 import com.BombDefuser.StateSystem.Screens.DefuseScreen;
 import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LevelScreen;
@@ -21,8 +23,11 @@ public class ScreenManager{
 		if(currentScreen != null)
 			currentScreen.render();
 	}
-	
 	public void setState(EScreen screen)
+	{
+		setState(screen, null);
+	}
+	public void setState(EScreen screen, File file)
 	{
 		if(currentScreen != null)
 			currentScreen.dispose();
@@ -31,7 +36,7 @@ public class ScreenManager{
 			currentScreen = new MenuScreen();
 			break;
 		case game:
-			currentScreen = new GameScreen();
+			currentScreen = new GameScreen(file);
 			break;
 		case levelselect:
 			currentScreen = new LevelScreen();

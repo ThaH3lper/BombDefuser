@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 public class Globals {
 	public static final int VIRTUAL_WIDTH = 480, VIRTUAL_HEIGHT = 320;
 	public static int NEW_VIRTUAL_HEIGHT, CAMERA_TOP_PADDING;
+	public static float GRAVITY = -10;
 	
 	public static void load()
 	{

@@ -32,10 +32,12 @@ public class World {
 	
 	private int enemySpawned;
 	private List<Enemy> enemy;
+	private List<Vector2> enemySpawn;
 	
 	private Hero hero;
-	private float gravity;
+	private float gravity, bombTime;
 	private BackgroundLayer lower, middle, top;
+	private Vector2 heroSpawn, bombSpawn;
 	
 	public World(float gravity)
 	{
@@ -44,27 +46,12 @@ public class World {
 		lowerLayer = new ArrayList<ITile>();
 		collisionLayer = new ArrayList<ITile>();
 		topLayer = new ArrayList<ITile>();
-		
-		//READ FROM FILE LATER
-		collisionLayer.add(new TileRec(ETileTexture.HOUSE_BROKEN, -1200, -555, 5000, 420));
-		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -48, -135, 20, 45));
-		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -48, -90, 10, 50));
-		collisionLayer.add(new TileRec(ETileTexture.HOUSE, -38, -100, 120, 10));
-		collisionLayer.add(new TileRec(ETileTexture.RED, -150, -100, 50, 10));
-		collisionLayer.add(new PropTile(0, 0, 0, -90, 20, 20));
-		collisionLayer.add(new PropTile(2, 0, 30, -90, 20, 20));
-		collisionLayer.add(new PropTile(3, 1, -38, -90, 20, 20));
-		collisionLayer.add(new FanTile(EDirection.UP, 450, -135, 50, 10, 100, 2));
-		collisionLayer.add(new FanTile(EDirection.LEFT, 400, -135, 10, 50, 70));
-		collisionLayer.add(new FanTile(EDirection.DOWN, 550, -50, 50, 10, 55));
-		collisionLayer.add(new FanTile(EDirection.RIGHT, 700, -135, 10, 50, 70));
-		//---------------
+		enemy = new ArrayList<Enemy>();
+		enemySpawn = new ArrayList<Vector2>();
 		
 		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, -200);
 		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, -200);
 		top = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), 0f, -200);
-		
-		init();
 	}
 	
 	private void spawnEnemy(float x, float y){
@@ -72,13 +59,15 @@ public class World {
 		enemySpawned++;
 	}
 	
-	private void init(){
+	public void init(){
 		enemySpawned = 0;
 		
-		bomb = new Bomb(240, -135, 60);
-		hero = new Hero(-150, 100, this);
-		enemy = new ArrayList<Enemy>();
-		spawnEnemy(0, 100);
+		if(bombSpawn != null)
+			bomb = new Bomb(bombSpawn.x, bombSpawn.y, bombTime);
+		if(heroSpawn != null)
+			hero = new Hero(heroSpawn.x, heroSpawn.y, this);
+		for(Vector2 spawn : enemySpawn)
+			spawnEnemy(spawn.x, spawn.y);
 	}
 	
 	public void update(float delta, OrthographicCamera camera)
@@ -191,6 +180,25 @@ public class World {
 	
 	public List<ITile> getCollisionLayer(){
 		return collisionLayer;
+	}
+	public List<ITile> getLowerLayer(){
+		return lowerLayer;
+	}
+	public List<ITile> getTopLayer(){
+		return topLayer;
+	}
+	public void setHeroSpawn(Vector2 spawn)
+	{
+		this.heroSpawn = spawn;
+	}
+	public void setBomb(Vector2 spawn, float time)
+	{
+		this.bombSpawn = spawn;
+		this.bombTime = time;
+	}
+	public void addEnemy(Vector2 spawn)
+	{
+		this.enemySpawn.add(spawn);
 	}
 
 }

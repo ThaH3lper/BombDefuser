@@ -1,6 +1,9 @@
 package com.BombDefuser.StateSystem.Screens;
 
+import java.io.File;
+
 import com.BombDefuser.Globals;
+import com.BombDefuser.Load.Load;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.World.World;
@@ -16,8 +19,10 @@ public class GameScreen extends BaseScreen implements IScreen {
 	
 	private float lerp = 0.1f;
 	
-	public GameScreen() {
-		world = new World(-10);
+	public GameScreen(File file) {
+		world = Load.mapToWorld(file);
+		world.init();
+		
 		hud = new Hud(world);
 		
 		camera.position.y -= Globals.CAMERA_TOP_PADDING/2;

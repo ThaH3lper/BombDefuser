@@ -1,5 +1,7 @@
 package com.BombDefuser.StateSystem.Screens;
 
+import java.io.File;
+
 import com.BombDefuser.BombMain;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
@@ -31,12 +33,17 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	@Override
 	public void update(float delta) {
 		if(btnLevel1.isPressed()){
-			BombMain.stateManager.setState(EScreen.game);
-			BombMain.soundBank.playSound(ESounds.select);
-			BombMain.soundBank.stopMusic();
-			BombMain.soundBank.setMusicVolume(0.1f);
-			BombMain.soundBank.playSound(ESounds.music);
+			setLevel("level1.bdmap");
 		}
+	}
+	
+	private void setLevel(String level)
+	{
+		BombMain.stateManager.setState(EScreen.game, new File("levels\\" + level));
+		BombMain.soundBank.playSound(ESounds.select);
+		BombMain.soundBank.stopMusic();
+		BombMain.soundBank.setMusicVolume(0.1f);
+		BombMain.soundBank.playSound(ESounds.music);
 	}
 
 	@Override
