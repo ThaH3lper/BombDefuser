@@ -1,6 +1,7 @@
 package com.BombDefuser;
 
 import java.io.File;
+import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
 import com.BombDefuser.StateSystem.EScreen;
@@ -19,10 +20,12 @@ public class BombMain extends ApplicationAdapter {
 	public static AssetManager assets;
 	public static ScreenManager stateManager;
 	public static SoundManager soundBank;
+	public static Random rnd;
 	
 	@Override
 	public void create () {
 		Globals.load();
+		rnd = new Random();
 		assets = new AssetManager();
 		loadContent();
 		initialize();
@@ -60,6 +63,8 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("B.png", Texture.class);
         BombMain.assets.load("gameart.png", Texture.class);
         BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
+        BombMain.assets.load("slad.png", Texture.class);
+        BombMain.assets.load("klipp.png", Texture.class);
         
 		// load bomb cutscene
 		for(int i = 0; i < 70; i++){

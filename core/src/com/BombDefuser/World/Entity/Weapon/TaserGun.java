@@ -1,4 +1,4 @@
-package com.BombDefuser.Utilities;
+package com.BombDefuser.World.Entity.Weapon;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.World.Entity.Hero;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaserGun {
 
-	public final static float maxTazerTime = 6;
+	public final static float maxTazerTime = 3;
 
 	private boolean isActive;
 	private float fireTime;

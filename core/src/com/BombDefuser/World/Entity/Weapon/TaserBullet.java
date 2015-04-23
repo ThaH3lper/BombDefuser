@@ -1,5 +1,7 @@
-package com.BombDefuser.Utilities;
+package com.BombDefuser.World.Entity.Weapon;
 
+import com.BombDefuser.Utilities.Animation;
+import com.BombDefuser.Utilities.GameObject;
 import com.BombDefuser.World.Entity.Hero;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
