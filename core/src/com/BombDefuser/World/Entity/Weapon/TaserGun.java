@@ -12,12 +12,10 @@ public class TaserGun {
 	private boolean isActive;
 	private float fireTime;
 	
-	private Hero hero;
 	private TaserBullet bullet;
 	private Texture bulletTexture;
 	
 	public TaserGun(Hero hero){
-		this.hero = hero;
 		this.bulletTexture = BombMain.assets.get("taser_lightning.png", Texture.class);
 		
 		bullet = new TaserBullet(bulletTexture, hero);

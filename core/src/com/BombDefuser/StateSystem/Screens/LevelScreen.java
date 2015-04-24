@@ -1,5 +1,7 @@
 package com.BombDefuser.StateSystem.Screens;
 
+import java.io.File;
+
 import com.BombDefuser.BombMain;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
@@ -14,8 +16,8 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	private Texture europe;
 	private Texture red_dot;
 	
-	private Button btnLevel1;
 	private Button btnMenu;
+	private Button btnLevel1, btnTest1, btnTest2;
 	
 	public LevelScreen(){
 		camera = new OrthographicCamera(1280, 720);
@@ -30,6 +32,10 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		
 		btnMenu = new Button(camera, BombMain.assets.get("btn/btnmenu.png", Texture.class), 5, 5);
 		btnMenu.setScale(0.6f);
+
+		btnTest1 = new Button(camera, red_dot, camera.viewportWidth/2, camera.viewportHeight/2 -200);
+		btnTest2 = new Button(camera, red_dot, camera.viewportWidth/2 - 100, camera.viewportHeight/2 -100);
+
 	}
 	
 	@Override
@@ -38,12 +44,23 @@ public class LevelScreen extends BaseScreen implements IScreen {
 			BombMain.stateManager.setState(EScreen.meny);
 		
 		if(btnLevel1.isPressed()){
-			BombMain.stateManager.setState(EScreen.game);
-			BombMain.soundBank.playSound(ESounds.select);
-			BombMain.soundBank.stopMusic();
-			BombMain.soundBank.setMusicVolume(0.1f);
-			BombMain.soundBank.playSound(ESounds.music);
+			setLevel("level1.bdmap");
 		}
+		if(btnTest1.isPressed()){
+			setLevel("test1.bdmap");
+		}
+		if(btnTest2.isPressed()){
+			setLevel("test2.bdmap");
+		}
+	}
+	
+	private void setLevel(String level)
+	{
+		BombMain.stateManager.setState(EScreen.game, new File("levels\\" + level));
+		BombMain.soundBank.playSound(ESounds.select);
+		BombMain.soundBank.stopMusic();
+		BombMain.soundBank.setMusicVolume(0.1f);
+		BombMain.soundBank.playSound(ESounds.music);
 	}
 
 	@Override
@@ -53,6 +70,8 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		batch.draw(europe, 0, 0, camera.viewportWidth, camera.viewportHeight);
 		btnLevel1.render(batch);
 		btnMenu.render(batch);
+		btnTest1.render(batch);
+		btnTest2.render(batch);
 		batch.end();
 	}
 
