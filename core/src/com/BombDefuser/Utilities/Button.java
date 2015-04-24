@@ -13,11 +13,14 @@ public class Button {
 	private OrthographicCamera camera;
 	private Texture tex;
 	private Vector2 pos;
+	private float width, height;
 	private Rectangle bounds;
 	
 	public Button(OrthographicCamera camera, Texture tex, float x, float y) {
 		this.camera = camera;
 		this.tex = tex;
+		this.width = tex.getWidth();
+		this.height = tex.getHeight();
 		this.pos = new Vector2(x, y);
 		this.bounds = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
 	}
@@ -34,11 +37,16 @@ public class Button {
 	}
 	
 	public void render(SpriteBatch batch){
-		batch.draw(tex, pos.x, pos.y);
+		batch.draw(tex, pos.x, pos.y, bounds.width, bounds.height);
 	}
 	
 	public void dispose(){
 		tex.dispose();
+	}
+	
+	public void setScale(float value){
+		this.bounds.width = width * value;
+		this.bounds.height = height * value;
 	}
 	
 	public void setPosition(float x, float y){

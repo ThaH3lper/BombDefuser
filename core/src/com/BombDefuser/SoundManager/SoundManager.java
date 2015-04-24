@@ -1,6 +1,7 @@
 package com.BombDefuser.SoundManager;
 
 import com.BombDefuser.BombMain;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class SoundManager {
@@ -12,8 +13,9 @@ public class SoundManager {
 	private boolean isMuted;
 
 	// All sounds in projekt
-	private Sound select, music, jump, puff, fan;
-	private boolean isFanPlaying;
+	private Sound select, jump, puff, fan, taser;
+	private Music music, music2;
+	private boolean isFanPlaying, isTaserPlaying;
 	
 	public SoundManager(){
 		initialize();
@@ -25,10 +27,12 @@ public class SoundManager {
 		musicVolume = 0.5f;
 		// Load Sound
 		select = BombMain.assets.get("sfx/select.wav", Sound.class);
-		music = BombMain.assets.get("sfx/BombDefuser.mp3", Sound.class);
+		music = BombMain.assets.get("sfx/BombDefuser.mp3", Music.class);
+		music2 = BombMain.assets.get("sfx/music2.mp3", Music.class);
 		jump = BombMain.assets.get("sfx/jump.wav", Sound.class);
 		puff = BombMain.assets.get("sfx/enemypuff.wav", Sound.class);
-		fan = BombMain.assets.get("sfx/fan.wav", Sound.class);
+		fan = BombMain.assets.get("sfx/fan.mp3", Sound.class);
+		taser = BombMain.assets.get("sfx/taser.mp3", Sound.class);
 		
 		isMuted = true;
 		
@@ -44,14 +48,30 @@ public class SoundManager {
 		isFanPlaying = false;
 	}
 	
+	public void stopTaser(){
+		isTaserPlaying = false;
+		
+		taser.stop();
+	}
+	
 	public void playSound(ESounds sound){
 		if(!isMuted)
 		switch (sound) {
 		case select: 
 			select.play(soundVolume);
 			break; 
+		case taser:
+			if(!isTaserPlaying)
+				taser.play(0.6f);
+			isTaserPlaying = true;
+			break; 
 		case music:
-			music.play(musicVolume);
+			music.setVolume(musicVolume);
+			music.play();
+			break;
+		case music2:
+			music2.setVolume(musicVolume);
+			music2.play();
 			break;
 		case jump:
 			jump.play(soundVolume);

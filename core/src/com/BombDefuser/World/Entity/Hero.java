@@ -1,6 +1,7 @@
 package com.BombDefuser.World.Entity;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.Utilities.Button;
@@ -71,12 +72,14 @@ public class Hero extends MoveableEntity{
 		
 		// Taser hit enemy logic
 		if(taser.isActive()){
+			BombMain.soundBank.playSound(ESounds.taser);
 			for(int i = 0; i < world.getEnemies().size(); i++){
 				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
 					world.getEnemies().get(i).setHit(true);
 				}
 			}
 		}else{
+			BombMain.soundBank.stopTaser();
 			for(int i = 0; i < world.getEnemies().size(); i++){
 				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
 					world.getEnemies().get(i).setHit(false);

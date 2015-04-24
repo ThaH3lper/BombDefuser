@@ -59,7 +59,12 @@ public class GameObject {
 	public Vector2 getPos() {
 		return pos;
 	}
-
+	
+	public void translatePositon(float x, float y){
+		pos.x += x;
+		pos.y += y;
+	}
+	
 	public void setPos(Vector2 pos) {
 		this.pos = pos;
 		this.recDraw = new Rectangle(pos.x, pos.y, recDraw.width, recDraw.height);
@@ -142,4 +147,7 @@ public class GameObject {
 		this.color = color;
 	}
 	
+	public void setAlpha(float value){
+		this.color.a = value;
+	}
 }

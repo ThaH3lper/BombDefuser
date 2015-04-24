@@ -15,6 +15,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	private Texture red_dot;
 	
 	private Button btnLevel1;
+	private Button btnMenu;
 	
 	public LevelScreen(){
 		camera = new OrthographicCamera(1280, 720);
@@ -26,10 +27,16 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		red_dot = BombMain.assets.get("dotselect.png", Texture.class);
 		
 		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
+		
+		btnMenu = new Button(camera, BombMain.assets.get("btn/btnmenu.png", Texture.class), 5, 5);
+		btnMenu.setScale(0.6f);
 	}
 	
 	@Override
 	public void update(float delta) {
+		if(btnMenu.isPressed())
+			BombMain.stateManager.setState(EScreen.meny);
+		
 		if(btnLevel1.isPressed()){
 			BombMain.stateManager.setState(EScreen.game);
 			BombMain.soundBank.playSound(ESounds.select);
@@ -45,6 +52,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		batch.begin();
 		batch.draw(europe, 0, 0, camera.viewportWidth, camera.viewportHeight);
 		btnLevel1.render(batch);
+		btnMenu.render(batch);
 		batch.end();
 	}
 

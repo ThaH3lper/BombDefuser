@@ -1,6 +1,7 @@
 package com.BombDefuser.StateSystem;
 
 import com.BombDefuser.StateSystem.Screens.DefuseScreen;
+import com.BombDefuser.StateSystem.Screens.EndGameScreen;
 import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LevelScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
@@ -36,11 +37,8 @@ public class ScreenManager{
 		case levelselect:
 			currentScreen = new LevelScreen();
 			break;
-		case losing:
-			
-			break;
-		case winning:
-			
+		case endscreen:
+			currentScreen = new EndGameScreen();
 			break;
 		case loading:
 			currentScreen = new LoadingScreen();

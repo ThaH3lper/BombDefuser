@@ -9,6 +9,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,8 +22,12 @@ public class BombMain extends ApplicationAdapter {
 	public static SoundManager soundBank;
 	public static Random rnd;
 	
+	public static boolean failed;
+	
 	@Override
 	public void create () {
+		failed = false;
+		
 		Globals.load();
 		rnd = new Random();
 		assets = new AssetManager();
@@ -40,7 +45,6 @@ public class BombMain extends ApplicationAdapter {
 		//Then the rest
 		BombMain.assets.load("dot.png", Texture.class);
 		BombMain.assets.load("case.png", Texture.class);
-		BombMain.assets.load("btnplay.png", Texture.class);
 		BombMain.assets.load("bg.png", Texture.class);
 		BombMain.assets.load("europe.png", Texture.class);
 		BombMain.assets.load("dotselect.png", Texture.class);
@@ -65,6 +69,15 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("slad.png", Texture.class);
         BombMain.assets.load("klipp.png", Texture.class);
         
+        // buttons
+        BombMain.assets.load("btn/btnplay.png", Texture.class);
+        BombMain.assets.load("btn/btnretry.png", Texture.class);
+        BombMain.assets.load("btn/btnmenu.png", Texture.class);
+        BombMain.assets.load("btn/btnlevels.png", Texture.class);
+        BombMain.assets.load("btn/btncredits.png", Texture.class);
+        BombMain.assets.load("btn/btnsettings.png", Texture.class);
+        BombMain.assets.load("btn/btnpause.png", Texture.class);
+        
 		// load bomb cutscene
 		for(int i = 0; i < 70; i++){
 			String t = "" + i;
@@ -75,10 +88,12 @@ public class BombMain extends ApplicationAdapter {
 		
 		// load sound
 		BombMain.assets.load("sfx/select.wav", Sound.class);
-		BombMain.assets.load("sfx/BombDefuser.mp3", Sound.class);
+		BombMain.assets.load("sfx/BombDefuser.mp3", Music.class);
 		BombMain.assets.load("sfx/jump.wav", Sound.class);
 		BombMain.assets.load("sfx/enemypuff.wav", Sound.class);
-		BombMain.assets.load("sfx/fan.wav", Sound.class);
+		BombMain.assets.load("sfx/fan.mp3", Sound.class);
+		BombMain.assets.load("sfx/music2.mp3", Music.class);
+		BombMain.assets.load("sfx/taser.mp3", Sound.class);
 	}
 	
 	public void initialize(){

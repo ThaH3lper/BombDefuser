@@ -14,13 +14,16 @@ import com.BombDefuser.World.Bomb.Sladd;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class DefuseScreen extends BaseScreen implements IScreen {
 	
+	private OrthographicCamera mCamera;
 	private GameObject bg;
 	private Texture[] cutscene;
 	private TexturesAnimation animation;
@@ -31,7 +34,19 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 	private List<GameObject> klippt;
 	private List<Integer> beenActive = new ArrayList<Integer>();
 	
+	private BitmapFont font;
+	private float timer;
+	
 	public DefuseScreen(){
+		
+		mCamera = new OrthographicCamera(1280, 720);
+		mCamera.position.x += 1280/2;
+		mCamera.position.y += 720/2;
+		mCamera.update();
+		
+		font = BombMain.assets.get("arial64white.fnt", BitmapFont.class);
+		timer = 10f;
+		
 		bg = new GameObject(BombMain.assets.get("dot.png", Texture.class));
 		bg.setWidth(Globals.VIRTUAL_WIDTH);
 		bg.setHeight(Globals.VIRTUAL_HEIGHT);
@@ -84,11 +99,16 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 	@Override
 	public void update(float delta) {
 		camera.update();
+		
 		if(animation.isDone()){
+			// runs cut scene is done
+			timer -= delta;
+			
 			if(Gdx.input.isTouched()){
 				Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				camera.unproject(mouse);
 				
+				// Logic for all cables
 				for(int i = 0; i < sladd.length; i++){
 					if(!sladd[i].getKlippt()){
 						if(sladd[i].getRecDraw().contains(mouse.x, mouse.y)){
@@ -99,8 +119,11 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 							sladd[i].klippt();
 							beenActive.add(active);
 							
-							if(beenActive.size() == 5)
-								BombMain.stateManager.setState(EScreen.game);
+							if(beenActive.size() == 5){
+								// Runs if all cables are cut correctly
+								BombMain.failed = false;
+								BombMain.stateManager.setState(EScreen.endscreen);
+							}
 							else{
 								// Next sladd
 								active = BombMain.rnd.nextInt(5);
@@ -114,8 +137,10 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 				}
 			}
 			
-		}	else
-		animation.update(delta);
+		}	else{
+			// Running cut scene animation
+			animation.update(delta);
+		}
 	}
 	
 	private void checkSameInstanse(){
@@ -132,17 +157,26 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 	public void render() {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		// Draws BG
-		bg.render(batch);
-		
-		// Draws sladdar
-		for(Sladd s : sladd)
-			s.render(batch);
-		for(GameObject k : klippt)
-			k.render(batch);
-		
-		// Draws animation
-		animation.render(batch);
+		if(animation.isDone()){
+			// Draws BG
+			bg.render(batch);
+			
+			// Draws sladdar
+			for(Sladd s : sladd)
+				s.render(batch);
+			for(GameObject k : klippt)
+				k.render(batch);
+			
+			// Draws timer
+			String msg = "Time left: " + (int)timer;
+			Vector2 p = new Vector2((mCamera.viewportWidth - font.getBounds(msg).width)/2, 50);
+			batch.setProjectionMatrix(mCamera.combined);
+			font.setColor(Color.RED);
+			font.draw(batch, msg, p.x, p.y);
+		} else {
+			// Draws animation
+			animation.render(batch);
+		}
 		batch.end();
 	}
 

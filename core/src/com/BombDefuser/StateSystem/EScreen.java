@@ -5,5 +5,5 @@ package com.BombDefuser.StateSystem;
  * All the different states in the game
  */
 public enum EScreen {
-meny, game, levelselect, winning, losing, loading, defuse
+meny, game, levelselect, endscreen, loading, defuse
 }
