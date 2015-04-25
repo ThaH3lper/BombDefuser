@@ -43,7 +43,7 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 		mCamera.update();
 		
 		font = BombMain.assets.get("arial64white.fnt", BitmapFont.class);
-		timer = 10f;
+		timer = 3.5f;
 		
 		bg = new GameObject(BombMain.assets.get("dot.png", Texture.class));
 		bg.setWidth(Globals.VIRTUAL_WIDTH);
@@ -102,6 +102,13 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 			// runs cut scene is done
 			timer -= delta;
 			
+			// Check if it runs out of time
+			if(timer <= 0){
+				Globals.failed = true;
+				Globals.runOutOfTime = true;
+				BombMain.stateManager.setState(EScreen.endscreen);
+			}
+			
 			if(Gdx.input.isTouched()){
 				Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 				camera.unproject(mouse);
@@ -113,13 +120,19 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 							GameObject temp = new GameObject(klippTex);
 							temp.setPos(new Vector2(mouse.x - klippTex.getWidth()/2, mouse.y - klippTex.getHeight()/2));
 							
+							if(sladd[i].getColor() == Color.LIGHT_GRAY){
+								Globals.failed = true;
+								Globals.cutWrongWire = true;
+								BombMain.stateManager.setState(EScreen.endscreen);
+							}
+							
 							klippt.add(temp);
 							sladd[i].klippt();
 							beenActive.add(active);
 							
 							if(beenActive.size() == 5){
 								// Runs if all cables are cut correctly
-								BombMain.failed = false;
+								Globals.failed = false;
 								BombMain.stateManager.setState(EScreen.endscreen);
 							}
 							else{

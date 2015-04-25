@@ -1,6 +1,10 @@
 package com.BombDefuser.StateSystem.Screens;
 
+import java.io.File;
+
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Globals;
+import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.IScreen;
@@ -36,6 +40,7 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		
 		bg = BombMain.assets.get("gameart.png", Texture.class);
 		titleFont = BombMain.assets.get("arial64white.fnt", BitmapFont.class);
+		para = "";
 		font = BombMain.assets.get("font.fnt", BitmapFont.class);
 		
 		logo = new GameObject(BombMain.assets.get("logo.png", Texture.class));
@@ -43,25 +48,34 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		logo.setScaleY(0.4f);
 		logo.setPos(new Vector2(-350, 150));
 		bglayer = new GameObject(BombMain.assets.get("dot.png", Texture.class));
-		bglayer.setWidth(mCamera.viewportWidth * 0.6f);
-		bglayer.setHeight(mCamera.viewportHeight * 0.6f);
+		bglayer.setWidth(mCamera.viewportWidth * 0.62f);
+		bglayer.setHeight(mCamera.viewportHeight * 0.3f);
 		bglayer.setColor(new Color(0, 0, 0, 0));
 		bglayer.setAlpha(0.7f);
-		bglayer.setPos(new Vector2(200, 70));
+		bglayer.setPos(new Vector2(200, 280));
 		
 		// Create buttons
 		btnRetry = new Button(mCamera, BombMain.assets.get("btn/btnretry.png", Texture.class), 0, 0);
 		btnRetry.setScale(0.7f);
-		btnRetry.setPosition(200, 70);
+		btnRetry.setPosition(bglayer.getX(), bglayer.getY());
 		
 		btnLevels = new Button(mCamera, BombMain.assets.get("btn/btnlevels.png", Texture.class), 0, 0);
 		btnLevels.setScale(0.7f);
-		btnLevels.setPosition(200 + btnRetry.getWidth(), 70);
+		btnLevels.setPosition(bglayer.getX() + btnRetry.getWidth(), bglayer.getY());
+		
+		// Stop all the music
+		BombMain.soundBank.stopMusic();
 		
 		// Set values depending on player made it through the level
-		if(BombMain.failed){
+		if(Globals.failed){
+			BombMain.soundBank.playSound(ESounds.explosion);
+			
 			title = "Bomb Exploded - You Failed! :(";
-			para = "You exploded into thousand bits...";
+			if(Globals.cutWrongWire)
+				para = "You cut the wrong wire.";
+			if(Globals.runOutOfTime)
+				para = "You ran out of time.";
+			para += " You exploded into thousand of bits...";
 		} else {
 			title = "Bomb Defused - You Won! :)";
 			para = "Wow! Good job son, you made it!";
@@ -78,7 +92,8 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		}
 		
 		if(btnRetry.isPressed()){
-			BombMain.stateManager.setState(EScreen.game);
+			BombMain.stateManager.setState(EScreen.game, new File("levels\\" + Globals.currentLevel));
+			BombMain.soundBank.playSound(ESounds.select);
 		}
 	}
 
@@ -94,6 +109,7 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		bglayer.render(batch);
 		
 		// TEXT STUFF
+		titleFont.setColor(Color.WHITE);
 		titleFont.draw(batch, title, 220, 475);
 		font.draw(batch, para, 220, 410);
 		

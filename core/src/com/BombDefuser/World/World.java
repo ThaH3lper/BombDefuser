@@ -3,13 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.BombDefuser.BombMain;
-import com.BombDefuser.Enemy.Enemy;
+import com.BombDefuser.Globals;
 import com.BombDefuser.Particle.ParticleManager;
 import com.BombDefuser.SoundManager.ESounds;
+import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.Utilities.BackgroundLayer;
 import com.BombDefuser.World.Bomb.Bomb;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
+import com.BombDefuser.World.Entity.Enemy.Enemy;
 import com.BombDefuser.World.Fans.FanTile;
 import com.BombDefuser.World.Tiles.ITile;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -83,8 +85,11 @@ public class World {
 		
 		// Bomb logic
 		bomb.update(delta);
-		if(bomb.isExploded())
-			init();
+		if(bomb.isExploded()){
+			Globals.failed = true;
+			Globals.runOutOfTime = true;
+			BombMain.stateManager.setState(EScreen.endscreen);
+		}
 		
 		// Fan logic
 		boolean inReachOfFan = false;

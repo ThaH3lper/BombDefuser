@@ -2,8 +2,10 @@ package com.BombDefuser.StateSystem.Screens;
 
 import java.io.File;
 
+import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
 import com.BombDefuser.Load.Load;
+import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.World.World;
@@ -34,6 +36,11 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.update();
 		
 		//world.addEnemy(10, 400, 40, 40, 20, Color.WHITE);
+		Globals.gameReset();
+		
+		// Sound 
+		BombMain.soundBank.stopMusic();
+		BombMain.soundBank.playSound(ESounds.music2);
 	}
 
 	@Override

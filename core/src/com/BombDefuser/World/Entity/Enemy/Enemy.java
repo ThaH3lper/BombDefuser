@@ -1,4 +1,4 @@
-package com.BombDefuser.Enemy;
+package com.BombDefuser.World.Entity.Enemy;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Utilities.Animation;
@@ -7,7 +7,9 @@ import com.BombDefuser.World.Entity.MoveableEntity;
 import com.BombDefuser.World.Tiles.ITile;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class Enemy extends MoveableEntity {
 	
@@ -19,16 +21,22 @@ public class Enemy extends MoveableEntity {
 	private int ID;
 	private Animation run;
 	private Rectangle leftRec, rightRec;
-	private EDirection currentDir;
 	private float health;
+	
+	protected EDirection currentDir;
+	protected boolean standStill;
 	
 	private boolean deathWish;
 	private float deathTimer;
 	private boolean isHit;
 	
+	private EnemyWeapon weapon;
+	
 	public Enemy(int ID, float x, float y, World world) {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		this.ID = ID;
+		
+		this.weapon = new EnemyWeapon(this);
 		
 		deathTimer = defualtDeathTimer;
 		
@@ -104,6 +112,8 @@ public class Enemy extends MoveableEntity {
 	
 	@Override
 	public void update(float delta){
+		weapon.update(delta);
+		
 		if(isHit){
 			// Hit zone
 			
@@ -124,16 +134,35 @@ public class Enemy extends MoveableEntity {
 			
 			this.color = Color.RED;
 			this.rotation = 0;
-			run.update(delta);
 			this.setRecSource(run.getRecSource());
 			super.update(delta);
 			
 			// Update location
 			if(this.isOnGround){
-				if(currentDir == EDirection.LEFT)
+				if(currentDir == EDirection.LEFT){
+					run.update(delta);
 					MoveLeft();
-				if(currentDir == EDirection.RIGHT)
+				}
+				if(currentDir == EDirection.RIGHT){
+					run.update(delta);
 					MoveRight();
+				}
+			}
+			
+			// Check if we are in reach of the hero
+			Vector2 hero = this.world.getHero().getPos();
+			if(Vector2.dst(hero.x, hero.y, pos.x, pos.y) < 100){
+				// Hero is in reach
+				
+				currentDir = EDirection.NONE;
+				run.setCurrentFrame(5);
+				
+				// Calculate which side the hero is on relative to the enemy
+				float deltaX = world.getHero().getPos().x - pos.x;
+				if(deltaX > 0){
+					// Hero is on the right side relative to the enemy
+					currentDir = EDirection.NONE;
+				}
 			}
 			
 			// Update pit death fall detectors
@@ -158,6 +187,13 @@ public class Enemy extends MoveableEntity {
 				this.setXFliper(true);
 			}
 		}
+	}
+	
+	@Override
+	public void render(SpriteBatch batch) {
+		super.render(batch);
+		// render weapon
+		weapon.render(batch);
 	}
 	
 	public boolean deathWish(){

@@ -25,7 +25,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 	private float rotVel;
 	
 	public MenuScreen(){
-		rotVel = -3;
+		rotVel = -1.5f;
 		
 		bgCamera = new OrthographicCamera(Globals.VIRTUAL_WIDTH, Globals.VIRTUAL_HEIGHT);
 		bgCamera.position.x += bgCamera.viewportWidth/2;

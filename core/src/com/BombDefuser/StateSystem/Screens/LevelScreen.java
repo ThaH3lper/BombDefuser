@@ -3,6 +3,7 @@ package com.BombDefuser.StateSystem.Screens;
 import java.io.File;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Globals;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
@@ -56,11 +57,9 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	
 	private void setLevel(String level)
 	{
+		Globals.currentLevel = level;
 		BombMain.stateManager.setState(EScreen.game, new File("levels\\" + level));
 		BombMain.soundBank.playSound(ESounds.select);
-		BombMain.soundBank.stopMusic();
-		BombMain.soundBank.setMusicVolume(0.1f);
-		BombMain.soundBank.playSound(ESounds.music);
 	}
 
 	@Override

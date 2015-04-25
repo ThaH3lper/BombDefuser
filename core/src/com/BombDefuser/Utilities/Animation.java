@@ -38,6 +38,10 @@ public class Animation {
 		}
 	}
 	
+	public void setCurrentFrame(int frame){
+		currentFrame = frame;
+	}
+	
 	public Rectangle getRecSource(){
 		return recSource;
 	}

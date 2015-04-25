@@ -13,7 +13,7 @@ public class SoundManager {
 	private boolean isMuted;
 
 	// All sounds in projekt
-	private Sound select, jump, puff, fan, taser;
+	private Sound select, jump, puff, fan, taser, explosion;
 	private Music music, music2;
 	private boolean isFanPlaying, isTaserPlaying;
 	
@@ -24,7 +24,7 @@ public class SoundManager {
 	private void initialize(){
 		// Set default values
 		soundVolume = 1f;
-		musicVolume = 0.5f;
+		musicVolume = 0.4f;
 		// Load Sound
 		select = BombMain.assets.get("sfx/select.wav", Sound.class);
 		music = BombMain.assets.get("sfx/BombDefuser.mp3", Music.class);
@@ -33,6 +33,7 @@ public class SoundManager {
 		puff = BombMain.assets.get("sfx/enemypuff.wav", Sound.class);
 		fan = BombMain.assets.get("sfx/fan.mp3", Sound.class);
 		taser = BombMain.assets.get("sfx/taser.mp3", Sound.class);
+		explosion = BombMain.assets.get("sfx/explosion.wav", Sound.class);
 		
 		isMuted = true;
 		
@@ -41,6 +42,7 @@ public class SoundManager {
 	
 	public void stopMusic(){
 		music.stop();
+		music2.stop();
 	}
 	
 	public void stopFan(){
@@ -78,6 +80,9 @@ public class SoundManager {
 			break;
 		case enemypuff:
 			puff.play(soundVolume);
+			break;
+		case explosion:
+			explosion.play(soundVolume);
 			break;
 		case fan:
 			if(!isFanPlaying){

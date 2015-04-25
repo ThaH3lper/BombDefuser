@@ -25,6 +25,10 @@ public class Sladd extends GameObject {
 			this.rotation = -BombMain.rnd.nextFloat() * 5;
 	}
 	
+	public Color getColor(){
+		return color;
+	}
+	
 	public void setActive(){
 		this.color = activeColor;
 	}

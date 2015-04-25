@@ -60,6 +60,14 @@ public class GameObject {
 		return pos;
 	}
 	
+	public float getX(){
+		return pos.x;
+	}
+	
+	public float getY(){
+		return pos.y;
+	}
+	
 	public void translatePositon(float x, float y){
 		pos.x += x;
 		pos.y += y;

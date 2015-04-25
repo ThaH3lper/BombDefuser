@@ -73,17 +73,21 @@ public class Hero extends MoveableEntity{
 		// Taser hit enemy logic
 		if(taser.isActive()){
 			BombMain.soundBank.playSound(ESounds.taser);
+			
+			// Check if the tazer 'bullet' hits the enemy
 			for(int i = 0; i < world.getEnemies().size(); i++){
 				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
 					world.getEnemies().get(i).setHit(true);
+				} else{
+					world.getEnemies().get(i).setHit(false);
 				}
 			}
 		}else{
 			BombMain.soundBank.stopTaser();
+			
+			// deactivates the tazer so enemies dont take damage
 			for(int i = 0; i < world.getEnemies().size(); i++){
-				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
-					world.getEnemies().get(i).setHit(false);
-				}
+				world.getEnemies().get(i).setHit(false);
 			}
 		}
 	}
