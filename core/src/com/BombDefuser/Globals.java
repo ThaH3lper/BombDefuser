@@ -7,6 +7,8 @@ public class Globals {
 	public static int NEW_VIRTUAL_HEIGHT, CAMERA_TOP_PADDING;
 	public static float GRAVITY = -10;
 	public static String currentLevel;
+	
+	public static final boolean AI_DEBUG_MODE = false;
 
 	// Game variables
 	public static boolean failed;

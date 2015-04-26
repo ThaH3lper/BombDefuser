@@ -72,7 +72,6 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("btn/btnmenu.png", Texture.class);
         BombMain.assets.load("btn/btnlevels.png", Texture.class);
         BombMain.assets.load("btn/btncredits.png", Texture.class);
-        BombMain.assets.load("btn/btnsettings.png", Texture.class);
         BombMain.assets.load("btn/btnpause.png", Texture.class);
         
 		// load bomb cutscene

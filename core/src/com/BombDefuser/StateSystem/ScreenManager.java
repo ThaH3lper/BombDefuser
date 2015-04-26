@@ -9,7 +9,6 @@ import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LevelScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
 import com.BombDefuser.StateSystem.Screens.MenuScreen;
-import com.BombDefuser.StateSystem.Screens.SettingsScreen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ScreenManager{
@@ -55,9 +54,6 @@ public class ScreenManager{
 			break;
 		case credits:
 			currentScreen = new CreditsScreen();
-			break;
-		case settings:
-			currentScreen = new SettingsScreen();
 			break;
 		}
 	}

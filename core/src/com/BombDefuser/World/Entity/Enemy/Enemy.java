@@ -1,11 +1,11 @@
 package com.BombDefuser.World.Entity.Enemy;
 
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Globals;
 import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Entity.MoveableEntity;
 import com.BombDefuser.World.Tiles.ITile;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,7 +17,7 @@ public class Enemy extends MoveableEntity {
 	private final static float hitWidth = 22, hitHeight = 32;
 	
 	private final static float defaultSpeed = 40, defaultHealth = 100;
-	private final static float defualtDeathTimer = 2, defaultTimeUntilIdle = 5;
+	private final static float defualtDeathTime = 1, defaultTimeUntilIdle = 5;
 	
 	private int ID;
 	private Animation run, idle, reload, electric;
@@ -43,9 +43,9 @@ public class Enemy extends MoveableEntity {
 		
 		this.weapon = new EnemyWeapon(this, world);
 		
-		deathTimer = defualtDeathTimer;
+		deathTimer = defualtDeathTime;
 		
-		run = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 0, 64, 64, 4, 4, 2, 2, 0.15f);
+		run = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 9, 0, 64, 64, 4, 4, 2, 2, 0.15f);
 		idle = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 6, 2, 64, 64, 4, 4, 2, 2, 0.3f);
 		reload = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 1, 64, 64, 4, 4, 2, 2, 0.15f);
 		electric = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 3, 64, 64, 4, 4, 2, 2, 0.15f);
@@ -81,8 +81,8 @@ public class Enemy extends MoveableEntity {
 			if(velocity.x + velocityNonConstant.x < 0){
 				position.x = tileHitBox.x + tileHitBox.width;
 				
-				String msg = "Enemy " + this.ID + " has collided with left wall/object, changes direction to right.";
-				System.out.println(msg);
+				if(Globals.AI_DEBUG_MODE)
+					System.out.println("Enemy " + this.ID + " has collided with left wall/object, changes direction to right.");
 				currentDir = EDirection.RIGHT;
 				this.setXFliper(false);
 				velocity.x = speed;
@@ -91,8 +91,8 @@ public class Enemy extends MoveableEntity {
 			if(velocity.x + velocityNonConstant.x > 0){
 				position.x = tileHitBox.x - hitBox.width;
 				
-				String msg = "Enemy " + this.ID + " has collided with right wall/object, changes direction to left.";
-				System.out.println(msg);
+				if(Globals.AI_DEBUG_MODE)
+					System.out.println("Enemy " + this.ID + " has collided with right wall/object, changes direction to left.");
 				currentDir = EDirection.LEFT;
 				this.setXFliper(true);
 				velocity.x = -speed;
@@ -121,9 +121,11 @@ public class Enemy extends MoveableEntity {
 		if(isHit){
 			// Hit zone
 			
+			// Set electric animation
 			electric.update(delta);
 			this.setRecSource(electric.getRecSource());
 			
+			// Time until death
 			deathTimer -= delta;
 			if(deathTimer <= 0)
 				deathWish = true;
@@ -143,12 +145,11 @@ public class Enemy extends MoveableEntity {
 			
 			// Update location
 			if(this.isOnGround && !standStill){
+				run.update(delta);
 				if(currentDir == EDirection.LEFT){
-					run.update(delta);
 					MoveLeft();
 				}
 				if(currentDir == EDirection.RIGHT){
-					run.update(delta);
 					MoveRight();
 				}
 			}
@@ -157,16 +158,18 @@ public class Enemy extends MoveableEntity {
 			Vector2 hero = this.world.getHero().getPos();
 			if(Vector2.dst(hero.x, hero.y, pos.x, pos.y) < 100){
 				// Hero is in reach
-				System.out.println("Enemy is in reach of player. Checking if there is any tiles in the way.");
+				if(Globals.AI_DEBUG_MODE)
+					System.out.println("Enemy is in reach of player. Checking if there is any tiles in the way.");
 				
 				// If there has been no intersection with world tiles 
 				if(!world.TileBetweenVectors(world.getHero().getCenterPosition(), this.getCenterPosition())){
-					System.out.println("Enemy have an eye on the player.");
+					if(Globals.AI_DEBUG_MODE)
+						System.out.println("Enemy have an eye on the player.");
 					
+					// Stand still and define that the enemy has spotted the hero
 					seesPlayer = true;
 					standStill = true;
 					run.setEnemyAimingPose();
-					currentDir = EDirection.NONE;
 					
 					// Calculate which side the hero is on relative to the enemy
 					float deltaX = world.getHero().getPos().x - pos.x;
@@ -178,15 +181,20 @@ public class Enemy extends MoveableEntity {
 						currentDir = EDirection.LEFT;
 						xFliped = true;
 					}
-					
 				} else {
-					System.out.println("Enemy DONT have an eye on the player.");
+					// A tile is in the way of the hero
+					
+					if(Globals.AI_DEBUG_MODE)
+						System.out.println("Enemy DONT have an eye on the player.");
+					
+					// Define that the enemy don't see the hero and keep walking
 					seesPlayer = false;
 					standStill = false;
 				}
 			} else {
 				// Hero not in reach
 				standStill = false;
+				seesPlayer = false;
 			}
 			
 			// Update pit death fall detectors
@@ -197,21 +205,25 @@ public class Enemy extends MoveableEntity {
 			
 			// Check if we are close to pitfall
 			if(!world.CollisionWithAnyTile(leftRec) && currentDir == EDirection.LEFT && isOnGround){
-				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
-				System.out.println(msg);
+				if(Globals.AI_DEBUG_MODE){
+					String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
+					System.out.println(msg);
+				}
 				
 				currentDir = EDirection.RIGHT;
 				this.setXFliper(false);
 			}
 			if(!world.CollisionWithAnyTile(rightRec) && currentDir == EDirection.RIGHT && isOnGround){
-				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
-				System.out.println(msg);
+				if(Globals.AI_DEBUG_MODE){
+					String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
+					System.out.println(msg);
+				}
 				
 				currentDir = EDirection.LEFT;
 				this.setXFliper(true);
 			}
 			
-			// Reload animation
+			// Reload animation - This code is connected with the EnemyWeapon Class
 			if(weapon.needToReload()){
 				if(!reload.update(delta)){
 					this.isReloading = true;

@@ -18,7 +18,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	private Texture red_dot;
 	
 	private Button btnMenu;
-	private Button btnLevel1, btnTest1, btnTest2;
+	private Button btnMalmo, btnLevel1, btnTest1, btnTest2;
 	
 	public LevelScreen(){
 		camera = new OrthographicCamera(1280, 720);
@@ -29,12 +29,13 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		europe = BombMain.assets.get("europe.png", Texture.class);
 		red_dot = BombMain.assets.get("dotselect.png", Texture.class);
 		
-		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
+		btnMalmo = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
+		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 300, camera.viewportHeight/2 + 100);
 		
 		btnMenu = new Button(camera, BombMain.assets.get("btn/btnmenu.png", Texture.class), 5, 5);
 		btnMenu.setScale(0.6f);
 
-		btnTest1 = new Button(camera, red_dot, camera.viewportWidth/2, camera.viewportHeight/2 -200);
+		btnTest1 = new Button(camera, red_dot, camera.viewportWidth/2 + 200, camera.viewportHeight/2 -200);
 		btnTest2 = new Button(camera, red_dot, camera.viewportWidth/2 - 100, camera.viewportHeight/2 -100);
 
 	}
@@ -43,6 +44,9 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	public void update(float delta) {
 		if(btnMenu.isPressed())
 			BombMain.stateManager.setState(EScreen.meny);
+		
+		if(btnMalmo.isPressed())
+			setLevel("malmo.bdmap");
 		
 		if(btnLevel1.isPressed()){
 			setLevel("level1.bdmap");
@@ -71,6 +75,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		btnMenu.render(batch);
 		btnTest1.render(batch);
 		btnTest2.render(batch);
+		btnMalmo.render(batch);
 		batch.end();
 	}
 

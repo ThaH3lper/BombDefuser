@@ -76,7 +76,7 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 			if(Globals.runOutOfTime)
 				para = "You ran out of time. You exploded into thousand of bits...";
 			if(Globals.deadFromEnemies)
-				para = "Hammered by terrorist. Lägg till sen...";
+				para = "You failed your mission.";
 		} else {
 			title = "Bomb Defused - You Won! :)";
 			para = "Wow! Good job son, you made it!";

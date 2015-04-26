@@ -18,7 +18,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 	private ScrollingBackground bg;
 	private OrthographicCamera bgCamera;
 	private GameObject logo;
-	private Button btnPlay, btnSettings, btnCredits;
+	private Button btnPlay, btnCredits;
 	private BitmapFont font;
 	
 	private float rotation;
@@ -44,11 +44,8 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		btnCredits = new Button(camera, BombMain.assets.get("btn/btncredits.png", Texture.class), 0, 0);
 		btnCredits.setPosition((camera.viewportWidth - btnCredits.getWidth())/2, yPadding);
 		
-		btnSettings = new Button(camera, BombMain.assets.get("btn/btnsettings.png", Texture.class), 0, 0);
-		btnSettings.setPosition((camera.viewportWidth - btnSettings.getWidth())/2, yPadding * 2 + btnCredits.getHeight());
-		
 		btnPlay = new Button(camera, BombMain.assets.get("btn/btnplay.png", Texture.class), 0, 0);
-		btnPlay.setPosition((camera.viewportWidth - btnPlay.getWidth())/2, yPadding * 3 + btnCredits.getHeight() + btnSettings.getHeight());
+		btnPlay.setPosition((camera.viewportWidth - btnPlay.getWidth())/2, yPadding * 2 + btnCredits.getHeight());
 		
 		logo = new GameObject(BombMain.assets.get("logo.png", Texture.class));
 		logo.translatePositon(0, 120);
@@ -82,11 +79,6 @@ public class MenuScreen extends BaseScreen implements IScreen {
 			BombMain.stateManager.setState(EScreen.credits);
 			BombMain.soundBank.playSound(ESounds.select);
 		}
-		// Settings btn
-		if(btnSettings.isPressed()){
-			BombMain.stateManager.setState(EScreen.settings);
-			BombMain.soundBank.playSound(ESounds.select);
-		}
 	}
 
 	@Override
@@ -99,7 +91,6 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		//batch.draw(logo, (camera.viewportWidth - logo.getWidth() * 0.5f)/2, 300, logo.getWidth() * 0.5f, logo.getHeight() * 0.5f);
 		btnPlay.render(batch);
 		btnCredits.render(batch);
-		btnSettings.render(batch);
 		font.draw(batch, "V 1.0", 5, 25);
 		batch.end();
 	}

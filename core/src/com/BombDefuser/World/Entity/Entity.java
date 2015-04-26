@@ -12,7 +12,9 @@ import com.badlogic.gdx.math.Vector2;
  * And thats all.
  */
 public abstract class Entity extends GameObject implements IEntity{
-
+	
+	public static final float DEFAULT_HEALTH = 100;
+	
 	protected static final float FRICTION = 20;
 	protected Vector2 velocity, velocityNonConstant, position;
 	protected World world;
@@ -31,7 +33,7 @@ public abstract class Entity extends GameObject implements IEntity{
 		this.hitBox = new Rectangle(x, y, width, height);
 		this.drawOffset = new Vector2(width/2 - getOrigin().x, height/2 - getOrigin().y);
 		
-		health = 100;
+		health = DEFAULT_HEALTH;
 	}
 
 	public void update(float delta) {
@@ -107,6 +109,10 @@ public abstract class Entity extends GameObject implements IEntity{
 		}
 		hitBox.x = position.x;
 		
+	}
+	
+	public float getHealth(){
+		return health;
 	}
 	
 	public void setVelocity(float x, float y){

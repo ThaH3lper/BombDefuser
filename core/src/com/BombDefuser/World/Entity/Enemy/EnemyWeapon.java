@@ -1,15 +1,9 @@
 package com.BombDefuser.World.Entity.Enemy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.BombDefuser.BombMain;
-import com.BombDefuser.Globals;
 import com.BombDefuser.SoundManager.ESounds;
-import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.Utilities.GameObject;
 import com.BombDefuser.World.World;
-import com.BombDefuser.World.Entity.Hero;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
