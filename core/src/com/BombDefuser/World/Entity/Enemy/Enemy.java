@@ -20,7 +20,7 @@ public class Enemy extends MoveableEntity {
 	private final static float defualtDeathTimer = 2, defaultTimeUntilIdle = 5;
 	
 	private int ID;
-	private Animation run, idle, reload;
+	private Animation run, idle, reload, electric;
 	private Rectangle leftRec, rightRec;
 
 	private float health;
@@ -48,6 +48,7 @@ public class Enemy extends MoveableEntity {
 		run = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 0, 64, 64, 4, 4, 2, 2, 0.15f);
 		idle = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 6, 2, 64, 64, 4, 4, 2, 2, 0.3f);
 		reload = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 1, 64, 64, 4, 4, 2, 2, 0.15f);
+		electric = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 3, 64, 64, 4, 4, 2, 2, 0.15f);
 		this.setTexture(run.getTexture());
 		
 		leftRec = new Rectangle(0, 0, hitWidth, hitHeight);
@@ -120,7 +121,9 @@ public class Enemy extends MoveableEntity {
 		if(isHit){
 			// Hit zone
 			
-			this.color = Color.BLUE;
+			electric.update(delta);
+			this.setRecSource(electric.getRecSource());
+			
 			deathTimer -= delta;
 			if(deathTimer <= 0)
 				deathWish = true;
@@ -134,7 +137,6 @@ public class Enemy extends MoveableEntity {
 			}
 		}else{
 			// Regular zone
-			this.color = Color.WHITE;
 			this.rotation = 0;
 			this.setRecSource(run.getRecSource());
 			super.update(delta);

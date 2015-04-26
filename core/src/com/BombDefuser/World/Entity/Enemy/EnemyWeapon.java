@@ -61,7 +61,7 @@ public class EnemyWeapon extends GameObject {
 			timer -= delta;
 		
 		// Shoot logic
-		if(enemy.seesPlayer && !enemy.isReloading){
+		if(enemy.seesPlayer && !enemy.isReloading && !enemy.isHit()){
 			// Calc direction to hero
 			float bulletSpeed = 100;
 			Vector2 a = enemy.getCenterPosition();
