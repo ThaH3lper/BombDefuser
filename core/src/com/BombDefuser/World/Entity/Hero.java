@@ -29,11 +29,11 @@ public class Hero extends MoveableEntity{
 	public Hero(float x, float y, World world) {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		
-		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.06f);
-		runTaser = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 1, 64, 64, 0.06f);
-		idle = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 22, 2, 64, 64, 0.08f);
-		turn = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 4, 0, 64, 64, 0.04f);
-		idleFire = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 0, 3, 64, 64, 1f);
+		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 4, 4, 2, 2, 0.06f);
+		runTaser = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 1, 64, 64, 4, 4, 2, 2, 0.06f);
+		idle = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 22, 2, 64, 64, 4, 4, 2, 2, 0.08f);
+		turn = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 4, 0, 64, 64, 4, 4, 2, 2, 0.04f);
+		idleFire = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 0, 0, 3, 64, 64, 4, 4, 2, 2, 1f);
 		
 		current = turn;
 		setTexture(current.getTexture());
@@ -51,7 +51,7 @@ public class Hero extends MoveableEntity{
 	public void update(float delta){
 		switch (Gdx.app.getType()){
             case Android:
-                updateAndoridControls(delta);
+                //updateAndoridControls(delta);
                 break;
             case Desktop:
                 updateDesktopControls(delta);
@@ -76,8 +76,12 @@ public class Hero extends MoveableEntity{
 			
 			// Check if the tazer 'bullet' hits the enemy
 			for(int i = 0; i < world.getEnemies().size(); i++){
+				
 				if(taser.getBullet().getRecDraw().overlaps(world.getEnemies().get(i).hitBox)){
-					world.getEnemies().get(i).setHit(true);
+					if(!world.TileBetweenVectors(this.getCenterPosition(), world.getEnemies().get(i).getCenterPosition()))
+						world.getEnemies().get(i).setHit(true);
+					else
+						taser.deactivate();
 				} else{
 					world.getEnemies().get(i).setHit(false);
 				}
@@ -91,62 +95,6 @@ public class Hero extends MoveableEntity{
 			}
 		}
 	}
-
-    public void updateAndoridControls(float delta){
-        // A button
-        if(btnA.isPressed())
-            Jump();
-        // B button
-        if(btnB.isPressed()){
-            if(world.getBomb().getHitbox().overlaps(hitBox)){
-                BombMain.stateManager.setState(EScreen.defuse);
-            }else{
-                taser.fire(delta);
-            }
-        }
-
-        // C & D buttons
-        if(btnLeft.isPressed() || btnRight.isPressed()){
-            if(taser.getBullet() != null)
-                current = runTaser;
-            else{
-                if(turnDone){
-                    if(taser.isActive())
-                        current = runTaser;
-                    else
-                        current = run;
-                }
-                else
-                {
-                    current = turn;
-                    if(turn.getTimes() >= 1)
-                    {
-                        turnDone = true;
-                    }
-                }
-            }
-            if(btnLeft.isPressed()){
-                MoveLeft();
-                setXFliper(true);
-            }
-            else if(btnRight.isPressed()){
-                MoveRight();
-                setXFliper(false);
-            }
-        }
-        else{
-            if(taser.getBullet() != null)
-                current = idleFire;
-            else{
-                if(current != idle){
-                    idle.resetTimes();
-                    current = idle;
-                }
-                turnDone = false;
-                turn.resetTimes();
-            }
-        }
-    }
 
 	public void updateDesktopControls(float delta){
 		// A button

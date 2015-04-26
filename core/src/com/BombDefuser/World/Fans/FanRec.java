@@ -14,17 +14,17 @@ public class FanRec extends GameObject{
 		super(x, y, width, height);
 		switch (direction) {
 		case LEFT:
-			animation = new Animation(BombMain.assets.get("fans/fan_vertical.png", Texture.class), 0, 2, 0, 16, 40, 0.05f);
+			animation = new Animation(BombMain.assets.get("fans/fan_vertical.png", Texture.class), 0, 2, 0, 16, 40, 4, 4, 2, 2, 0.05f);
 			xFliped = true;
 			break;
 		case RIGHT:
-			animation = new Animation(BombMain.assets.get("fans/fan_vertical.png", Texture.class), 0, 2, 0, 16, 40, 0.05f);
+			animation = new Animation(BombMain.assets.get("fans/fan_vertical.png", Texture.class), 0, 2, 0, 16, 40, 4, 4, 2, 2, 0.05f);
 			break;
 		case UP:
-			animation = new Animation(BombMain.assets.get("fans/fan_horisontal.png", Texture.class), 0, 2, 0, 40, 16, 0.05f);
+			animation = new Animation(BombMain.assets.get("fans/fan_horisontal.png", Texture.class), 0, 2, 0, 40, 16, 4, 4, 2, 2, 0.05f);
 			break;
 		case DOWN:
-			animation = new Animation(BombMain.assets.get("fans/fan_horisontal.png", Texture.class), 0, 2, 0, 40, 16, 0.05f);
+			animation = new Animation(BombMain.assets.get("fans/fan_horisontal.png", Texture.class), 0, 2, 0, 40, 16, 4, 4, 2, 2, 0.05f);
 			yFliped = true;
 			break;
 		}

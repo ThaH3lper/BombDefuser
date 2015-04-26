@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaserGun {
 
-	public final static float maxTazerTime = 3;
+	public final static float maxTazerTime = 5;
 
 	private boolean isActive;
 	private float fireTime;

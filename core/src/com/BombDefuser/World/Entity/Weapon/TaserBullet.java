@@ -18,7 +18,7 @@ public class TaserBullet extends GameObject{
 	public TaserBullet(Texture texture, Hero hero){
 		super(texture, 2, 2, 64, 64, hero.getPosition().x, hero.getPosition().y, drawWidth, drawHeight, Color.WHITE);
 		this.hero = hero;
-		this.animation = new Animation(texture, 0, 4, 0, 64, 64, 0.05f);
+		this.animation = new Animation(texture, 0, 4, 0, 64, 64, 4, 4, 2, 2, 0.02f);
 	}
 
 	public void update(float delta) {
@@ -29,6 +29,7 @@ public class TaserBullet extends GameObject{
 			super.setPos(new Vector2(hero.getCenterPosition().x - offsetCenter - drawWidth, hero.getPosition().y));
 		else
 			super.setPos(new Vector2(hero.getCenterPosition().x + offsetCenter, hero.getPosition().y));
+		
 	}
 
 	@Override

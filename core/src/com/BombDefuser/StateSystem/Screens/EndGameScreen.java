@@ -72,10 +72,11 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 			
 			title = "Bomb Exploded - You Failed! :(";
 			if(Globals.cutWrongWire)
-				para = "You cut the wrong wire.";
+				para = "You cut the wrong wire. You exploded into thousand of bits...";
 			if(Globals.runOutOfTime)
-				para = "You ran out of time.";
-			para += " You exploded into thousand of bits...";
+				para = "You ran out of time. You exploded into thousand of bits...";
+			if(Globals.deadFromEnemies)
+				para = "Hammered by terrorist. Lägg till sen...";
 		} else {
 			title = "Bomb Defused - You Won! :)";
 			para = "Wow! Good job son, you made it!";

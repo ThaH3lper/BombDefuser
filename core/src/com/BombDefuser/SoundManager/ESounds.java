@@ -1,5 +1,5 @@
 package com.BombDefuser.SoundManager;
 
 public enum ESounds {
-select, music, music2, taser, jump, enemypuff, fan, explosion
+select, music, music2, taser, jump, enemypuff, fan, explosion, takedamage, death, shot
 }

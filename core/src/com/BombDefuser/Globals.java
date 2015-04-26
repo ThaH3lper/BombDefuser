@@ -12,6 +12,7 @@ public class Globals {
 	public static boolean failed;
 	public static boolean cutWrongWire;
 	public static boolean runOutOfTime;
+	public static boolean deadFromEnemies;
 	
 	public static void load()
 	{
@@ -25,5 +26,6 @@ public class Globals {
 		failed = false;
 		cutWrongWire = false;
 		runOutOfTime = false;
+		deadFromEnemies = false;
 	}
 }

@@ -13,7 +13,7 @@ public class SoundManager {
 	private boolean isMuted;
 
 	// All sounds in projekt
-	private Sound select, jump, puff, fan, taser, explosion;
+	private Sound select, jump, puff, fan, taser, explosion, death, takedamage, shot;
 	private Music music, music2;
 	private boolean isFanPlaying, isTaserPlaying;
 	
@@ -34,8 +34,11 @@ public class SoundManager {
 		fan = BombMain.assets.get("sfx/fan.mp3", Sound.class);
 		taser = BombMain.assets.get("sfx/taser.mp3", Sound.class);
 		explosion = BombMain.assets.get("sfx/explosion.wav", Sound.class);
+		shot = BombMain.assets.get("sfx/gun.wav", Sound.class);
+		takedamage = BombMain.assets.get("sfx/takedamage.wav", Sound.class);
+		death = BombMain.assets.get("sfx/death.wav", Sound.class);
 		
-		isMuted = true;
+		isMuted = false;
 		
 		isFanPlaying = false;
 	}
@@ -64,29 +67,40 @@ public class SoundManager {
 			break; 
 		case taser:
 			if(!isTaserPlaying)
-				taser.play(0.6f);
+				taser.play(soundVolume);
 			isTaserPlaying = true;
 			break; 
 		case music:
+			music.setLooping(true);
 			music.setVolume(musicVolume);
 			music.play();
 			break;
 		case music2:
+			music.setLooping(true);
 			music2.setVolume(musicVolume);
 			music2.play();
 			break;
 		case jump:
 			jump.play(soundVolume);
 			break;
+		case shot:
+			shot.play(soundVolume);
+			break;
 		case enemypuff:
 			puff.play(soundVolume);
+			break;
+		case takedamage:
+			takedamage.play(soundVolume);
+			break;
+		case death:
+			death.play(soundVolume);
 			break;
 		case explosion:
 			explosion.play(soundVolume);
 			break;
 		case fan:
 			if(!isFanPlaying){
-				fan.play(0.5f);
+				fan.play(soundVolume);
 				isFanPlaying = true;
 			}
 			break;

@@ -2,12 +2,14 @@ package com.BombDefuser.StateSystem;
 
 import java.io.File;
 
+import com.BombDefuser.StateSystem.Screens.CreditsScreen;
 import com.BombDefuser.StateSystem.Screens.DefuseScreen;
 import com.BombDefuser.StateSystem.Screens.EndGameScreen;
 import com.BombDefuser.StateSystem.Screens.GameScreen;
 import com.BombDefuser.StateSystem.Screens.LevelScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
 import com.BombDefuser.StateSystem.Screens.MenuScreen;
+import com.BombDefuser.StateSystem.Screens.SettingsScreen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ScreenManager{
@@ -50,6 +52,12 @@ public class ScreenManager{
 			break;
 		case defuse:
 			currentScreen = new DefuseScreen();
+			break;
+		case credits:
+			currentScreen = new CreditsScreen();
+			break;
+		case settings:
+			currentScreen = new SettingsScreen();
 			break;
 		}
 	}

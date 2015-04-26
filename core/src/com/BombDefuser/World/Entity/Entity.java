@@ -20,6 +20,8 @@ public abstract class Entity extends GameObject implements IEntity{
 	protected Rectangle hitBox;
 	private Vector2 drawOffset;
 	
+	protected float health;
+	
 	public Entity(float drawWidth, float drawHeight, float x, float y, float width, float height, World world) {
 		super(x, y, drawWidth, drawHeight);
 		this.world = world;
@@ -28,6 +30,8 @@ public abstract class Entity extends GameObject implements IEntity{
 		this.position = new Vector2(x, y);
 		this.hitBox = new Rectangle(x, y, width, height);
 		this.drawOffset = new Vector2(width/2 - getOrigin().x, height/2 - getOrigin().y);
+		
+		health = 100;
 	}
 
 	public void update(float delta) {
@@ -35,6 +39,15 @@ public abstract class Entity extends GameObject implements IEntity{
 		moveVertical(delta);
 		velocityNonConstant = new Vector2(0, 0);
 		super.pos = new Vector2(position.x + drawOffset.x, position.y + drawOffset.y);
+	}
+	
+	// Returns true if the entity is dead.
+	public boolean takeDamage(float dmg){
+		this.health -= dmg;
+		if(health <= 0)
+			return true;
+		
+		return false;
 	}
 	
 	protected void moveVertical(float delta){

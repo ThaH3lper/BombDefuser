@@ -62,10 +62,9 @@ public class BombMain extends ApplicationAdapter {
         BombMain.assets.load("B.png", Texture.class);
         BombMain.assets.load("gameart.png", Texture.class);
         BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
+        BombMain.assets.load("Enemy/enemysprite.png", Texture.class);
         BombMain.assets.load("slad.png", Texture.class);
         BombMain.assets.load("klipp.png", Texture.class);
-        BombMain.assets.load("bullet.png", Texture.class);
-        BombMain.assets.load("gun.png", Texture.class);
         
         // buttons
         BombMain.assets.load("btn/btnplay.png", Texture.class);
@@ -93,6 +92,9 @@ public class BombMain extends ApplicationAdapter {
 		BombMain.assets.load("sfx/music2.mp3", Music.class);
 		BombMain.assets.load("sfx/taser.mp3", Sound.class);
 		BombMain.assets.load("sfx/explosion.wav", Sound.class);
+		BombMain.assets.load("sfx/takedamage.wav", Sound.class);
+		BombMain.assets.load("sfx/death.wav", Sound.class);
+		BombMain.assets.load("sfx/gun.wav", Sound.class);
 	}
 	
 	public void initialize(){

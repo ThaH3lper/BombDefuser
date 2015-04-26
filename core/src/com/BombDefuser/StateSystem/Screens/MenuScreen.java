@@ -72,8 +72,19 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		bgCamera.update();
 		
 		// Buttons
+		// Play btn
 		if(btnPlay.isPressed()){
 			BombMain.stateManager.setState(EScreen.levelselect);
+			BombMain.soundBank.playSound(ESounds.select);
+		}
+		// Credits btn
+		if(btnCredits.isPressed()){
+			BombMain.stateManager.setState(EScreen.credits);
+			BombMain.soundBank.playSound(ESounds.select);
+		}
+		// Settings btn
+		if(btnSettings.isPressed()){
+			BombMain.stateManager.setState(EScreen.settings);
 			BombMain.soundBank.playSound(ESounds.select);
 		}
 	}

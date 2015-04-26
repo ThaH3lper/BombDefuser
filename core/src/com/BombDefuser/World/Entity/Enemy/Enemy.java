@@ -15,20 +15,25 @@ public class Enemy extends MoveableEntity {
 	
 	private final static float drawWidth = 32, drawHeight = 32;
 	private final static float hitWidth = 22, hitHeight = 32;
+	
 	private final static float defaultSpeed = 40, defaultHealth = 100;
-	private final static float defualtDeathTimer = 2;
+	private final static float defualtDeathTimer = 2, defaultTimeUntilIdle = 5;
 	
 	private int ID;
-	private Animation run;
+	private Animation run, idle, reload;
 	private Rectangle leftRec, rightRec;
+
 	private float health;
 	
 	protected EDirection currentDir;
-	protected boolean standStill;
+	protected boolean standStill, seesPlayer, isReloading;
 	
 	private boolean deathWish;
 	private float deathTimer;
 	private boolean isHit;
+	private float shakeRot = 5;
+	private float timeUntilNextShake = 0;
+	private float timeUntilIdle = defaultTimeUntilIdle;
 	
 	private EnemyWeapon weapon;
 	
@@ -36,12 +41,13 @@ public class Enemy extends MoveableEntity {
 		super(drawWidth, drawHeight, x, y, hitWidth, hitHeight, world);
 		this.ID = ID;
 		
-		this.weapon = new EnemyWeapon(this);
+		this.weapon = new EnemyWeapon(this, world);
 		
 		deathTimer = defualtDeathTimer;
 		
-		run = new Animation(BombMain.assets.get("Hero/Hero_sprite.png", Texture.class), 5, 14, 0, 64, 64, 0.12f);
-		this.color = Color.RED;
+		run = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 0, 64, 64, 4, 4, 2, 2, 0.15f);
+		idle = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 6, 2, 64, 64, 4, 4, 2, 2, 0.3f);
+		reload = new Animation(BombMain.assets.get("Enemy/enemysprite.png", Texture.class), 0, 5, 1, 64, 64, 4, 4, 2, 2, 0.15f);
 		this.setTexture(run.getTexture());
 		
 		leftRec = new Rectangle(0, 0, hitWidth, hitHeight);
@@ -107,9 +113,6 @@ public class Enemy extends MoveableEntity {
 		
 	}
 	
-	private float shakeRot = 5;
-	private float timeUntilNextShake = 0;
-	
 	@Override
 	public void update(float delta){
 		weapon.update(delta);
@@ -131,14 +134,13 @@ public class Enemy extends MoveableEntity {
 			}
 		}else{
 			// Regular zone
-			
-			this.color = Color.RED;
+			this.color = Color.WHITE;
 			this.rotation = 0;
 			this.setRecSource(run.getRecSource());
 			super.update(delta);
 			
 			// Update location
-			if(this.isOnGround){
+			if(this.isOnGround && !standStill){
 				if(currentDir == EDirection.LEFT){
 					run.update(delta);
 					MoveLeft();
@@ -153,16 +155,36 @@ public class Enemy extends MoveableEntity {
 			Vector2 hero = this.world.getHero().getPos();
 			if(Vector2.dst(hero.x, hero.y, pos.x, pos.y) < 100){
 				// Hero is in reach
+				System.out.println("Enemy is in reach of player. Checking if there is any tiles in the way.");
 				
-				currentDir = EDirection.NONE;
-				run.setCurrentFrame(5);
-				
-				// Calculate which side the hero is on relative to the enemy
-				float deltaX = world.getHero().getPos().x - pos.x;
-				if(deltaX > 0){
-					// Hero is on the right side relative to the enemy
+				// If there has been no intersection with world tiles 
+				if(!world.TileBetweenVectors(world.getHero().getCenterPosition(), this.getCenterPosition())){
+					System.out.println("Enemy have an eye on the player.");
+					
+					seesPlayer = true;
+					standStill = true;
+					run.setEnemyAimingPose();
 					currentDir = EDirection.NONE;
+					
+					// Calculate which side the hero is on relative to the enemy
+					float deltaX = world.getHero().getPos().x - pos.x;
+					if(deltaX > 0){
+						// Hero is on the right side relative to the enemy
+						currentDir = EDirection.RIGHT;
+						xFliped = false;
+					} else {
+						currentDir = EDirection.LEFT;
+						xFliped = true;
+					}
+					
+				} else {
+					System.out.println("Enemy DONT have an eye on the player.");
+					seesPlayer = false;
+					standStill = false;
 				}
+			} else {
+				// Hero not in reach
+				standStill = false;
 			}
 			
 			// Update pit death fall detectors
@@ -186,6 +208,37 @@ public class Enemy extends MoveableEntity {
 				currentDir = EDirection.LEFT;
 				this.setXFliper(true);
 			}
+			
+			// Reload animation
+			if(weapon.needToReload()){
+				if(!reload.update(delta)){
+					this.isReloading = true;
+					this.standStill = true;
+					this.setRecSource(reload.getRecSource());
+				} else {
+					this.isReloading = false;
+					if(!seesPlayer)
+						this.standStill = false;
+					weapon.resetShotsFired();
+				}
+			}
+			
+			// be able to idle if hero is not visible to the enemy
+			if(!seesPlayer)
+				idleFeature(delta);
+		}
+	}
+	
+	// Will make the enemy idle Enemey will idle
+	private void idleFeature(float delta){
+		timeUntilIdle -= delta;
+		if(timeUntilIdle < 0){
+			this.standStill = true;
+			this.setRecSource(idle.getRecSource());
+			if(idle.update(delta)){
+				standStill = false;
+				timeUntilIdle = defaultTimeUntilIdle;
+			}
 		}
 	}
 	
@@ -194,6 +247,14 @@ public class Enemy extends MoveableEntity {
 		super.render(batch);
 		// render weapon
 		weapon.render(batch);
+	}
+	
+	public boolean isStandingStill() {
+		return standStill;
+	}
+	
+	public boolean seesPlayer() {
+		return seesPlayer;
 	}
 	
 	public boolean deathWish(){

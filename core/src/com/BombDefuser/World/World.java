@@ -12,6 +12,8 @@ import com.BombDefuser.World.Bomb.Bomb;
 import com.BombDefuser.World.Entity.Entity;
 import com.BombDefuser.World.Entity.Hero;
 import com.BombDefuser.World.Entity.Enemy.Enemy;
+import com.BombDefuser.World.Entity.Enemy.EnemyBullet;
+import com.BombDefuser.World.Entity.Enemy.EnemyWeapon;
 import com.BombDefuser.World.Fans.FanTile;
 import com.BombDefuser.World.Tiles.ITile;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -37,6 +39,8 @@ public class World {
 	private BackgroundLayer lower, middle, top;
 	private Vector2 heroSpawn, bombSpawn;
 	
+	private List<EnemyBullet> bullets;
+	
 	public World(float gravity)
 	{
 		this.gravity = gravity;
@@ -46,10 +50,15 @@ public class World {
 		topLayer = new ArrayList<ITile>();
 		enemy = new ArrayList<Enemy>();
 		enemySpawn = new ArrayList<Vector2>();
+		bullets = new ArrayList<EnemyBullet>();
 		
 		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, -200);
 		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, -200);
 		top = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), 0f, -200);
+	}
+	
+	public void addBullet(float x, float y, Vector2 velocity){
+		bullets.add(new EnemyBullet(x, y, velocity));
 	}
 	
 	private void spawnEnemy(float x, float y){
@@ -71,6 +80,7 @@ public class World {
 	public void update(float delta, OrthographicCamera camera)
 	{	
 		ParticleManager.update(delta);
+		bulletUpdate(delta);
 		hero.update(delta);
 		
 		// Enemy logic
@@ -119,21 +129,62 @@ public class World {
 		top.update(delta, camera);
 	}
 	
+	private void bulletUpdate(float delta){
+		// Update all bullets
+		for(int i = 0; i < bullets.size(); i++){
+			if(bullets.get(i).update(delta) || this.CollisionWithAnyTile(bullets.get(i).getHitbox())){
+				bullets.remove(i);
+				continue;
+			}
+			
+			// If bullet hits the player
+			if(Intersector.intersectRectangles(hero.getHitBox(), bullets.get(i).getHitbox(), new Rectangle())){
+				BombMain.soundBank.playSound(ESounds.takedamage);
+				if(hero.takeDamage(EnemyWeapon.defualtWeaponDamage)){
+					BombMain.soundBank.playSound(ESounds.death);
+					Globals.failed = true;
+					Globals.deadFromEnemies = true;
+					BombMain.stateManager.setState(EScreen.endscreen);
+				}
+				bullets.remove(i);
+				continue;
+			}
+		}
+	}
+	
 	public void render(SpriteBatch batch)
 	{
+		// Scrolling background
 		lower.render(batch);
 		middle.render(batch);
 		top.render(batch);
 		
+		// Lower tile layer
 		for(ITile tile : lowerLayer)
 			tile.render(batch);
+		
+		// Particles
 		ParticleManager.render(batch);
+		
+		// Tile collision layer
 		for(ITile tile : collisionLayer)
 			tile.render(batch);
+		
+		// Bomb
 		bomb.render(batch);
+		
+		// Enemies
 		for(Enemy e : enemy)
 			e.render(batch);
+		
+		// Bullets
+		for(EnemyBullet b : bullets)
+			b.render(batch);
+		
+		// Hero
 		hero.render(batch);
+		
+		// Tile top layer
 		for(ITile tile : topLayer)
 			tile.render(batch);
 	}
@@ -152,11 +203,42 @@ public class World {
 	
 	public boolean CollisionWithAnyTile(Rectangle hitbox){
 		for(ITile tile : collisionLayer){
+			
+			if(!tile.getIsCollision())
+				continue;
+			
 			Rectangle tempRec = new Rectangle();
 			if(Intersector.intersectRectangles(hitbox, tile.getHitBox(), tempRec))
 				return true;
 		}
 		return false;
+	}
+	
+	// Check if there is any collision with any tile
+	public boolean TileBetweenVectors(Vector2 a, Vector2 b){
+		Vector2 deltaPos = new Vector2(b.x - a.x, b.y - a.y);
+		
+		Rectangle[] lineRec = new Rectangle[50];
+		// Create 100 small rectangles to put on the line between hero and enemy
+		for(int i = 0; i < lineRec.length; i++){
+			float x1 = a.x + deltaPos.x * (i/50f); // THIS thing here fucks up....
+			float y1 = a.y + deltaPos.y * (i/50f);
+			
+			lineRec[i] = new Rectangle(x1, y1, 1, 1);
+		}
+		
+		// Check if any of the rectangles on the given line collide with the world collision tiles
+		
+		boolean collisionWithAnyTile = false;
+		
+		for(int i = 0; i < lineRec.length; i++){
+			if(this.CollisionWithAnyTile(lineRec[i])){
+				collisionWithAnyTile = true;
+				break;
+			}
+		}
+		
+		return collisionWithAnyTile;
 	}
 	
 	public Hero getHero(){
