@@ -27,7 +27,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 		
 		hud = new Hud(world);
 		
-		camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
+		camera.position.x += Globals.CAMERA_SIDE_PADDING/2;
 		camera.update();
 		
 		hudCamera = new OrthographicCamera(1280, 720);

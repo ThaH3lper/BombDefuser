@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 
 public class Globals {
 	public static final int VIRTUAL_WIDTH = 480, VIRTUAL_HEIGHT = 320;
-	public static int NEW_VIRTUAL_HEIGHT, CAMERA_TOP_PADDING;
+	public static int NEW_VIRTUAL_WIDTH, CAMERA_SIDE_PADDING;
 	public static float GRAVITY = -10;
 	public static String currentLevel;
 	
@@ -18,8 +18,8 @@ public class Globals {
 	
 	public static void load()
 	{
-		NEW_VIRTUAL_HEIGHT = (int)(((float)Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth()) * (float)VIRTUAL_WIDTH);
-		CAMERA_TOP_PADDING = VIRTUAL_HEIGHT - NEW_VIRTUAL_HEIGHT;
+		NEW_VIRTUAL_WIDTH = (int)(((float)Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight()) * (float)VIRTUAL_HEIGHT);
+		CAMERA_SIDE_PADDING = VIRTUAL_WIDTH - NEW_VIRTUAL_WIDTH;
 		
 		gameReset();
 	}
