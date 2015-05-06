@@ -1,5 +1,7 @@
 package com.BombDefuser;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
@@ -21,7 +23,8 @@ public class BombMain extends ApplicationAdapter {
 	public static ScreenManager stateManager;
 	public static SoundManager soundBank;
 	public static Random rnd;
-	
+	public static boolean debug = false;
+	public static File file;
 	@Override
 	public void create () {
 		Globals.load();
@@ -29,6 +32,11 @@ public class BombMain extends ApplicationAdapter {
 		assets = new AssetManager();
 		loadContent();
 		initialize();
+		
+		if(debug)
+		{
+			file = new File("temp.bdmap");
+		}
 	}
 	
 	public void loadContent()
