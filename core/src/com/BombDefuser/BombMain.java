@@ -1,12 +1,9 @@
 package com.BombDefuser;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
-=======
 import java.io.File;
 import java.net.URISyntaxException;
->>>>>>> 6801d26919dfb5f54497a3295d36cb106a7d1a8b
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
