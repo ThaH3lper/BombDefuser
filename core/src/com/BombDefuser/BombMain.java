@@ -1,5 +1,7 @@
 package com.BombDefuser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
@@ -7,21 +9,25 @@ import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.ScreenManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Vector2;
 
-public class BombMain extends ApplicationAdapter {
+public class BombMain extends ApplicationAdapter implements InputProcessor{
 	
 	public static AssetManager assets;
 	public static ScreenManager stateManager;
 	public static SoundManager soundBank;
 	public static Random rnd;
-	
+    //public static TouchInfo[] touchInfo;
+
 	@Override
 	public void create () {
 		Globals.load();
@@ -29,6 +35,14 @@ public class BombMain extends ApplicationAdapter {
 		assets = new AssetManager();
 		loadContent();
 		initialize();
+/*
+        if(Gdx.app.getType() == ApplicationType.Android){
+            touchInfo = new TouchInfo[4];
+            for(int i = 0; i < touchInfo.length; i++)
+                touchInfo[i] = new TouchInfo();
+
+            Gdx.input.setInputProcessor(this);
+        }*/
 	}
 	
 	public void loadContent()
@@ -125,4 +139,57 @@ public class BombMain extends ApplicationAdapter {
 		
 		stateManager.render();
 	}
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        /*if(pointer < touchInfo.length){
+            touchInfo[pointer].isTouched = true;
+            touchInfo[pointer].pos = new Vector2(screenX, screenY);
+        }*/
+
+        Gdx.app.log("INFO", "Touched Down");
+
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        /*if(pointer < touchInfo.length){
+            touchInfo[pointer].isTouched = false;
+        }*/
+
+        Gdx.app.log("INFO", "Touch Up");
+
+        return true;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
+    }
 }

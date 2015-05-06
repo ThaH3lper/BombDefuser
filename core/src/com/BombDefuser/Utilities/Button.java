@@ -1,5 +1,6 @@
 package com.BombDefuser.Utilities;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,14 +25,38 @@ public class Button {
 		this.pos = new Vector2(x, y);
 		this.bounds = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
 	}
+
+    Vector3 p;
+	public boolean isPressedAndroid(){
+        if(Gdx.app.getType() == Application.ApplicationType.Android){
+            //for(BombMain.touchInfo)
+        }
+
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop){
+            Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(mouse);
+
+            if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
+                return true;
+            }
+        }
+		
+		return false;
+	}
 	
 	public boolean isPressed(){
-		Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-		camera.unproject(mouse);
-		
-		if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
-			return true;
-		}
+        if(Gdx.app.getType() == Application.ApplicationType.Android){
+            //for(BombMain.touchInfo)
+        }
+
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop){
+            Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(mouse);
+
+            if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
+                return true;
+            }
+        }
 		
 		return false;
 	}

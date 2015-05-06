@@ -1,7 +1,5 @@
 package com.BombDefuser.Load;
 
-import java.io.File;
-
 import com.BombDefuser.Globals;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Fans.EDirection;
@@ -13,6 +11,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.io.File;
+
 public class Load {
 
 	public static World mapToWorld(File file)
@@ -21,6 +21,10 @@ public class Load {
 		World world = new World(Globals.GRAVITY);
 		ELoad current = ELoad.NONE;
 		for (String line : lines) {
+            /*
+
+            Edited by Robin, Android only supports Java 1.6; cannot have strings in switches.... :(
+
 			switch (line) {
 			case "[Tiles]": current = ELoad.TILES; continue;
 			case "[Props]": current = ELoad.PROPS; continue;
@@ -28,8 +32,23 @@ public class Load {
 			case "[Hero]": current = ELoad.HERO; continue;
 			case "[Bomb]": current = ELoad.BOMB; continue;
 			case "[Enemys]": current = ELoad.ENEMYS; continue;
-			}
-			
+			}*/
+
+            if(line.equals("[Tiles]")){
+                current = ELoad.TILES; continue;
+            } else if(line.equals("[Props]")){
+                current = ELoad.PROPS; continue;
+            } else if(line.equals("[Fans]")){
+                current = ELoad.FANS; continue;
+            } else if(line.equals("[Hero]")){
+                current = ELoad.HERO; continue;
+            } else if(line.equals("[Bomb]")){
+                current = ELoad.BOMB; continue;
+            } else if(line.equals("[Enemys]")){
+                current = ELoad.ENEMYS; continue;
+            }
+
+
 			switch (current) {
 			case TILES:
 				loadTiles(line, world);
@@ -66,7 +85,8 @@ public class Load {
 		
 		System.out.println(x + " " + y + " " + " " + width + " " + height);
 		TileRec tile= new TileRec(type, x, y, width, height);
-		
+
+        /*
 		switch (data[0]) {
 		case "L": world.getLowerLayer().add(tile);
 			break;
@@ -74,7 +94,16 @@ public class Load {
 			break;
 		case "T": world.getTopLayer().add(tile);
 			break;
-		}
+		}*/
+		
+        if(data[0].equals("L")){
+            world.getLowerLayer().add(tile);
+        } else if(data[0].equals("M")){
+            world.getCollisionLayer().add(tile);
+        } else if(data[0].equals("T")){
+            world.getTopLayer().add(tile);
+        }
+
 	}
 	
 	private static void loadProps(String line, World world){

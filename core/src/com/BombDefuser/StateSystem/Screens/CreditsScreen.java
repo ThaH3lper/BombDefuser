@@ -55,7 +55,7 @@ public class CreditsScreen extends BaseScreen implements IScreen {
 
 	@Override
 	public void dispose() {
-		
+		batch.dispose();
 	}
 
 }

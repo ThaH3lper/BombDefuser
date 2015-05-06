@@ -51,7 +51,7 @@ public class Hero extends MoveableEntity{
 	public void update(float delta){
 		switch (Gdx.app.getType()){
             case Android:
-                //updateAndoridControls(delta);
+                updateAndroidControls(delta);
                 break;
             case Desktop:
                 updateDesktopControls(delta);
@@ -69,7 +69,7 @@ public class Hero extends MoveableEntity{
 		setRecSource(current.getRecSource());
 		super.update(delta);
 		taser.update(delta);
-		
+
 		// Taser hit enemy logic
 		if(taser.isActive()){
 			BombMain.soundBank.playSound(ESounds.taser);
@@ -95,7 +95,66 @@ public class Hero extends MoveableEntity{
 			}
 		}
 	}
-
+	
+	public void updateAndroidControls(float delta){
+		// A button
+		if(btnA.isPressedAndroid())
+			Jump();
+		// B button
+		if(btnB.isPressedAndroid()){
+			if(world.getBomb().getHitbox().overlaps(hitBox)){
+				BombMain.stateManager.setState(EScreen.defuse);
+			}else{
+				taser.fire(delta);
+			}
+		}else{
+			if(taser.isActive())
+				taser.deactivate();
+		}
+		
+		// C & D buttons
+		if(btnLeft.isPressedAndroid() || btnRight.isPressedAndroid()){
+			if(taser.getBullet() != null)
+				current = runTaser;
+			else{
+				if(turnDone){
+					if(taser.isActive())
+						current = runTaser;
+					else
+						current = run;
+				}
+				else
+				{
+					current = turn;
+					if(turn.getTimes() >= 1)
+					{
+						turnDone = true;
+					}
+				}
+			}
+			if(btnRight.isPressedAndroid()){
+				MoveLeft();
+				setXFliper(true);
+			}
+			else if(btnLeft.isPressedAndroid()){
+				MoveRight();
+				setXFliper(false);
+			}
+		}
+		else{
+			if(taser.getBullet() != null)
+				current = idleFire;
+			else{
+				if(current != idle){
+					idle.resetTimes();
+					current = idle;
+				}
+				turnDone = false;
+				turn.resetTimes();
+			}
+		}
+	}
+	
 	public void updateDesktopControls(float delta){
 		// A button
 		if(Gdx.input.isKeyPressed(Keys.W))
