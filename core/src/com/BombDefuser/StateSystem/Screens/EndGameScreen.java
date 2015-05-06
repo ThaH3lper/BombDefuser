@@ -88,12 +88,18 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		mCamera.update();
 		camera.update();
 		
-		if(btnLevels.isPressed()){
-			BombMain.stateManager.setState(EScreen.levelselect);
+		if(!BombMain.debug)
+		{
+			if(btnLevels.isPressed()){
+				BombMain.stateManager.setState(EScreen.levelselect);
+			}
 		}
 		
 		if(btnRetry.isPressed()){
-			BombMain.stateManager.setState(EScreen.game, new File("levels\\" + Globals.currentLevel));
+			if(BombMain.debug)
+				BombMain.stateManager.setState(EScreen.game, BombMain.file);
+			else
+				BombMain.stateManager.setState(EScreen.game, new File("levels\\" + Globals.currentLevel));
 			BombMain.soundBank.playSound(ESounds.select);
 		}
 	}
@@ -116,7 +122,8 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		
 		// Buttons
 		btnRetry.render(batch);
-		btnLevels.render(batch);
+		if(!BombMain.debug)
+			btnLevels.render(batch);
 		
 		logo.render(batch);
 		batch.end();

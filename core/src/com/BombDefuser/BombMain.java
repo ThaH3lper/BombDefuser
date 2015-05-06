@@ -1,7 +1,12 @@
 package com.BombDefuser;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
+=======
+import java.io.File;
+import java.net.URISyntaxException;
+>>>>>>> 6801d26919dfb5f54497a3295d36cb106a7d1a8b
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
@@ -28,14 +33,16 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
 	public static Random rnd;
     //public static TouchInfo[] touchInfo;
 
-	@Override
+	public static boolean debug = false;
+	public static File file;
+	
 	public void create () {
 		Globals.load();
 		rnd = new Random();
 		assets = new AssetManager();
 		loadContent();
 		initialize();
-/*
+		/*
         if(Gdx.app.getType() == ApplicationType.Android){
             touchInfo = new TouchInfo[4];
             for(int i = 0; i < touchInfo.length; i++)
@@ -43,6 +50,11 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
 
             Gdx.input.setInputProcessor(this);
         }*/
+		
+		if(debug)
+		{
+			file = new File("temp.bdmap");
+		}
 	}
 	
 	public void loadContent()

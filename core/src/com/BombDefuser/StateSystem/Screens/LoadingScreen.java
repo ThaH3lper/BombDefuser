@@ -1,6 +1,11 @@
 package com.BombDefuser.StateSystem.Screens;
 
+import java.io.Console;
+import java.io.File;
+import java.net.URISyntaxException;
+
 import com.BombDefuser.BombMain;
+import com.BombDefuser.Globals;
 import com.BombDefuser.SoundManager.SoundManager;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
@@ -28,7 +33,10 @@ public class LoadingScreen extends BaseScreen implements IScreen {
 		
 		if(BombMain.assets.update()){
 			BombMain.soundBank = new SoundManager();
-			BombMain.stateManager.setState(EScreen.meny);
+			if(BombMain.debug)
+				BombMain.stateManager.setState(EScreen.game, BombMain.file);
+			else
+				BombMain.stateManager.setState(EScreen.meny);
 		}
 		
 		if(BombMain.assets.isLoaded("logo.png") && img == null)
