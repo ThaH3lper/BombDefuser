@@ -48,7 +48,6 @@ public class Load {
                 current = ELoad.ENEMYS; continue;
             }
 
-
 			switch (current) {
 			case TILES:
 				loadTiles(line, world);
@@ -85,16 +84,6 @@ public class Load {
 		
 		System.out.println(x + " " + y + " " + " " + width + " " + height);
 		TileRec tile= new TileRec(type, x, y, width, height);
-
-        /*
-		switch (data[0]) {
-		case "L": world.getLowerLayer().add(tile);
-			break;
-		case "M": world.getCollisionLayer().add(tile);	
-			break;
-		case "T": world.getTopLayer().add(tile);
-			break;
-		}*/
 		
         if(data[0].equals("L")){
             world.getLowerLayer().add(tile);
