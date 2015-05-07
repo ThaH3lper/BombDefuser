@@ -10,7 +10,7 @@ public class BaseScreen{
 	protected SpriteBatch batch;
 	
 	public BaseScreen(){
-		camera = new OrthographicCamera(Globals.VIRTUAL_WIDTH, Globals.NEW_VIRTUAL_HEIGHT);
+		camera = new OrthographicCamera(Globals.NEW_VIRTUAL_WIDTH, Globals.VIRTUAL_HEIGHT);
 		batch = new SpriteBatch();
 	}
 }

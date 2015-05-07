@@ -53,7 +53,7 @@ public abstract class Entity extends GameObject implements IEntity{
 	}
 	
 	protected void moveVertical(float delta){
-		velocity.y += world.getGravity();
+		velocity.y += world.getGravity() * delta;
 		position.y += (velocity.y) * delta;
 		position.y += (velocityNonConstant.y) * delta;
 		hitBox.y = position.y;
@@ -90,7 +90,7 @@ public abstract class Entity extends GameObject implements IEntity{
 				if(velocity.x < 0)
 					velocity.x = 0;
 			}
-			if(velocity.x + velocityNonConstant.x > 0){
+			else if(velocity.x + velocityNonConstant.x > 0){
 				position.x = tileHitBox.x - hitBox.width;
 				if(velocity.x > 0)
 					velocity.x = 0;

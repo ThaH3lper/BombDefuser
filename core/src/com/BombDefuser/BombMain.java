@@ -1,9 +1,6 @@
 package com.BombDefuser;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.io.File;
-import java.net.URISyntaxException;
 import java.util.Random;
 
 import com.BombDefuser.SoundManager.SoundManager;
@@ -11,7 +8,6 @@ import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.ScreenManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
@@ -20,7 +16,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.Vector2;
 
 public class BombMain extends ApplicationAdapter implements InputProcessor{
 	

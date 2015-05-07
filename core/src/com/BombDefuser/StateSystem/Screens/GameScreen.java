@@ -24,7 +24,13 @@ public class GameScreen extends BaseScreen implements IScreen {
 	private float lerp = 0.1f;
 	
 	public GameScreen(File file) {
-		camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
+		world = Load.mapToWorld(file);
+		world.init();
+		
+		hud = new Hud(world);
+		
+		camera.position.x += Globals.CAMERA_SIDE_PADDING/2;
+		//camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
 		camera.update();
 		
 		hudCamera = new OrthographicCamera(1280, 720);

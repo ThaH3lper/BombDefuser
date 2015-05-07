@@ -42,6 +42,9 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 		mCamera.position.y += 720/2;
 		mCamera.update();
 		
+		camera = new OrthographicCamera(480, 272);
+		camera.update();
+		
 		font = BombMain.assets.get("arial64white.fnt", BitmapFont.class);
 		timer = 3.5f;
 		

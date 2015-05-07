@@ -1,11 +1,6 @@
 package com.BombDefuser.StateSystem.Screens;
 
-import java.io.Console;
-import java.io.File;
-import java.net.URISyntaxException;
-
 import com.BombDefuser.BombMain;
-import com.BombDefuser.Globals;
 import com.BombDefuser.SoundManager.SoundManager;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
