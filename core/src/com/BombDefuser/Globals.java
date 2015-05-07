@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 public class Globals {
 	public static final int VIRTUAL_WIDTH = 480, VIRTUAL_HEIGHT = 320;
 	public static int NEW_VIRTUAL_WIDTH, CAMERA_SIDE_PADDING;
-	public static float GRAVITY = -10;
+	public static float GRAVITY = -600;
 	public static String currentLevel;
 	
 	public static final boolean AI_DEBUG_MODE = false;

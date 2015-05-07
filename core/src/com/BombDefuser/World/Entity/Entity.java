@@ -53,7 +53,7 @@ public abstract class Entity extends GameObject implements IEntity{
 	}
 	
 	protected void moveVertical(float delta){
-		velocity.y += world.getGravity();
+		velocity.y += world.getGravity() * delta;
 		position.y += (velocity.y) * delta;
 		position.y += (velocityNonConstant.y) * delta;
 		hitBox.y = position.y;
