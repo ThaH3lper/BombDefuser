@@ -70,7 +70,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		
 		// Buttons
 		// Play btn
-		if(btnPlay.isPressedAndroid()){
+		if(btnPlay.isPressed()){
 			BombMain.stateManager.setState(EScreen.levelselect);
 			BombMain.soundBank.playSound(ESounds.select);
 		}

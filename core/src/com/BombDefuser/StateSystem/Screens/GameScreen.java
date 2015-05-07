@@ -10,6 +10,8 @@ import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.IScreen;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Hud.Hud;
+import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 
@@ -22,11 +24,6 @@ public class GameScreen extends BaseScreen implements IScreen {
 	private float lerp = 0.1f;
 	
 	public GameScreen(File file) {
-		world = Load.mapToWorld(file);
-		world.init();
-		
-		hud = new Hud(world);
-		
 		camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
 		camera.update();
 		
@@ -34,6 +31,13 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.position.x += hudCamera.viewportWidth/2;
 		hudCamera.position.y += hudCamera.viewportHeight/2;
 		hudCamera.update();
+		
+		world = Load.mapToWorld(file);
+		world.init();
+		if(Gdx.app.getType() == ApplicationType.Android)
+			world.getHero().createAndroidButtons(hudCamera);
+		
+		hud = new Hud(world);
 		
 		//world.addEnemy(10, 400, 40, 40, 20, Color.WHITE);
 		Globals.gameReset();

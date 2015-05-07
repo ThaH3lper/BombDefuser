@@ -57,11 +57,4 @@ public class ScreenManager{
 			break;
 		}
 	}
-
-    public OrthographicCamera getHudCamera(){
-        if(currentScreen instanceof GameScreen){
-            return ((GameScreen) currentScreen).getHudCamera();
-        }
-        return new OrthographicCamera(0, 0);
-    }
 }

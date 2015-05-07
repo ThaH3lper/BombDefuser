@@ -80,9 +80,10 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
 		BombMain.assets.load("fans/fan_vertical.png", Texture.class);
 		BombMain.assets.load("props/prop_sheet.png", Texture.class);
 		BombMain.assets.load("taser_lightning.png", Texture.class);
-        BombMain.assets.load("arrow.png", Texture.class);
-        BombMain.assets.load("A.png", Texture.class);
-        BombMain.assets.load("B.png", Texture.class);
+		BombMain.assets.load("left.jpg", Texture.class);
+		BombMain.assets.load("right.jpg", Texture.class);
+        BombMain.assets.load("A.jpg", Texture.class);
+        BombMain.assets.load("B.jpg", Texture.class);
         BombMain.assets.load("gameart.png", Texture.class);
         BombMain.assets.load("Hero/Hero_sprite.png", Texture.class);
         BombMain.assets.load("Enemy/enemysprite.png", Texture.class);

@@ -2,6 +2,7 @@ package com.BombDefuser.Utilities;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ public class Button {
 	private Vector2 pos;
 	private float width, height;
 	private Rectangle bounds;
+	private Color color;
 	
 	public Button(OrthographicCamera camera, Texture tex, float x, float y) {
 		this.camera = camera;
@@ -24,51 +26,69 @@ public class Button {
 		this.height = tex.getHeight();
 		this.pos = new Vector2(x, y);
 		this.bounds = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
+		
+		color = new Color(1, 1, 1, 1);
 	}
 
     Vector3 p;
-	public boolean isPressedAndroid(){
+	
+	public boolean isPressed(){
         if(Gdx.app.getType() == Application.ApplicationType.Android){
-            //for(BombMain.touchInfo)
+            return isPressedAndroid();
         }
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
-            Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(mouse);
-
-            if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
-                return true;
-            }
+        	return isPressedDesktop();
         }
 		
 		return false;
 	}
 	
-	public boolean isPressed(){
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
-            //for(BombMain.touchInfo)
-        }
+	private boolean isPressedDesktop(){
+        Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        camera.unproject(mouse);
 
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop){
-            Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(mouse);
-
-            if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
-                return true;
-            }
+        if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
+            return true;
         }
+		
+		return false;
+	}
+	
+	private boolean isPressedAndroid(){
+		
+		for(int i = 0; i < 4; i++){
+			if(Gdx.input.isTouched(i)){
+				Vector3 p = new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+				camera.unproject(p);
+				
+				if(bounds.contains(p.x, p.y))
+					return true;
+			}
+		}
 		
 		return false;
 	}
 	
 	public void render(SpriteBatch batch){
+		batch.setColor(color);
 		batch.draw(tex, pos.x, pos.y, bounds.width, bounds.height);
+		batch.setColor(Color.WHITE);
 	}
 	
 	public void dispose(){
 		tex.dispose();
 	}
 	
+	public void setBounds(float width, float height){
+		this.bounds.width = width;
+		this.bounds.height = height;
+	}
+
+    public void setAlpha(float value){
+        color.a = value;
+    }
+
 	public void setScale(float value){
 		this.bounds.width = width * value;
 		this.bounds.height = height * value;

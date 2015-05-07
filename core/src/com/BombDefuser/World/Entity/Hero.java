@@ -11,6 +11,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -38,13 +39,25 @@ public class Hero extends MoveableEntity{
 		current = turn;
 		setTexture(current.getTexture());
 		taser = new TaserGun(this);
+	}
+	
+	public void createAndroidButtons(OrthographicCamera hudCamera){
+        btnLeft = new Button(hudCamera, BombMain.assets.get("left.jpg", Texture.class), 0, 100);
+        btnRight = new Button(hudCamera, BombMain.assets.get("right.jpg", Texture.class), 100, 0);
+        btnA = new Button(hudCamera, BombMain.assets.get("A.jpg", Texture.class), 1280-200, 0);
+        btnB = new Button(hudCamera, BombMain.assets.get("B.jpg", Texture.class), 1280-100, 100);
+        
+        btnLeft.setBounds(100, 100);
+        btnRight.setBounds(100, 100);
+        btnA.setBounds(100, 100);
+        btnB.setBounds(100, 100);
 
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
-            btnLeft = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("arrow.png", Texture.class), 0, 100);
-            btnRight = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("arrow.png", Texture.class), 100, 0);
-            btnA = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("A.png", Texture.class), 1280-200, 0);
-            btnB = new Button(BombMain.stateManager.getHudCamera(), BombMain.assets.get("B.png", Texture.class), 1280-100, 100);
-        }
+
+        float alpha = 0.7f;
+        btnLeft.setAlpha(alpha);
+        btnRight.setAlpha(alpha);
+        btnA.setAlpha(alpha);
+        btnB.setAlpha(alpha);
 	}
 	
 	@Override
@@ -98,10 +111,10 @@ public class Hero extends MoveableEntity{
 	
 	public void updateAndroidControls(float delta){
 		// A button
-		if(btnA.isPressedAndroid())
+		if(btnA.isPressed())
 			Jump();
 		// B button
-		if(btnB.isPressedAndroid()){
+		if(btnB.isPressed()){
 			if(world.getBomb().getHitbox().overlaps(hitBox)){
 				BombMain.stateManager.setState(EScreen.defuse);
 			}else{
@@ -113,7 +126,7 @@ public class Hero extends MoveableEntity{
 		}
 		
 		// C & D buttons
-		if(btnLeft.isPressedAndroid() || btnRight.isPressedAndroid()){
+		if(btnLeft.isPressed() || btnRight.isPressed()){
 			if(taser.getBullet() != null)
 				current = runTaser;
 			else{
@@ -132,13 +145,13 @@ public class Hero extends MoveableEntity{
 					}
 				}
 			}
-			if(btnRight.isPressedAndroid()){
-				MoveLeft();
-				setXFliper(true);
-			}
-			else if(btnLeft.isPressedAndroid()){
+			if(btnRight.isPressed()){
 				MoveRight();
 				setXFliper(false);
+			}
+			else if(btnLeft.isPressed()){
+				MoveLeft();
+				setXFliper(true);
 			}
 		}
 		else{

@@ -19,10 +19,10 @@ public class Hud {
 	Texture textureDot;
 	public Hud(World world){
 		this.world = world;
-		this.recBGGun = new Rectangle(50, 50, 200, 10);
-		this.recGun = new Rectangle(50, 50, 200, 10);
-		this.recBGHealth = new Rectangle(50, 60, 200, 10);
-		this.recHealth = new Rectangle(50, 60, 200, 10);
+		this.recBGGun = new Rectangle(250, 50, 200, 10);
+		this.recGun = new Rectangle(250, 50, 200, 10);
+		this.recBGHealth = new Rectangle(250, 60, 200, 10);
+		this.recHealth = new Rectangle(250, 60, 200, 10);
 		this.textureDot = BombMain.assets.get("dot.png", Texture.class);
 	}
 	

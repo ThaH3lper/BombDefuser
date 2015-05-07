@@ -83,6 +83,12 @@ public class World {
 		bulletUpdate(delta);
 		hero.update(delta);
 		
+		// Enemy dead
+		if(hero.getY() + 200 < camera.position.y){
+			Globals.failed = true;
+			BombMain.stateManager.setState(EScreen.endscreen);
+		}
+		
 		// Enemy logic
 		for(int i = 0; i < enemy.size(); i++){
 			if(enemy.get(i).deathWish()){
