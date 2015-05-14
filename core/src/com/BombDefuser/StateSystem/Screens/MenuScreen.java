@@ -91,7 +91,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		//batch.draw(logo, (camera.viewportWidth - logo.getWidth() * 0.5f)/2, 300, logo.getWidth() * 0.5f, logo.getHeight() * 0.5f);
 		btnPlay.render(batch);
 		btnCredits.render(batch);
-		font.draw(batch, "V 1.0", 5, 25);
+		font.draw(batch, "V " + BombMain.GAME_VERSION, 5, 25);
 		batch.end();
 	}
 

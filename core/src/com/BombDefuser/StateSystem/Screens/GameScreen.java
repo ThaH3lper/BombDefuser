@@ -7,12 +7,15 @@ import com.BombDefuser.Globals;
 import com.BombDefuser.Load.Load;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
+import com.BombDefuser.StateSystem.EScreen;
 import com.BombDefuser.StateSystem.IScreen;
+import com.BombDefuser.Utilities.Button;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Hud.Hud;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
 public class GameScreen extends BaseScreen implements IScreen {
@@ -20,6 +23,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 	private OrthographicCamera hudCamera;
 	private World world;
 	private Hud hud;
+    private Button btnLevels;
 	
 	private float lerp = 0.1f;
 	
@@ -37,7 +41,11 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.position.x += hudCamera.viewportWidth/2;
 		hudCamera.position.y += hudCamera.viewportHeight/2;
 		hudCamera.update();
-		
+
+        btnLevels = new Button(hudCamera, BombMain.assets.get("btn/btnlevels.png", Texture.class), 0, 0);
+        btnLevels.setBounds(btnLevels.getWidth() * 0.5f, btnLevels.getHeight() * 0.5f);
+        btnLevels.setPosition(0, hudCamera.viewportHeight - btnLevels.getHeight());
+
 		world = Load.mapToWorld(file);
 		world.init();
 		if(Gdx.app.getType() == ApplicationType.Android)
@@ -63,6 +71,11 @@ public class GameScreen extends BaseScreen implements IScreen {
 		position.x += (world.getHero().getPos().x - position.x) * lerp;
 		//position.y += (world.getHero().getPos().y - position.y) * lerp;
 		camera.update();
+
+        if(btnLevels.isPressed()){
+            BombMain.soundBank.playSound(ESounds.select);
+            BombMain.stateManager.setState(EScreen.levelselect);
+        }
 	}
 
 	@Override
@@ -72,6 +85,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 		world.render(batch);
 		batch.setProjectionMatrix(hudCamera.combined);
 		hud.render(batch);
+        btnLevels.render(batch);
 		batch.end();
 	}
 

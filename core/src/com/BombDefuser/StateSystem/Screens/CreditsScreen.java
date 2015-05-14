@@ -9,6 +9,7 @@ import com.BombDefuser.Utilities.Button;
 import com.BombDefuser.Utilities.ScrollingBackground;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 public class CreditsScreen extends BaseScreen implements IScreen {
 	
@@ -16,6 +17,9 @@ public class CreditsScreen extends BaseScreen implements IScreen {
 	private ScrollingBackground bg;
 	
 	private Button btnMenu;
+	
+	private Texture credits;
+	private Vector2 credPos;
 	
 	public CreditsScreen(){
 		// init meny camera
@@ -29,6 +33,9 @@ public class CreditsScreen extends BaseScreen implements IScreen {
 		bg = new ScrollingBackground(camera);
 		btnMenu = new Button(mCamera, BombMain.assets.get("btn/btnmenu.png", Texture.class), 5, 5);
 		btnMenu.setScale(0.8f);
+		
+		credits = BombMain.assets.get("credits.png", Texture.class);
+		credPos = new Vector2((mCamera.viewportWidth - credits.getWidth())/2, (mCamera.viewportHeight - credits.getHeight())/2);
 	}
 	
 	@Override
@@ -48,8 +55,9 @@ public class CreditsScreen extends BaseScreen implements IScreen {
 		batch.begin();
 		bg.render(batch);
 		batch.setProjectionMatrix(mCamera.combined);
-		
 		btnMenu.render(batch);
+		batch.draw(credits, credPos.x, credPos.y);
+		
 		batch.end();
 	}
 

@@ -18,26 +18,31 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	private Texture red_dot;
 	
 	private Button btnMenu;
-	private Button btnMalmo, btnLevel1, btnTest1, btnTest2;
+	private Button btnLevel0, btnLevel1, btnLevel2, btnLevel3, btnLevel4;
 	
 	public LevelScreen(){
+		// Override current camera
 		camera = new OrthographicCamera(1280, 720);
 		camera.position.x = camera.viewportWidth/2;
 		camera.position.y = camera.viewportHeight/2;
 		camera.update();
 		
+		// Get level screen textures 
 		europe = BombMain.assets.get("europe.png", Texture.class);
 		red_dot = BombMain.assets.get("dotselect.png", Texture.class);
 		
-		btnMalmo = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
-		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 300, camera.viewportHeight/2 + 100);
+		/*
+		 * Buttons
+		 */
 		
 		btnMenu = new Button(camera, BombMain.assets.get("btn/btnmenu.png", Texture.class), 5, 5);
 		btnMenu.setScale(0.6f);
-
-		btnTest1 = new Button(camera, red_dot, camera.viewportWidth/2 + 200, camera.viewportHeight/2 -200);
-		btnTest2 = new Button(camera, red_dot, camera.viewportWidth/2 - 100, camera.viewportHeight/2 -100);
-
+		
+		btnLevel0 = new Button(camera, red_dot, camera.viewportWidth/2 - 50, camera.viewportHeight/2 + 100);
+		btnLevel1 = new Button(camera, red_dot, camera.viewportWidth/2 - 380, camera.viewportHeight/2 + 70);
+		btnLevel2 = new Button(camera, red_dot, camera.viewportWidth/2 - 200, camera.viewportHeight/2 -200);
+		btnLevel3 = new Button(camera, red_dot, camera.viewportWidth/2 - 130, camera.viewportHeight/2 + 180);
+		btnLevel4 = new Button(camera, red_dot, camera.viewportWidth/2 - 300, camera.viewportHeight/2);
 	}
 	
 	@Override
@@ -45,17 +50,20 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		if(btnMenu.isPressed())
 			BombMain.stateManager.setState(EScreen.meny);
 		
-		if(btnMalmo.isPressed())
-			setLevel("malmo.bdmap");
+		if(btnLevel0.isPressed())
+			setLevel("2cool4school.bdmap");
 		
 		if(btnLevel1.isPressed()){
-			setLevel("level1.bdmap");
+			setLevel("leveleasylife.bdmap");
 		}
-		if(btnTest1.isPressed()){
-			setLevel("test1.bdmap");
+		if(btnLevel2.isPressed()){
+			setLevel("pidda_map.bdmap");
 		}
-		if(btnTest2.isPressed()){
-			setLevel("test2.bdmap");
+		if(btnLevel3.isPressed()){
+			setLevel("RosenGard.bdmap");
+		}
+		if(btnLevel4.isPressed()){
+			setLevel("terrorist_house.bdmap");
 		}
 	}
 	
@@ -73,9 +81,10 @@ public class LevelScreen extends BaseScreen implements IScreen {
 		batch.draw(europe, 0, 0, camera.viewportWidth, camera.viewportHeight);
 		btnLevel1.render(batch);
 		btnMenu.render(batch);
-		btnTest1.render(batch);
-		btnTest2.render(batch);
-		btnMalmo.render(batch);
+		btnLevel2.render(batch);
+		btnLevel3.render(batch);
+		btnLevel0.render(batch);
+		btnLevel4.render(batch);
 		batch.end();
 	}
 

@@ -19,6 +19,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class BombMain extends ApplicationAdapter implements InputProcessor{
 	
+	public static final String GAME_VERSION = "1.0.66"; 
+	
 	public static AssetManager assets;
 	public static ScreenManager stateManager;
 	public static SoundManager soundBank;
@@ -84,6 +86,7 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
         BombMain.assets.load("Enemy/enemysprite.png", Texture.class);
         BombMain.assets.load("slad.png", Texture.class);
         BombMain.assets.load("klipp.png", Texture.class);
+        BombMain.assets.load("credits.png", Texture.class);
         
         // buttons
         BombMain.assets.load("btn/btnplay.png", Texture.class);
