@@ -7,7 +7,7 @@ Programmers for game: Robin Andersson & Patrik Nilsson'
 
 Programmers for level-editor: Peter Nilsson, Mika Lehtinen & Anton Björkman
 
-Graphics: Peter Nilsson & Mika Lehtinen
+Graphics: Peter Lindberg & Mika Lehtinen
 
 SFX & Management: Anton Björkman
 

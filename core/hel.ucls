@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.BombDefuser.StateSystem.Screens.LevelScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/LevelScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="184" x="2592" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.BombDefuser.StateSystem.BaseScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/BaseScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="168" x="2111" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="com.BombDefuser.Particle.IParticle" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Particle/IParticle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="145" x="458" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="com.BombDefuser.World.Entity.Enemy.EnemyWeapon" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Enemy/EnemyWeapon.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="176" x="1622" y="3426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="com.BombDefuser.Load.ELoad" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Load/ELoad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="119" x="119" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="6" language="java" name="com.BombDefuser.BombMain" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/BombMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="184" x="1431" y="620"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="7" language="java" name="com.BombDefuser.World.Entity.Enemy.EDirection" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Enemy/EDirection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="176" x="536" y="3426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="8" language="java" name="com.BombDefuser.World.Tiles.TileRec" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Tiles/TileRec.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="223" x="1212" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.BombDefuser.Particle.FanParticle" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Particle/FanParticle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="280" x="298" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="10" language="java" name="com.BombDefuser.StateSystem.EScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/EScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="147" x="893" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="11" language="java" name="com.BombDefuser.World.Entity.Hero" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="263" x="889" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.BombDefuser.Utilities.Button" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/Button.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="252" x="2256" y="3426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.BombDefuser.Particle.ParticleManager" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Particle/ParticleManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="231" x="618" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.BombDefuser.World.Entity.Enemy.EnemyBullet" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Enemy/EnemyBullet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="178" x="1809" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.BombDefuser.World.Bomb.Bomb" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Bomb/Bomb.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="145" x="2027" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.BombDefuser.World.Fans.FanRec" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Fans/FanRec.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="215" x="380" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.BombDefuser.StateSystem.Screens.LoadingScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/LoadingScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="184" x="1843" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.BombDefuser.StateSystem.Screens.CreditsScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/CreditsScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="184" x="2149" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.BombDefuser.World.Entity.Weapon.TaserBullet" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Weapon/TaserBullet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="180" x="441" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.BombDefuser.World.Bomb.Sladd" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Bomb/Sladd.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="143" x="607" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.BombDefuser.SoundManager.SoundManager" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/SoundManager/SoundManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="549" width="159" x="790" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.BombDefuser.World.Fans.FanTile" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Fans/FanTile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="513" width="260" x="99" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.BombDefuser.World.Entity.Enemy.Enemy" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Enemy/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="657" width="176" x="673" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="24" language="java" name="com.BombDefuser.StateSystem.IScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/IScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="147" x="2025" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="25" language="java" name="com.BombDefuser.StateSystem.Screens.GameScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/GameScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="208" x="1183" y="620"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.BombDefuser.World.Entity.MoveableEntity" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/MoveableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="326" x="661" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="27" language="java" name="com.BombDefuser.World.Tiles.ITile" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Tiles/ITile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="145" x="1456" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="28" language="java" name="com.BombDefuser.Utilities.ScrollingBackground" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/ScrollingBackground.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="233" x="2296" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="29" language="java" name="com.BombDefuser.World.Fans.EDirection" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Fans/EDirection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="140" x="99" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="30" language="java" name="com.BombDefuser.StateSystem.ScreenManager" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/ScreenManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="157" x="1826" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.BombDefuser.World.Tiles.PropTile" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Tiles/PropTile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="193" x="1530" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="com.BombDefuser.Utilities.BackgroundLayer" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/BackgroundLayer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="214" x="2296" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.BombDefuser.World.Entity.Weapon.TaserGun" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Weapon/TaserGun.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="180" x="387" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="com.BombDefuser.Load.Load" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Load/Load.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="174" x="1085" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="35" language="java" name="com.BombDefuser.SoundManager.ESounds" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/SoundManager/ESounds.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="153" x="1305" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="36" language="java" name="com.BombDefuser.StateSystem.Screens.EndGameScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/EndGameScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="184" x="2067" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="com.BombDefuser.World.World" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/World.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="549" width="252" x="1496" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="com.BombDefuser.World.Entity.Entity" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="232" x="1031" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="com.BombDefuser.StateSystem.Screens.DefuseScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/DefuseScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="184" x="1619" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="40" language="java" name="com.BombDefuser.World.Tiles.ETileTexture" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Tiles/ETileTexture.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="173" x="1505" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="41" language="java" name="com.BombDefuser.Utilities.TouchInfo" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/TouchInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="123" x="1726" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="com.BombDefuser.Utilities.Animation" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/Animation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="267" x="752" y="3426"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.BombDefuser.Utilities.GameObject" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="891" width="349" x="1655" y="620"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="com.BombDefuser.World.Hud.Hud" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Hud/Hud.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="145" x="1303" y="1551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="com.BombDefuser.Utilities.TexturesAnimation" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Utilities/TexturesAnimation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="189" x="933" y="620"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="com.BombDefuser.World.Tiles.TextureTile" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Tiles/TextureTile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="224" x="1192" y="2729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.BombDefuser.StateSystem.Screens.MenuScreen" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/StateSystem/Screens/MenuScreen.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="184" x="2291" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="com.BombDefuser.Globals" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/Globals.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="165" x="1897" y="-54"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="49" language="java" name="com.BombDefuser.World.Entity.IEntity" project="BombDefuser-core" 
+    file="/BombDefuser-core/src/com/BombDefuser/World/Entity/IEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="145" x="1027" y="2140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="50">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="51" name="run"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="54" name="soundBank"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="57" name="bullets"/>      
+      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="60">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="61" name="currentScreen"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="64" name="animation"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="67" name="world"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="70" name="weapon"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="73" name="enemy"/>      
+      <multiplicity id="74" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="77">    
+    <bendpoint x="2643" y="2140"/>    
+    <bendpoint x="2643" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="78" name="btnMenu"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="81" name="bg"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <association id="84">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="85" name="currentDir"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="87">    
+    <bendpoint x="1465" y="2140"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="88">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="89" name="collisionLayer"/>      
+      <multiplicity id="90" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="91">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="92" name="particles"/>      
+      <multiplicity id="93" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="95" name="logo"/>      
+      <multiplicity id="96" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="97">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="98">    
+    <bendpoint x="2363" y="620"/>    
+    <bendpoint x="2363" y="1551"/>    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="99" name="bg"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <bendpoint x="2601" y="2140"/>    
+    <bendpoint x="2601" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="102" name="btnLevel3"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="104">    
+    <bendpoint x="1820" y="2140"/>    
+    <bendpoint x="1774" y="1551"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="105">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="106" name="runTaser"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="109" name="middle"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <bendpoint x="2113" y="620"/>    
+    <bendpoint x="2118" y="1551"/>    
+    <bendpoint x="2202" y="2140"/>    
+    <bendpoint x="2202" y="2729"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="112" name="btnRetry"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="115" name="hero"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="117">    
+    <bendpoint x="2685" y="2140"/>    
+    <bendpoint x="2685" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="118" name="btnLevel4"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="121" name="run"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="123">    
+    <bendpoint x="1757" y="2729"/>    
+    <bendpoint x="1885" y="2140"/>    
+    <bendpoint x="2013" y="1551"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="124">    
+    <bendpoint x="1631" y="2729"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="125" name="world"/>      
+      <multiplicity id="126" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="127">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="128" name="enemy"/>      
+      <multiplicity id="129" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="130">    
+    <bendpoint x="410" y="2140"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="131" name="taser"/>      
+      <multiplicity id="132" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="133">    
+    <bendpoint x="2223" y="2140"/>    
+    <bendpoint x="2223" y="2729"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="134" name="btnMenu"/>      
+      <multiplicity id="135" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="136">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="49"/>  
+  </realization>  
+  <realization id="137">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="138">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="139" name="hud"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="44" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="142" name="bglayer"/>      
+      <multiplicity id="143" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="144">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="145" name="stateManager"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <bendpoint x="1152" y="620"/>    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="148" name="sladd"/>      
+      <multiplicity id="149" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="150">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="151" name="topLayer"/>      
+      <multiplicity id="152" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="153">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="154" name="lowerLayer"/>      
+      <multiplicity id="155" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="156">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="157">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="158" name="reload"/>      
+      <multiplicity id="159" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="160">    
+    <bendpoint x="1799" y="2140"/>    
+    <bendpoint x="1753" y="1551"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <generalization id="161">    
+    <bendpoint x="1588" y="301"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="162">    
+    <bendpoint x="2076" y="620"/>    
+    <bendpoint x="2076" y="1551"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="163">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="164" name="middle"/>      
+      <multiplicity id="165" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="166">    
+    <bendpoint x="2426" y="620"/>    
+    <bendpoint x="2405" y="1551"/>    
+    <bendpoint x="2265" y="2140"/>    
+    <bendpoint x="2265" y="2729"/>    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="167" name="btnPlay"/>      
+      <multiplicity id="168" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="169">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="170" name="lower"/>      
+      <multiplicity id="171" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="172">    
+    <bendpoint x="2559" y="620"/>    
+    <bendpoint x="2559" y="1551"/>    
+    <bendpoint x="2559" y="2140"/>    
+    <bendpoint x="2559" y="2729"/>    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="173" name="btnCredits"/>      
+      <multiplicity id="174" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="175">    
+    <bendpoint x="625" y="2729"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="176" name="animation"/>      
+      <multiplicity id="177" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="178">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="179" name="btnRight"/>      
+      <multiplicity id="180" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="181">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="182">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="183" name="top"/>      
+      <multiplicity id="184" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="185">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="186" name="bullet"/>      
+      <multiplicity id="187" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="188">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="189" name="direction"/>      
+      <multiplicity id="190" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="192" name="idleFire"/>      
+      <multiplicity id="193" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="194">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="195" name="bomb"/>      
+      <multiplicity id="196" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="197">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="198" name="idle"/>      
+      <multiplicity id="199" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="200">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="201" name="fans"/>      
+      <multiplicity id="202" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="203">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="204">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="205" name="world"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="207">    
+    <bendpoint x="1499" y="1551"/>    
+    <bendpoint x="1778" y="2140"/>    
+    <bendpoint x="1778" y="2729"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="208" name="btnLevels"/>      
+      <multiplicity id="209" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="210">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="211" name="bg"/>      
+      <multiplicity id="212" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="213">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="214" name="electric"/>      
+      <multiplicity id="215" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="216">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="217" name="turn"/>      
+      <multiplicity id="218" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="219">    
+    <bendpoint x="1795" y="1551"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <generalization id="220">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="221">    
+    <bendpoint x="2055" y="620"/>    
+    <bendpoint x="2055" y="1551"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="222">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="223" name="lower"/>      
+      <multiplicity id="224" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="225">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="226" name="animation"/>      
+      <multiplicity id="227" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="228">    
+    <bendpoint x="2622" y="2140"/>    
+    <bendpoint x="2622" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="229" name="btnLevel1"/>      
+      <multiplicity id="230" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="231">    
+    <bendpoint x="2034" y="620"/>    
+    <bendpoint x="2034" y="1551"/>    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="232">    
+    <bendpoint x="2580" y="2140"/>    
+    <bendpoint x="2580" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="233" name="btnLevel0"/>      
+      <multiplicity id="234" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="235">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="236" name="current"/>      
+      <multiplicity id="237" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="238">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="239" name="top"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="241">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="242" name="logo"/>      
+      <multiplicity id="243" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="244">    
+    <bendpoint x="2580" y="620"/>    
+    <bendpoint x="2580" y="301"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="245">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <generalization id="246">    
+    <bendpoint x="1000" y="1551"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <generalization id="247">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="248">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="249" name="idle"/>      
+      <multiplicity id="250" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="251">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="252" name="btnLeft"/>      
+      <multiplicity id="253" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="254">    
+    <bendpoint x="2134" y="620"/>    
+    <bendpoint x="2097" y="1551"/>    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="255">    
+    <bendpoint x="2664" y="2140"/>    
+    <bendpoint x="2664" y="2729"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="256" name="btnLevel2"/>      
+      <multiplicity id="257" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="258">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="259" name="innerTiles"/>      
+      <multiplicity id="260" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="46" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="261">    
+    <bendpoint x="389" y="2140"/>    
+    <bendpoint x="979" y="1551"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="43"/>  
+  </generalization>  
+  <association id="262">    
+    <bendpoint x="1478" y="1551"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="263" name="world"/>      
+      <multiplicity id="264" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="265">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="266" name="btnA"/>      
+      <multiplicity id="267" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="268">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="269">    
+    <bendpoint x="2384" y="620"/>    
+    <bendpoint x="2384" y="1551"/>    
+    <bendpoint x="2244" y="2140"/>    
+    <bendpoint x="2244" y="2729"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="270" name="btnLevels"/>      
+      <multiplicity id="271" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="272">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="273">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="274" name="btnB"/>      
+      <multiplicity id="275" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="276">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="277">    
+    <bendpoint x="2405" y="620"/>    
+    <bendpoint x="2505" y="301"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="278">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="279" name="hero"/>      
+      <multiplicity id="280" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="281">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="282" name="klippt"/>      
+      <multiplicity id="283" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
