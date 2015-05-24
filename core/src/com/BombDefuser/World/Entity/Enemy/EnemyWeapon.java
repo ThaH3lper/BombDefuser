@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 // Rename later
 public class EnemyWeapon extends GameObject {
 	
-	public static final float defualtWeaponDamage = 10;
+	public static final float defualtWeaponDamage = 6;
 	public static final float defualtNextShotTime = 0.5f;
 	public static final int defaultMagazineSize = 10;
 	

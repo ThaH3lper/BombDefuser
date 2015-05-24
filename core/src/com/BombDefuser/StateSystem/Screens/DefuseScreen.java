@@ -46,7 +46,7 @@ public class DefuseScreen extends BaseScreen implements IScreen {
 		camera.update();
 		
 		font = BombMain.assets.get("arial64white.fnt", BitmapFont.class);
-		timer = 3.5f;
+		timer = 5.5f;
 		
 		bg = new GameObject(BombMain.assets.get("dot.png", Texture.class));
 		bg.setWidth(Globals.VIRTUAL_WIDTH);
