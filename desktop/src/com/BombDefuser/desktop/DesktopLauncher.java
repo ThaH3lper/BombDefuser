@@ -23,7 +23,7 @@ public class DesktopLauncher {
 		config.width = 1280;
 		config.height = 720;
 		config.useGL30 = false;
-		config.fullscreen = true;
+		config.fullscreen = false;
 		config.title = "Bomb Defuser";
 		if(arg.length != 0)
 			BombMain.debug = true;

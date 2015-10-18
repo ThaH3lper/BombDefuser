@@ -96,6 +96,9 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
         BombMain.assets.load("btn/btncredits.png", Texture.class);
         BombMain.assets.load("btn/btnpause.png", Texture.class);
         
+        // Icons
+        BombMain.assets.load("icons.png", Texture.class);
+        
 		// load bomb cutscene
 		for(int i = 0; i < 70; i++){
 			String t = "" + i;

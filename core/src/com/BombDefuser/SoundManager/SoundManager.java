@@ -10,7 +10,7 @@ public class SoundManager {
 	private float soundVolume;
 	private float musicVolume;
 	
-	private boolean isMuted;
+	public boolean isMuted, isMusicMuted;
 
 	// All sounds in projekt
 	private Sound select, jump, puff, fan, taser, explosion, death, takedamage, shot;
@@ -39,6 +39,7 @@ public class SoundManager {
 		death = BombMain.assets.get("sfx/death.wav", Sound.class);
 		
 		isMuted = false;
+		isMusicMuted = false;
 		
 		isFanPlaying = false;
 	}
@@ -59,6 +60,24 @@ public class SoundManager {
 		taser.stop();
 	}
 	
+	public void playMusic(EMusic emusic)
+	{
+		if(!isMusicMuted)
+		switch(emusic)
+		{
+		case music:
+			music.setLooping(true);
+			music.setVolume(musicVolume);
+			music.play();
+			break;
+		case music2:
+			music.setLooping(true);
+			music2.setVolume(musicVolume);
+			music2.play();
+			break;
+		}
+	}
+	
 	public void playSound(ESounds sound){
 		if(!isMuted)
 		switch (sound) {
@@ -70,16 +89,6 @@ public class SoundManager {
 				taser.play(soundVolume);
 			isTaserPlaying = true;
 			break; 
-		case music:
-			music.setLooping(true);
-			music.setVolume(musicVolume);
-			music.play();
-			break;
-		case music2:
-			music.setLooping(true);
-			music2.setVolume(musicVolume);
-			music2.play();
-			break;
 		case jump:
 			jump.play(soundVolume);
 			break;

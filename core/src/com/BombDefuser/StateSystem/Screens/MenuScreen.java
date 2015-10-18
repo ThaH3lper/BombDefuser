@@ -2,6 +2,7 @@ package com.BombDefuser.StateSystem.Screens;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
+import com.BombDefuser.SoundManager.EMusic;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
@@ -12,13 +13,14 @@ import com.BombDefuser.Utilities.ScrollingBackground;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Rectangle;
 
 public class MenuScreen extends BaseScreen implements IScreen {
 	
 	private ScrollingBackground bg;
 	private OrthographicCamera bgCamera;
 	private GameObject logo;
-	private Button btnPlay, btnCredits;
+	private Button btnPlay, btnCredits, btnMuteMusic, btnMuteSound;
 	private BitmapFont font;
 	
 	private float rotation;
@@ -47,6 +49,9 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		btnPlay = new Button(camera, BombMain.assets.get("btn/btnplay.png", Texture.class), 0, 0);
 		btnPlay.setPosition((camera.viewportWidth - btnPlay.getWidth())/2, yPadding * 2 + btnCredits.getHeight());
 		
+		btnMuteMusic = new Button(camera, BombMain.assets.get("icons.png", Texture.class), 0, 0);
+		btnMuteMusic.setSource(0, 0, 128, 128);
+		
 		logo = new GameObject(BombMain.assets.get("logo.png", Texture.class));
 		logo.translatePositon(0, 120);
 		logo.setScaleX(0.5f);
@@ -54,7 +59,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		
 		font = BombMain.assets.get("font.fnt", BitmapFont.class);
 		
-		BombMain.soundBank.playSound(ESounds.music);
+		BombMain.soundBank.playMusic(EMusic.music);
 	}
 	
 	@Override
@@ -67,7 +72,10 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		
 		camera.update();
 		bgCamera.update();
-		
+		if(bgCamera.position.x > 1750)
+			bgCamera.position.x = -500;
+		bgCamera.position.x += 10 * delta;
+			
 		// Buttons
 		// Play btn
 		if(btnPlay.isPressed()){
@@ -78,6 +86,20 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		if(btnCredits.isPressed()){
 			BombMain.stateManager.setState(EScreen.credits);
 			BombMain.soundBank.playSound(ESounds.select);
+		}
+		if(btnMuteMusic.isPressed())
+		{
+			BombMain.soundBank.isMusicMuted = !BombMain.soundBank.isMusicMuted;
+			if(BombMain.soundBank.isMusicMuted)
+			{
+				btnMuteMusic.setSource(128, 0, 128, 128);
+				BombMain.soundBank.stopMusic();
+			}
+			else
+			{
+				btnMuteMusic.setSource(0, 0, 128, 128);
+				BombMain.soundBank.playMusic(EMusic.music);
+			}
 		}
 	}
 
@@ -91,6 +113,7 @@ public class MenuScreen extends BaseScreen implements IScreen {
 		//batch.draw(logo, (camera.viewportWidth - logo.getWidth() * 0.5f)/2, 300, logo.getWidth() * 0.5f, logo.getHeight() * 0.5f);
 		btnPlay.render(batch);
 		btnCredits.render(batch);
+		btnMuteMusic.renderWithSourceRec(batch);
 		font.draw(batch, "V " + BombMain.GAME_VERSION, 5, 25);
 		batch.end();
 	}

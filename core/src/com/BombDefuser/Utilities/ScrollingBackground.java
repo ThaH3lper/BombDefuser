@@ -16,7 +16,6 @@ public class ScrollingBackground {
 		lower = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer3_sky.png", Texture.class), 1f, 0);
 		middle = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer2_houses.png", Texture.class), 0.5f, 0);
 		top = new BackgroundLayer(BombMain.assets.get("background/skyline1_layer1_houses.png", Texture.class), 0f, 0);
-		
 	}
 	
 	public void update(float delta){

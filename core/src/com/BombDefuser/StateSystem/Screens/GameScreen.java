@@ -5,6 +5,7 @@ import java.io.File;
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
 import com.BombDefuser.Load.Load;
+import com.BombDefuser.SoundManager.EMusic;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
@@ -58,7 +59,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 		
 		// Sound 
 		BombMain.soundBank.stopMusic();
-		BombMain.soundBank.playSound(ESounds.music2);
+		BombMain.soundBank.playMusic(EMusic.music2);
 	}
 
 	@Override

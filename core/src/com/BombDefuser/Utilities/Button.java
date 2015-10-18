@@ -17,6 +17,7 @@ public class Button {
 	private Vector2 pos;
 	private float width, height;
 	private Rectangle bounds;
+	private Rectangle source;
 	private Color color;
 	
 	public Button(OrthographicCamera camera, Texture tex, float x, float y) {
@@ -26,6 +27,7 @@ public class Button {
 		this.height = tex.getHeight();
 		this.pos = new Vector2(x, y);
 		this.bounds = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
+		this.source = new Rectangle(0, 0, tex.getWidth(), tex.getHeight());
 		
 		color = new Color(1, 1, 1, 1);
 	}
@@ -76,8 +78,21 @@ public class Button {
 		batch.setColor(Color.WHITE);
 	}
 	
+	public void renderWithSourceRec(SpriteBatch batch)
+	{
+		batch.setColor(color);
+		batch.draw(tex, pos.x, pos.y, source.width/2, source.height/2, bounds.width, bounds.height, 1, 1, 0, (int)source.x, (int)source.y, (int)source.width, (int)source.height, false, false);
+		batch.setColor(Color.WHITE);
+	}
+	
 	public void dispose(){
 		tex.dispose();
+	}
+	
+	public void setSource(int x, int y, int width, int height)
+	{
+		this.source = new Rectangle(x, y, width, height);
+		this.bounds = new Rectangle(pos.x, pos.y, width, width);
 	}
 	
 	public void setBounds(float width, float height){
