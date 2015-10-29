@@ -6,11 +6,9 @@ import com.BombDefuser.StateSystem.Screens.CreditsScreen;
 import com.BombDefuser.StateSystem.Screens.DefuseScreen;
 import com.BombDefuser.StateSystem.Screens.EndGameScreen;
 import com.BombDefuser.StateSystem.Screens.GameScreen;
-import com.BombDefuser.StateSystem.Screens.OldLevelScreen;
 import com.BombDefuser.StateSystem.Screens.LoadingScreen;
 import com.BombDefuser.StateSystem.Screens.MenuScreen;
 import com.BombDefuser.StateSystem.Screens.LevelSelect.MapSelectScreen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ScreenManager{
 		
@@ -40,7 +38,7 @@ public class ScreenManager{
 			break;
 		case game:
 			currentScreen = new GameScreen(file);
-			break;
+			break;	
 		case levelselect:
 			currentScreen = new MapSelectScreen();
 			break;

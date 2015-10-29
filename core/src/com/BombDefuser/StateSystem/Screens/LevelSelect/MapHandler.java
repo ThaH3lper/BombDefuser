@@ -25,19 +25,40 @@ public class MapHandler {
 	}
 	
 	public void init(OrthographicCamera camera){
+		// Zarokhan's maps
 		String[] text = new String[2];
 		text[0] = "Author: Zarokhan";
 		text[1] = "A breif tutorial introducing main gameplay.";
 		addEntry(camera, "tutorial.bdmap", 0, 0, "Tutorial", text);
-		addEntry(camera, "map2.bdmap", 1, 0, "Map 2", text);
-		addEntry(camera, "map3.bdmap", 2, 0, "Map 3", text);
-		addEntry(camera, "map4.bdmap", 3, 0, "Map 4", text);
+		text = new String[5];
+		text[0] = "Author: Zarokhan";
+		text[1] = "Dear Bomb Defuser, please help out Malmo of its troubles with explosives.";
+		text[2] = "We need your assistance now!";
+		text[3] = "Best regards";
+		text[4] = "City council of Malmo";
+		addEntry(camera, "map2.bdmap", 1, 0, "Terrorist Outpost", text);
+		addEntry(camera, "map3.bdmap", 2, 0, "Skyscrapers", text);
+		addEntry(camera, "map4.bdmap", 3, 0, "Fan House", text);
 		
-		// Old maps
-		text = new String[3];
-		text[0] = "Created by one of the developers of the game.";
-		text[1] = "At of this moment they are outdated because of";
-		text[2] = "poor level design and changes made to the game.";
+		// HolyDuFF's maps
+		text = new String[2];
+		text[0] = "Author: HolyDuFF";
+		text[1] = "House Infidels map pack.";
+		addEntry(camera, "lv1.bdmap", 3, 0, "House Infidels: IzI PiZi", text);
+		addEntry(camera, "lv2.bdmap", 3, 0, "House Infidels: Lemon Squeezy!", text);
+		addEntry(camera, "lv3.bdmap", 3, 0, "House Infidels: Drop", text);
+		addEntry(camera, "lv4.bdmap", 3, 0, "House Infidels: Climb", text);
+		addEntry(camera, "lv5.bdmap", 3, 0, "House Infidels: Spawn Kill", text);
+		addEntry(camera, "lv6.bdmap", 3, 0, "House Infidels: Long Jump", text);
+		addEntry(camera, "lv7.bdmap", 3, 0, "House Infidels: Dafuq?", text);
+		addEntry(camera, "lv8.bdmap", 3, 0, "House Infidels: Tower of do.Om!", text);
+		addEntry(camera, "lv9.bdmap", 3, 0, "House Infidels: CrossFire", text);
+		addEntry(camera, "lv10.bdmap", 3, 0, "House Infidels: CrossFireX of dO.om!", text);
+		addEntry(camera, "lv11.bdmap", 3, 0, "House Infidels: OMGWTFBBQ!?", text);
+		
+		// Old developer maps
+		text = new String[1];
+		text[0] = "Created by the developers of the game.";
 		addEntry(camera, "2cool4school.bdmap", 4, 0, "Outdated: 2cool4school", text);
 		addEntry(camera, "leveleasylife.bdmap", 4, 0, "Outdated: leveleasylife", text);
 		addEntry(camera, "pidda_map.bdmap", 4, 0, "Outdated: pidda map", text);

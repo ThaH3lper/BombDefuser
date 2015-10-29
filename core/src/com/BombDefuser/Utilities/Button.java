@@ -60,17 +60,15 @@ public class Button {
     }
     
     private boolean isPressedAndroid(){
-		for(int i = 0; i < 4; i++){
-			Vector3 p = new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0);
-			camera.unproject(p);
-			
-			if(Gdx.input.isTouched(i) && bounds.contains(p.x, p.y))
-				wasPressed = true;
-			
-			if(Gdx.input.isTouched(i) && bounds.contains(p.x, p.y) && wasPressed){
-				
-				return true;
-			}
+		Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+		camera.unproject(mouse);
+
+		if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y) && !wasPressed)
+			wasPressed = true;
+
+		if(!Gdx.input.isTouched() && wasPressed && bounds.contains(mouse.x, mouse.y)){
+			wasPressed = false;
+			return true;
 		}
     	
     	return false;

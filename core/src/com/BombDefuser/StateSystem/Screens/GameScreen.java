@@ -42,7 +42,7 @@ public class GameScreen extends BaseScreen implements IScreen {
 		hudCamera.update();
 
         btnLevels = new Button(hudCamera, BombMain.assets.get("btn/btnlevels.png", Texture.class), 0, 0);
-        btnLevels.setBounds(btnLevels.getWidth() * 0.5f, btnLevels.getHeight() * 0.5f);
+        btnLevels.setBounds(btnLevels.getWidth() * 0.75f, btnLevels.getHeight() * 0.75f);
         btnLevels.setPosition(0, hudCamera.viewportHeight - btnLevels.getHeight());
 
 		world = Load.mapToWorld(file);

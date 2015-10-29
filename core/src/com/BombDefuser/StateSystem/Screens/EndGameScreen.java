@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.BombDefuser.BombMain;
 import com.BombDefuser.Globals;
+import com.BombDefuser.SoundManager.EMusic;
 import com.BombDefuser.SoundManager.ESounds;
 import com.BombDefuser.StateSystem.BaseScreen;
 import com.BombDefuser.StateSystem.EScreen;
@@ -90,12 +91,14 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		
 		if(!BombMain.debug)
 		{
-			if(btnLevels.isHoldDown()){
+			if(btnLevels.isPressed()){
+				BombMain.soundBank.playSound(ESounds.select);
+				BombMain.soundBank.playMusic(EMusic.music);
 				BombMain.stateManager.setState(EScreen.levelselect);
 			}
 		}
 		
-		if(btnRetry.isHoldDown()){
+		if(btnRetry.isPressed()){
 			if(BombMain.debug)
 				BombMain.stateManager.setState(EScreen.game, BombMain.file);
 			else

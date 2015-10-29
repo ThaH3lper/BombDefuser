@@ -9,7 +9,6 @@ import com.BombDefuser.Utilities.Button;
 import com.BombDefuser.Utilities.ScrollingBackground;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 
 public class MapSelectScreen extends BaseScreen implements IScreen {
 	

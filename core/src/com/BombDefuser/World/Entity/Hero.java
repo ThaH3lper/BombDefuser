@@ -7,7 +7,6 @@ import com.BombDefuser.Utilities.Animation;
 import com.BombDefuser.Utilities.Button;
 import com.BombDefuser.World.World;
 import com.BombDefuser.World.Entity.Weapon.TaserGun;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -42,18 +41,18 @@ public class Hero extends MoveableEntity{
 	}
 	
 	public void createAndroidButtons(OrthographicCamera hudCamera){
-        btnLeft = new Button(hudCamera, BombMain.assets.get("left.jpg", Texture.class), 0, 100);
-        btnRight = new Button(hudCamera, BombMain.assets.get("right.jpg", Texture.class), 100, 0);
-        btnA = new Button(hudCamera, BombMain.assets.get("A.jpg", Texture.class), 1280-200, 0);
-        btnB = new Button(hudCamera, BombMain.assets.get("B.jpg", Texture.class), 1280-100, 100);
+        btnLeft = new Button(hudCamera, BombMain.assets.get("left.jpg", Texture.class), 0, 0);
+        btnRight = new Button(hudCamera, BombMain.assets.get("right.jpg", Texture.class), 150, 0);
+        btnA = new Button(hudCamera, BombMain.assets.get("A.jpg", Texture.class), 1280-(150*2), 0);
+        btnB = new Button(hudCamera, BombMain.assets.get("B.jpg", Texture.class), 1280-150, 0);
         
-        btnLeft.setBounds(100, 100);
-        btnRight.setBounds(100, 100);
-        btnA.setBounds(100, 100);
-        btnB.setBounds(100, 100);
+        btnLeft.setBounds(150, 150);
+        btnRight.setBounds(150, 150);
+        btnA.setBounds(150, 150);
+        btnB.setBounds(150, 150);
 
 
-        float alpha = 0.7f;
+        float alpha = 0.6f;
         btnLeft.setAlpha(alpha);
         btnRight.setAlpha(alpha);
         btnA.setAlpha(alpha);
@@ -115,7 +114,7 @@ public class Hero extends MoveableEntity{
 			Jump();
 		// B button
 		if(btnB.isHoldDown()){
-			if(world.getBomb().getHitbox().overlaps(hitBox)){
+			if(world.getBomb().getHitbox().overlaps(hitBox) && world.getEnemies().size() == 0){
 				BombMain.stateManager.setState(EScreen.defuse);
 			}else{
 				taser.fire(delta);
@@ -174,7 +173,7 @@ public class Hero extends MoveableEntity{
 			Jump();
 		// B button
 		if(Gdx.input.isKeyPressed(Keys.SPACE)){
-			if(world.getBomb().getHitbox().overlaps(hitBox)){
+			if(world.getBomb().getHitbox().overlaps(hitBox) && world.getEnemies().size() == 0){
 				BombMain.stateManager.setState(EScreen.defuse);
 			}else{
 				taser.fire(delta);
