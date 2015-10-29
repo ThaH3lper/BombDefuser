@@ -57,6 +57,7 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
 		BombMain.assets.load("logo.png", Texture.class);
 		BombMain.assets.load("arial64white.fnt", BitmapFont.class);
 		BombMain.assets.load("font.fnt", BitmapFont.class);
+		BombMain.assets.load("arial16.fnt", BitmapFont.class);
 		
 		//Then the rest
 		BombMain.assets.load("dot.png", Texture.class);
@@ -87,6 +88,8 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
         BombMain.assets.load("slad.png", Texture.class);
         BombMain.assets.load("klipp.png", Texture.class);
         BombMain.assets.load("credits.png", Texture.class);
+        BombMain.assets.load("maps.png", Texture.class);
+        BombMain.assets.load("hud.png", Texture.class);
         
         // buttons
         BombMain.assets.load("btn/btnplay.png", Texture.class);
@@ -95,6 +98,7 @@ public class BombMain extends ApplicationAdapter implements InputProcessor{
         BombMain.assets.load("btn/btnlevels.png", Texture.class);
         BombMain.assets.load("btn/btncredits.png", Texture.class);
         BombMain.assets.load("btn/btnpause.png", Texture.class);
+        BombMain.assets.load("btn/btnnext.png", Texture.class);
         
         // Icons
         BombMain.assets.load("icons.png", Texture.class);

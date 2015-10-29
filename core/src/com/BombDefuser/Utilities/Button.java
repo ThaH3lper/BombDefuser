@@ -32,24 +32,66 @@ public class Button {
 		color = new Color(1, 1, 1, 1);
 	}
 
-    Vector3 p;
 	
-	public boolean isPressed(){
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
+    public boolean isPressed(){
+        if(Gdx.app.getType() == Application.ApplicationType.Android)
             return isPressedAndroid();
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
+        	return isPressedDesk();
+        
+    	return false;
+    }
+    
+    private boolean wasPressed;
+    
+    private boolean isPressedDesk(){
+        Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        camera.unproject(mouse);
+        
+        if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y) && !wasPressed)
+        	wasPressed = true;
+        
+        if(!Gdx.input.isTouched() && wasPressed && bounds.contains(mouse.x, mouse.y)){
+        	wasPressed = false;
+            return true;
+        }
+    	
+    	return false;
+    }
+    
+    private boolean isPressedAndroid(){
+		for(int i = 0; i < 4; i++){
+			Vector3 p = new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+			camera.unproject(p);
+			
+			if(Gdx.input.isTouched(i) && bounds.contains(p.x, p.y))
+				wasPressed = true;
+			
+			if(Gdx.input.isTouched(i) && bounds.contains(p.x, p.y) && wasPressed){
+				
+				return true;
+			}
+		}
+    	
+    	return false;
+    }
+    
+	public boolean isHoldDown(){
+        if(Gdx.app.getType() == Application.ApplicationType.Android){
+            return isHoldDownAndroid();
         }
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
-        	return isPressedDesktop();
+        	return isHoldDownDesktop();
         }
 		
 		return false;
 	}
 	
-	private boolean isPressedDesktop(){
+	private boolean isHoldDownDesktop(){
         Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mouse);
-
+        
         if(Gdx.input.isTouched() && bounds.contains(mouse.x, mouse.y)){
             return true;
         }
@@ -57,7 +99,7 @@ public class Button {
 		return false;
 	}
 	
-	private boolean isPressedAndroid(){
+	private boolean isHoldDownAndroid(){
 		
 		for(int i = 0; i < 4; i++){
 			if(Gdx.input.isTouched(i)){

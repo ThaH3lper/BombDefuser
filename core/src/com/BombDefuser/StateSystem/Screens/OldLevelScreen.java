@@ -12,7 +12,7 @@ import com.BombDefuser.Utilities.Button;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
-public class LevelScreen extends BaseScreen implements IScreen {
+public class OldLevelScreen extends BaseScreen implements IScreen {
 	
 	private Texture europe;
 	private Texture red_dot;
@@ -20,7 +20,7 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	private Button btnMenu;
 	private Button btnLevel0, btnLevel1, btnLevel2, btnLevel3, btnLevel4;
 	
-	public LevelScreen(){
+	public OldLevelScreen(){
 		// Override current camera
 		camera = new OrthographicCamera(1280, 720);
 		camera.position.x = camera.viewportWidth/2;
@@ -47,22 +47,22 @@ public class LevelScreen extends BaseScreen implements IScreen {
 	
 	@Override
 	public void update(float delta) {
-		if(btnMenu.isPressed())
+		if(btnMenu.isHoldDown())
 			BombMain.stateManager.setState(EScreen.meny);
 		
-		if(btnLevel0.isPressed())
+		if(btnLevel0.isHoldDown())
 			setLevel("2cool4school.bdmap");
 		
-		if(btnLevel1.isPressed()){
+		if(btnLevel1.isHoldDown()){
 			setLevel("leveleasylife.bdmap");
 		}
-		if(btnLevel2.isPressed()){
+		if(btnLevel2.isHoldDown()){
 			setLevel("pidda_map.bdmap");
 		}
-		if(btnLevel3.isPressed()){
+		if(btnLevel3.isHoldDown()){
 			setLevel("RosenGard.bdmap");
 		}
-		if(btnLevel4.isPressed()){
+		if(btnLevel4.isHoldDown()){
 			setLevel("terrorist_house.bdmap");
 		}
 	}

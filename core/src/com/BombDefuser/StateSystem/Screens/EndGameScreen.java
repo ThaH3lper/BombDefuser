@@ -90,12 +90,12 @@ public class EndGameScreen extends BaseScreen implements IScreen {
 		
 		if(!BombMain.debug)
 		{
-			if(btnLevels.isPressed()){
+			if(btnLevels.isHoldDown()){
 				BombMain.stateManager.setState(EScreen.levelselect);
 			}
 		}
 		
-		if(btnRetry.isPressed()){
+		if(btnRetry.isHoldDown()){
 			if(BombMain.debug)
 				BombMain.stateManager.setState(EScreen.game, BombMain.file);
 			else

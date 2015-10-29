@@ -43,7 +43,7 @@ public class CreditsScreen extends BaseScreen implements IScreen {
 		mCamera.update();
 		camera.update();
 		
-		if(btnMenu.isPressed()){
+		if(btnMenu.isHoldDown()){
 			BombMain.soundBank.playSound(ESounds.select);
 			BombMain.stateManager.setState(EScreen.meny);
 		}

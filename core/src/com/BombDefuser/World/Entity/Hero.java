@@ -111,10 +111,10 @@ public class Hero extends MoveableEntity{
 	
 	public void updateAndroidControls(float delta){
 		// A button
-		if(btnA.isPressed())
+		if(btnA.isHoldDown())
 			Jump();
 		// B button
-		if(btnB.isPressed()){
+		if(btnB.isHoldDown()){
 			if(world.getBomb().getHitbox().overlaps(hitBox)){
 				BombMain.stateManager.setState(EScreen.defuse);
 			}else{
@@ -126,7 +126,7 @@ public class Hero extends MoveableEntity{
 		}
 		
 		// C & D buttons
-		if(btnLeft.isPressed() || btnRight.isPressed()){
+		if(btnLeft.isHoldDown() || btnRight.isHoldDown()){
 			if(taser.getBullet() != null)
 				current = runTaser;
 			else{
@@ -145,11 +145,11 @@ public class Hero extends MoveableEntity{
 					}
 				}
 			}
-			if(btnRight.isPressed()){
+			if(btnRight.isHoldDown()){
 				MoveRight();
 				setXFliper(false);
 			}
-			else if(btnLeft.isPressed()){
+			else if(btnLeft.isHoldDown()){
 				MoveLeft();
 				setXFliper(true);
 			}

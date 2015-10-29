@@ -17,7 +17,7 @@ public class TaserGun {
 	
 	public TaserGun(Hero hero){
 		this.bulletTexture = BombMain.assets.get("taser_lightning.png", Texture.class);
-		
+		fireTime = maxTazerTime;
 		bullet = new TaserBullet(bulletTexture, hero);
 	}
 	

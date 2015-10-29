@@ -32,8 +32,6 @@ public class GameScreen extends BaseScreen implements IScreen {
 		world = Load.mapToWorld(file);
 		world.init();
 		
-		hud = new Hud(world);
-		
 		camera.position.x += Globals.CAMERA_SIDE_PADDING/2;
 		//camera.position.y -= Globals.CAMERA_TOP_PADDING/2;
 		camera.update();
@@ -52,9 +50,8 @@ public class GameScreen extends BaseScreen implements IScreen {
 		if(Gdx.app.getType() == ApplicationType.Android)
 			world.getHero().createAndroidButtons(hudCamera);
 		
-		hud = new Hud(world);
+		hud = new Hud(world, hudCamera);
 		
-		//world.addEnemy(10, 400, 40, 40, 20, Color.WHITE);
 		Globals.gameReset();
 		
 		// Sound 
@@ -74,6 +71,8 @@ public class GameScreen extends BaseScreen implements IScreen {
 		camera.update();
 
         if(btnLevels.isPressed()){
+        	BombMain.soundBank.stopMusic();
+        	BombMain.soundBank.playMusic(EMusic.music);
             BombMain.soundBank.playSound(ESounds.select);
             BombMain.stateManager.setState(EScreen.levelselect);
         }

@@ -16,10 +16,16 @@ public class Globals {
 	public static boolean runOutOfTime;
 	public static boolean deadFromEnemies;
 	
+	// Meny variables
+	public static int startIndex, endIndex;
+	
 	public static void load()
 	{
 		NEW_VIRTUAL_WIDTH = (int)(((float)Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight()) * (float)VIRTUAL_HEIGHT);
 		CAMERA_SIDE_PADDING = VIRTUAL_WIDTH - NEW_VIRTUAL_WIDTH;
+		
+		startIndex = 0;
+		endIndex = 4;
 		
 		gameReset();
 	}

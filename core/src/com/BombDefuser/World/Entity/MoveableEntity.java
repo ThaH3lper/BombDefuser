@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public abstract class MoveableEntity extends Entity{
 	
-	private static final  float defaultSpeed = 100, defaultJumpPower = 270, footHeight = 2;
+	private static final  float defaultSpeed = 100, defaultJumpPower = 300, footHeight = 2;
 	
 	protected float speed, jumpPower;
 	protected Rectangle recFoot;
