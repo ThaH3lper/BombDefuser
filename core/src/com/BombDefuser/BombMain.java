@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class BombMain extends ApplicationAdapter implements InputProcessor{
 	
-	public static final String GAME_VERSION = "1.1.0"; 
+	public static final String GAME_VERSION = "2.0.1"; 
 	
 	public static AssetManager assets;
 	public static ScreenManager stateManager;
