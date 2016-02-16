@@ -114,137 +114,157 @@ public class Enemy extends MoveableEntity {
 		
 	}
 	
+	private void electrocute(float delta){
+		// Hit zone
+		
+		// Set electric animation
+		electric.update(delta);
+		this.setRecSource(electric.getRecSource());
+		
+		// Time until death
+		deathTimer -= delta;
+		if(deathTimer <= 0)
+			deathWish = true;
+		
+		// Shaky state
+		timeUntilNextShake -= delta;
+		if(timeUntilNextShake <= 0){
+			timeUntilNextShake = 0.05f;
+			shakeRot = -shakeRot;
+			this.rotation = shakeRot;
+		}
+	}
+	
+	// Update location
+	private void updateMovement(float delta){
+		if(this.isOnGround && !standStill){
+			run.update(delta);
+			if(currentDir == EDirection.LEFT){
+				MoveLeft();
+			}
+			if(currentDir == EDirection.RIGHT){
+				MoveRight();
+			}
+		}
+	}
+	
+	private void reachOfHero(float delta){
+		// Check if we are in reach of the hero
+		Vector2 hero = this.world.getHero().getPos();
+		if(Vector2.dst(hero.x, hero.y, pos.x, pos.y) < 100){
+			// Hero is in reach
+			if(Globals.AI_DEBUG_MODE)
+				System.out.println("Enemy is in reach of player. Checking if there is any tiles in the way.");
+			
+			// If there has been no intersection with world tiles 
+			if(!world.TileBetweenVectors(world.getHero().getCenterPosition(), this.getCenterPosition())){
+				if(Globals.AI_DEBUG_MODE)
+					System.out.println("Enemy have an eye on the player.");
+				
+				// Stand still and define that the enemy has spotted the hero
+				seesPlayer = true;
+				standStill = true;
+				run.setEnemyAimingPose();
+				
+				// Calculate which side the hero is on relative to the enemy
+				float deltaX = world.getHero().getPos().x - pos.x;
+				if(deltaX > 0){
+					// Hero is on the right side relative to the enemy
+					currentDir = EDirection.RIGHT;
+					xFliped = false;
+				} else {
+					currentDir = EDirection.LEFT;
+					xFliped = true;
+				}
+			} else {
+				// A tile is in the way of the hero
+				
+				if(Globals.AI_DEBUG_MODE)
+					System.out.println("Enemy DONT have an eye on the player.");
+				
+				// Define that the enemy don't see the hero and keep walking
+				seesPlayer = false;
+				standStill = false;
+			}
+		} else {
+			// Hero not in reach
+			standStill = false;
+			seesPlayer = false;
+		}
+	}
+	
+	private void updatePitFallDetectors(float delta){
+		// Update pit fall detectors
+		leftRec.x = pos.x - hitWidth;
+		leftRec.y = pos.y - 2;
+		rightRec.x = pos.x + hitWidth;
+		rightRec.y = pos.y - 2;
+		
+		// Check if we are close to pitfall
+		if(!world.CollisionWithAnyTile(leftRec) && currentDir == EDirection.LEFT && isOnGround){
+			if(Globals.AI_DEBUG_MODE){
+				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
+				System.out.println(msg);
+			}
+			
+			currentDir = EDirection.RIGHT;
+			this.setXFliper(false);
+		}
+		if(!world.CollisionWithAnyTile(rightRec) && currentDir == EDirection.RIGHT && isOnGround){
+			if(Globals.AI_DEBUG_MODE){
+				String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
+				System.out.println(msg);
+			}
+			
+			currentDir = EDirection.LEFT;
+			this.setXFliper(true);
+		}
+	}
+	
+	private void reloadWeapon(float delta){
+		// Reload animation - This code is connected with the EnemyWeapon object
+		if(weapon.needToReload()){
+			if(!reload.update(delta)){
+				this.isReloading = true;
+				this.standStill = true;
+				this.setRecSource(reload.getRecSource());
+			} else {
+				this.isReloading = false;
+				if(!seesPlayer)
+					this.standStill = false;
+				weapon.resetShotsFired();
+			}
+		}
+	}
+	
 	@Override
 	public void update(float delta){
 		weapon.update(delta);
 		
 		if(isHit){
-			// Hit zone
-			
-			// Set electric animation
-			electric.update(delta);
-			this.setRecSource(electric.getRecSource());
-			
-			// Time until death
-			deathTimer -= delta;
-			if(deathTimer <= 0)
-				deathWish = true;
-			
-			// Shaky state
-			timeUntilNextShake -= delta;
-			if(timeUntilNextShake <= 0){
-				timeUntilNextShake = 0.05f;
-				shakeRot = -shakeRot;
-				this.rotation = shakeRot;
-			}
+			electrocute(delta);
 		}else{
 			// Regular zone
 			this.rotation = 0;
 			this.setRecSource(run.getRecSource());
 			super.update(delta);
 			
-			// Update location
-			if(this.isOnGround && !standStill){
-				run.update(delta);
-				if(currentDir == EDirection.LEFT){
-					MoveLeft();
-				}
-				if(currentDir == EDirection.RIGHT){
-					MoveRight();
-				}
-			}
+			updateMovement(delta);
 			
-			// Check if we are in reach of the hero
-			Vector2 hero = this.world.getHero().getPos();
-			if(Vector2.dst(hero.x, hero.y, pos.x, pos.y) < 100){
-				// Hero is in reach
-				if(Globals.AI_DEBUG_MODE)
-					System.out.println("Enemy is in reach of player. Checking if there is any tiles in the way.");
-				
-				// If there has been no intersection with world tiles 
-				if(!world.TileBetweenVectors(world.getHero().getCenterPosition(), this.getCenterPosition())){
-					if(Globals.AI_DEBUG_MODE)
-						System.out.println("Enemy have an eye on the player.");
-					
-					// Stand still and define that the enemy has spotted the hero
-					seesPlayer = true;
-					standStill = true;
-					run.setEnemyAimingPose();
-					
-					// Calculate which side the hero is on relative to the enemy
-					float deltaX = world.getHero().getPos().x - pos.x;
-					if(deltaX > 0){
-						// Hero is on the right side relative to the enemy
-						currentDir = EDirection.RIGHT;
-						xFliped = false;
-					} else {
-						currentDir = EDirection.LEFT;
-						xFliped = true;
-					}
-				} else {
-					// A tile is in the way of the hero
-					
-					if(Globals.AI_DEBUG_MODE)
-						System.out.println("Enemy DONT have an eye on the player.");
-					
-					// Define that the enemy don't see the hero and keep walking
-					seesPlayer = false;
-					standStill = false;
-				}
-			} else {
-				// Hero not in reach
-				standStill = false;
-				seesPlayer = false;
-			}
+			reachOfHero(delta);
 			
-			// Update pit death fall detectors
-			leftRec.x = pos.x - hitWidth;
-			leftRec.y = pos.y - 2;
-			rightRec.x = pos.x + hitWidth;
-			rightRec.y = pos.y - 2;
+			updatePitFallDetectors(delta);
 			
-			// Check if we are close to pitfall
-			if(!world.CollisionWithAnyTile(leftRec) && currentDir == EDirection.LEFT && isOnGround){
-				if(Globals.AI_DEBUG_MODE){
-					String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to right.";
-					System.out.println(msg);
-				}
-				
-				currentDir = EDirection.RIGHT;
-				this.setXFliper(false);
-			}
-			if(!world.CollisionWithAnyTile(rightRec) && currentDir == EDirection.RIGHT && isOnGround){
-				if(Globals.AI_DEBUG_MODE){
-					String msg = "Enemy " + this.ID + " has encountered pit fall, changes direction to left.";
-					System.out.println(msg);
-				}
-				
-				currentDir = EDirection.LEFT;
-				this.setXFliper(true);
-			}
-			
-			// Reload animation - This code is connected with the EnemyWeapon Class
-			if(weapon.needToReload()){
-				if(!reload.update(delta)){
-					this.isReloading = true;
-					this.standStill = true;
-					this.setRecSource(reload.getRecSource());
-				} else {
-					this.isReloading = false;
-					if(!seesPlayer)
-						this.standStill = false;
-					weapon.resetShotsFired();
-				}
-			}
+			reloadWeapon(delta);
 			
 			// be able to idle if hero is not visible to the enemy
 			if(!seesPlayer)
-				idleFeature(delta);
+				standIdle(delta);
 		}
 	}
 	
-	// Will make the enemy idle Enemey will idle
-	private void idleFeature(float delta){
+	// Entity will stand idle for 5 sec
+	private void standIdle(float delta){
 		timeUntilIdle -= delta;
 		if(timeUntilIdle < 0){
 			this.standStill = true;
